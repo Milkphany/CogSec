@@ -30,9 +30,13 @@ public class HomeController {
     public String addUser(@ModelAttribute("userAccount") UserAccount userAccount,
                           RedirectAttributes attributes) {
 
-        authService.addUser(userAccount);
-
-        attributes.addFlashAttribute("newuser", userAccount);
+        if (authService.getUser(userAccount.getUsername()) == null) {
+            authService.addUser(userAccount);
+            attributes.addFlashAttribute("newuser", userAccount);
+        }
+        else
+            attributes.addFlashAttribute("error", userAccount.getUsername()
+                    + " already exist, was not added to system");
 
         return "redirect:/";
     }

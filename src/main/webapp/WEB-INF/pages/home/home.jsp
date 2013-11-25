@@ -21,6 +21,9 @@
         <c:if test="${not empty newuser}">
             <p>Made a user, his name is: ${newuser.username}</p>
         </c:if>
+        <c:if test="${not empty error}">
+            <h3 class="form-error">${error}</h3>
+        </c:if>
         <h2>Registration form</h2>
         <div id="Registration">
             <form:form commandName="user" action="/new">
