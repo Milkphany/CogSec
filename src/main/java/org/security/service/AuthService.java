@@ -5,6 +5,8 @@ import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * User: Milky
  * Date: 11/25/13
@@ -20,7 +22,15 @@ public class AuthService {
         userDao.addUser(username);
     }
 
+    public void addUser(UserAccount userAccount) {
+        userDao.addUser(userAccount.getUsername());
+    }
+
     public UserAccount getUser(String username) {
         return userDao.getUserByUsername(username);
+    }
+
+    public List<UserAccount> getAllUsers() {
+        return userDao.getAllUsers();
     }
 }

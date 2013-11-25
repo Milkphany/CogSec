@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * User: Milky
  * Date: 11/25/13
@@ -34,5 +36,9 @@ public class UserDaoImpl implements UserDao {
         sessionFactory.getCurrentSession().save(account);
     }
 
-
+    @Transactional
+    public List<UserAccount> getAllUsers() {
+        return sessionFactory.getCurrentSession()
+                .createQuery("from UserAccount").list();
+    }
 }

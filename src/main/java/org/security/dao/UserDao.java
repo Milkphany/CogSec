@@ -2,6 +2,8 @@ package org.security.dao;
 
 import org.security.model.UserAccount;
 
+import java.util.List;
+
 /**
  * User: Milky
  * Date: 11/25/13
@@ -11,4 +13,5 @@ public interface UserDao {
 
     public UserAccount getUserByUsername(String username);
     public void addUser(String username);
+    public List<UserAccount> getAllUsers();
 }
