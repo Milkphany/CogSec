@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/")
@@ -21,14 +22,14 @@ public class HomeController {
 	}
 
     @RequestMapping(value = "new", method = RequestMethod.GET)
-    public String addUser(ModelMap model) {
+    public String addUser(RedirectAttributes attributes) {
 
         authService.addUser("Bob");
 
-        UserAccount userAccount = authService.getUser("Bob");
+        UserAccount userAccount = authService.getUser("Robert Paulson");
 
-        model.addAttribute("useraccount", userAccount);
+        attributes.addFlashAttribute("useraccount", userAccount);
 
-        return "home/home";
+        return "redirect:/";
     }
 }
