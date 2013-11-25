@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "UserAccount")
 public class UserAccount {
 
-    @Id @GeneratedValue
+    @Id
     private String username;
 
     public String getUsername() {

@@ -16,6 +16,7 @@
     <jsp:include page="../pagefrags/nav.jsp"/>
 
     <div class="maincontent">
+        <a href="/">Insert a person!</a>
 
     </div>
 
