@@ -21,7 +21,6 @@
         <c:if test="${not empty useraccount}">
             <p>Made a user, his name is: ${useraccount.username}</p>
         </c:if>
-
     </div>
 
     <jsp:include page="../pagefrags/footer.jsp"/>

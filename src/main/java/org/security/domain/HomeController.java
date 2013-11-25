@@ -24,7 +24,7 @@ public class HomeController {
     @RequestMapping(value = "new", method = RequestMethod.GET)
     public String addUser(RedirectAttributes attributes) {
 
-        authService.addUser("Bob");
+        authService.addUser("Robert Paulson");
 
         UserAccount userAccount = authService.getUser("Robert Paulson");
 
