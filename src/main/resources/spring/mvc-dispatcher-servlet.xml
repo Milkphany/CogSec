@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="org.security.mvc"/>
+    <context:component-scan base-package="org.security"/>
 
     <mvc:resources mapping="/js/**" location="/resources/js/" />
     <mvc:resources mapping="/css/**" location="/resources/css/" />
@@ -17,6 +17,18 @@
 
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven />
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="org.security.model" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>

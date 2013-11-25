@@ -8,7 +8,7 @@
     <name>CogSec</name>
 
     <properties>
-        <spring.version>3.2.0.RELEASE</spring.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -80,6 +80,12 @@
             <version>3.2.2.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>3.2.4.RELEASE</version>
+        </dependency>
+
         <!--Database imports-->
         <dependency>
             <groupId>commons-dbcp</groupId>
@@ -93,6 +99,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.26</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- Hibernate framework -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.2.1.Final</version>
         </dependency>
 
     </dependencies>

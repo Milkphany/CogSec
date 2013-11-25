@@ -1,4 +1,4 @@
-package org.security.mvc;
+package org.security.domain;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
