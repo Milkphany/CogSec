@@ -22,6 +22,7 @@ public class UserDaoImpl implements UserDao {
     public UserAccount getUserByUsername(String username) {
         return (UserAccount) sessionFactory.getCurrentSession()
                 .createQuery("from UserAccount where username = :username")
+                .setString("username", username)
                 .uniqueResult();
     }
 
