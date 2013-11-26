@@ -2,6 +2,7 @@ package org.security.domain;
 
 import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
+import org.security.model.Role;
 import org.security.model.UserAccount;
 import org.security.service.AuthService;
 import org.security.service.InsertTests;
@@ -44,6 +45,7 @@ public class HomeController {
 
         try {
             userAccount.setPassword(authService.getDefaultPassword());
+            userAccount.setRole(new Role("ROLE_ADMIN"));
             authService.addUser(userAccount);
             attributes.addFlashAttribute("newuser", userAccount);
         } catch (InsertExistException e) {

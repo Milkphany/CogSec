@@ -5,6 +5,7 @@ import org.security.dao.UserDao;
 import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
 import org.security.model.Coglet;
+import org.security.model.Role;
 import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,9 +32,11 @@ public class AuthService {
         if (getUser(username) == null) {
             UserAccount userAccount = new UserAccount();
             List<Coglet> password = cogletDao.getDefaultCoglets();
+            Role role = new Role("ROLE_ADMIN");
 
             userAccount.setUsername(username);
             userAccount.setPassword(password);
+            userAccount.setRole(role);
             userDao.addUser(userAccount);
         } else
             throw new InsertExistException();
