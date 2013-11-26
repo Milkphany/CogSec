@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css"/>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/css/collage.css"/>
+
 <link rel="stylesheet" type="text/css" href="/css/jquery.mCustomScrollbar.css"/>
 
 
