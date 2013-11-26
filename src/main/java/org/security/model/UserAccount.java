@@ -14,24 +14,24 @@ import java.util.List;
  */
 @Entity
 @Table(name = "UserAccount")
-public class UserAccount implements CogUserDetails {
+public class UserAccount {
 
     @Id
     private String username;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Column(nullable = false)
-    private List<Coglet> cogPassword;
+    private List<Coglet> password;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Role role;
 
     public UserAccount() {
     }
 
-    public UserAccount(String username, List<Coglet> cogPassword) {
+    public UserAccount(String username, List<Coglet> password) {
         this.username = username;
-        this.cogPassword = cogPassword;
+        this.password = password;
     }
 
     public void setUsername(String username) {
@@ -42,43 +42,25 @@ public class UserAccount implements CogUserDetails {
         return username;
     }
 
-    public List<Coglet> getCogPassword() {
-        return cogPassword;
+    public List<Coglet> getPassword() {
+        return password;
     }
 
-    public void setCogPassword(List<Coglet> password) {
-        this.cogPassword = password;
+    public void setPassword(List<Coglet> password) {
+        this.password = password;
     }
 
-    @Override
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
         roles.add(role);
         return roles;
-    }
-
-    @Override
-    public String getPassword() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 }

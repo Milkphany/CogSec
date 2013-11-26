@@ -15,11 +15,12 @@ import java.nio.file.Paths;
  * Date: 11/25/13
  * Time: 7:32 PM
  */
-public class InsertTests implements ServletContextAware {
+public class InsertTests {
 
     @Autowired
     private AuthService authService;
 
+    @Autowired
     private ServletContext servletContext;
 
     public void addImages() {
@@ -67,10 +68,5 @@ public class InsertTests implements ServletContextAware {
         addImages();
         addPeople();
         createSymLink();
-    }
-
-    @Override
-    public void setServletContext(ServletContext servletContext) {
-        this.servletContext = servletContext;
     }
 }

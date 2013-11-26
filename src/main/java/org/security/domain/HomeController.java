@@ -43,6 +43,7 @@ public class HomeController {
                           RedirectAttributes attributes) {
 
         try {
+            userAccount.setPassword(authService.getDefaultPassword());
             authService.addUser(userAccount);
             attributes.addFlashAttribute("newuser", userAccount);
         } catch (InsertExistException e) {

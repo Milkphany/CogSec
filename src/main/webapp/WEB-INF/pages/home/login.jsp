@@ -32,10 +32,10 @@
             <p>
                 <input type='text' class='form-control' name='username' id='username' autofocus="autofocus" placeholder="NetId" required/>
             </p>
-            <input type="checkbox" name="password" value="Reading">Reading
-            <input type="checkbox" name="password" value="Movies">Movies
-            <input type="checkbox" name="password" value="Writing">Writing
-            <input type="checkbox" name="password" value="Singing">Singing
+            <input type="checkbox" name="password" value="/images/default1.jpg">Reading
+            <input type="checkbox" name="password" value="/images/default2.jpg">Movies
+            <input type="checkbox" name="password" value="/images/default3.jpg">Writing
+            <input type="checkbox" name="password" value="/images/default4.jpg">Singing
             <p>
                 <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'/>
             </p>

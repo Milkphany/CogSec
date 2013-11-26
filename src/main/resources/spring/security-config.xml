@@ -7,8 +7,6 @@
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <beans:import resource="mvc-dispatcher-servlet.xml" />
-
     <http pattern="/resources/**" security="none" />
 
     <http auto-config="false" use-expressions="true" entry-point-ref="cogAuthenticationEntryPoint">

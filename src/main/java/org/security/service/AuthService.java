@@ -19,7 +19,7 @@ import java.util.List;
  * Time: 4:22 PM
  */
 @Service
-public class AuthService implements UserDetailsService {
+public class AuthService {
 
     @Autowired
     private UserDao userDao;
@@ -33,14 +33,18 @@ public class AuthService implements UserDetailsService {
             List<Coglet> password = cogletDao.getDefaultCoglets();
 
             userAccount.setUsername(username);
-            userAccount.setCogPassword(password);
+            userAccount.setPassword(password);
             userDao.addUser(userAccount);
         } else
             throw new InsertExistException();
     }
 
+    public List<Coglet> getDefaultPassword() {
+        return cogletDao.getDefaultCoglets();
+    }
+
     public void addUser(UserAccount userAccount) throws InsertExistException, PasswordUnsetException {
-        if (userAccount.getCogPassword() == null)
+        if (userAccount.getPassword() == null)
             throw new PasswordUnsetException();
         else
             userDao.addUser(userAccount);
@@ -65,8 +69,4 @@ public class AuthService implements UserDetailsService {
         return cogletDao.getAllImages();
     }
 
-    @Override
-    public UserAccount loadUserByUsername(String username) throws UsernameNotFoundException {
-        return getUser(username);
-    }
 }
