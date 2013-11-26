@@ -32,12 +32,7 @@ public class AuthService {
     public void addUser(String username) throws InsertExistException {
         if (getUser(username) == null) {
             UserAccount userAccount = new UserAccount();
-            List<Coglet> password = new ArrayList<Coglet>();
-
-            password.add(new Coglet("/images/default1.jpg"));
-            password.add(new Coglet("/images/default2.jpg"));
-            password.add(new Coglet("/images/default3.jpg"));
-            password.add(new Coglet("/images/default4.jpg"));
+            List<Coglet> password = cogletDao.getDefaultCoglets();
 
             userAccount.setUsername(username);
             userAccount.setPassword(password);
