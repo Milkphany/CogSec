@@ -37,6 +37,8 @@ public class InsertTests implements InitializingBean, ServletContextAware {
         Path rootPath = Paths.get("/images");
         Path webPath = Paths.get(servletContext.getRealPath("/") + "resources/images");
 
+        System.err.println(rootPath);
+        System.err.println(webPath);
         try {
             Files.createLink(webPath, rootPath);
         } catch (IOException e) {
