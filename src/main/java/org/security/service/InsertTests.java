@@ -56,7 +56,6 @@ public class InsertTests implements InitializingBean, ServletContextAware {
             Files.createSymbolicLink(webPath, rootPath);
         } catch (IOException e) {
             System.out.println("Were not able to create symbolic path due to io error");
-            e.printStackTrace();
         } catch (UnsupportedOperationException e) {
             System.out.println("Were not able to create symbolic path idk why");
         }

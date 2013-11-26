@@ -28,11 +28,8 @@ public class UserDaoImpl implements UserDao {
                 .uniqueResult();
     }
 
-    public void addUser(String username) {
-        UserAccount account = new UserAccount();
-        account.setUsername(username);
-
-        sessionFactory.getCurrentSession().save(account);
+    public void addUser(UserAccount userAccount) {
+        sessionFactory.getCurrentSession().save(userAccount);
     }
 
     @SuppressWarnings("unchecked")

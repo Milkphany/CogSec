@@ -3,15 +3,13 @@ package org.security.service;
 import org.security.dao.CogletDao;
 import org.security.dao.UserDao;
 import org.security.exception.InsertExistException;
+import org.security.exception.PasswordUnsetException;
 import org.security.model.Coglet;
 import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,14 +30,27 @@ public class AuthService {
     }
 
     public void addUser(String username) throws InsertExistException {
-        if (getUser(username) == null)
-            userDao.addUser(username);
-        else
+        if (getUser(username) == null) {
+            UserAccount userAccount = new UserAccount();
+            List<Coglet> password = new ArrayList<Coglet>();
+
+            password.add(new Coglet("/images/default1.jpg"));
+            password.add(new Coglet("/images/default2.jpg"));
+            password.add(new Coglet("/images/default3.jpg"));
+            password.add(new Coglet("/images/default4.jpg"));
+
+            userAccount.setUsername(username);
+            userAccount.setPassword(password);
+            userDao.addUser(userAccount);
+        } else
             throw new InsertExistException();
     }
 
-    public void addUser(UserAccount userAccount) throws InsertExistException {
-        addUser(userAccount.getUsername());
+    public void addUser(UserAccount userAccount) throws InsertExistException, PasswordUnsetException {
+        if (userAccount.getPassword() == null)
+            throw new PasswordUnsetException();
+        else
+            userDao.addUser(userAccount);
     }
 
     public UserAccount getUser(String username) {
