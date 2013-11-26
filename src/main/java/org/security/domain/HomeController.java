@@ -24,6 +24,7 @@ public class HomeController {
 	public String printWelcome(ModelMap modelMap) {
         modelMap.addAttribute("user", new UserAccount());
         modelMap.addAttribute("users", authService.getAllUsers());
+        modelMap.addAttribute("coglets", authService.getAllCoglets());
 
 		return "home/home";
 	}

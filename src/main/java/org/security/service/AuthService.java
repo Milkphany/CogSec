@@ -3,6 +3,7 @@ package org.security.service;
 import org.security.dao.CogletDao;
 import org.security.dao.UserDao;
 import org.security.exception.InsertExistException;
+import org.security.model.Coglet;
 import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,9 +47,13 @@ public class AuthService {
     }
 
     public void addCoglet(String imagePath) throws InsertExistException {
-        if (cogletDao.getImage(imagePath) != null)
+        if (cogletDao.getImage(imagePath) == null)
             cogletDao.addImage(imagePath);
         else
             throw new InsertExistException();
+    }
+
+    public List<Coglet> getAllCoglets() {
+        return cogletDao.getAllImages();
     }
 }

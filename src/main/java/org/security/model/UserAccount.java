@@ -15,8 +15,7 @@ public class UserAccount {
     @Id
     private String username;
 
-    @OneToMany(mappedBy = "path")
-    private List<Coglet> password;
+//    private List<Coglet> password;
 
     public String getUsername() {
         return username;
@@ -26,11 +25,11 @@ public class UserAccount {
         this.username = username;
     }
 
-    public List<Coglet> getPassword() {
+    /*  public List<Coglet> getPassword() {
         return password;
     }
 
     public void setPassword(List<Coglet> password) {
         this.password = password;
-    }
+    }*/
 }

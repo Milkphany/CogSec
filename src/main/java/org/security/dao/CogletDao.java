@@ -1,6 +1,10 @@
 package org.security.dao;
 
 
+import org.security.model.Coglet;
+
+import java.util.List;
+
 /**
  * User: Milky
  * Date: 11/25/13
@@ -10,5 +14,7 @@ public interface CogletDao {
 
     public void addImage(String imagePath);
 
-    public String getImage(String imagePath);
+    public Coglet getImage(String imagePath);
+
+    public List<Coglet> getAllImages();
 }

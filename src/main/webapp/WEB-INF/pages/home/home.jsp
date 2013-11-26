@@ -50,7 +50,20 @@
                 </c:if>
             </table>
         </div>
-
+        <h2>All images</h2>
+        <div>
+            <table>
+                <tr><th>Image Path</th></tr>
+                <c:if test="${not empty coglets}">
+                    <c:forEach var="coglet" items="${coglets}" varStatus="status">
+                        <tr>
+                            <td>${status.index + 1}</td>
+                            <td>${coglet.path}</td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+            </table>
+        </div>
     </div>
 
     <jsp:include page="../pagefrags/footer.jsp"/>
