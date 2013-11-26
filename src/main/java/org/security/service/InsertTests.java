@@ -35,7 +35,7 @@ public class InsertTests implements InitializingBean, ServletContextAware {
 
     private void createSymLink() {
         Path rootPath = Paths.get("/images");
-        Path webPath = Paths.get(servletContext.getRealPath("/") + "resources/images");
+        Path webPath = Paths.get(servletContext.getRealPath("/") + "resources");
 
         System.err.println(rootPath);
         System.err.println(webPath);
@@ -43,6 +43,7 @@ public class InsertTests implements InitializingBean, ServletContextAware {
             Files.createLink(webPath, rootPath);
         } catch (IOException e) {
             System.out.println("Were not able to create symbolic path due to io error");
+            e.printStackTrace();
         } catch (UnsupportedOperationException e) {
             System.out.println("Were not able to create symbolic path idk why");
         }
