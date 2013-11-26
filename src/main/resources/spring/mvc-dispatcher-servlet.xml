@@ -44,6 +44,8 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean id="insertTests" class="org.security.service.InsertTests" init-method="addImages"/>
+
     <beans profile="dev">
         <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
             <property name="driverClassName" value="com.mysql.jdbc.Driver" />

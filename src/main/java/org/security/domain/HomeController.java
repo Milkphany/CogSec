@@ -1,7 +1,9 @@
 package org.security.domain;
 
+import org.security.exception.InsertExistException;
 import org.security.model.UserAccount;
 import org.security.service.AuthService;
+import org.security.service.InsertTests;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,13 +32,13 @@ public class HomeController {
     public String addUser(@ModelAttribute("userAccount") UserAccount userAccount,
                           RedirectAttributes attributes) {
 
-        if (authService.getUser(userAccount.getUsername()) == null) {
+        try {
             authService.addUser(userAccount);
             attributes.addFlashAttribute("newuser", userAccount);
-        }
-        else
+        } catch (InsertExistException e) {
             attributes.addFlashAttribute("error", userAccount.getUsername()
                     + " already exist, was not added to system");
+        }
 
         return "redirect:/";
     }

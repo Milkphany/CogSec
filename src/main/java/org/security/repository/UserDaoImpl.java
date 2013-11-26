@@ -15,12 +15,12 @@ import java.util.List;
  * Time: 4:20 PM
  */
 @Repository
+@Transactional
 public class UserDaoImpl implements UserDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Transactional
     public UserAccount getUserByUsername(String username) {
         return (UserAccount) sessionFactory.getCurrentSession()
                 .createQuery("from UserAccount where username = :username")
@@ -28,7 +28,6 @@ public class UserDaoImpl implements UserDao {
                 .uniqueResult();
     }
 
-    @Transactional
     public void addUser(String username) {
         UserAccount account = new UserAccount();
         account.setUsername(username);
@@ -36,7 +35,6 @@ public class UserDaoImpl implements UserDao {
         sessionFactory.getCurrentSession().save(account);
     }
 
-    @Transactional
     public List<UserAccount> getAllUsers() {
         return sessionFactory.getCurrentSession()
                 .createQuery("from UserAccount").list();

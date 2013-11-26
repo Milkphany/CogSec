@@ -50,6 +50,7 @@
                 </c:if>
             </table>
         </div>
+
     </div>
 
     <jsp:include page="../pagefrags/footer.jsp"/>
