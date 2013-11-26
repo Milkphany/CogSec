@@ -13,13 +13,16 @@
 <html>
 <head>
     <jsp:include page="../pagefrags/imports.jsp"/>
-
-
 </head>
 <body>
 <div class="container">
 
     <div id='login'>
+        <div class="error">
+            Your login attempt was not successful, try again.<br/>
+            Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
+        </div>
+
 
         <h1>Enter your NetId:</h1>
         <br>
@@ -29,8 +32,7 @@
             <p>
                 <input type='text' class='form-control' name='username' id='username' autofocus="autofocus" placeholder="NetId" required/>
             </p>
-
-                    <p>
+            <p>
                 <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'/>
             </p>
         </form:form>

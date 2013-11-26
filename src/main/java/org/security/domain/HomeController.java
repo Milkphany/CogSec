@@ -61,10 +61,4 @@ public class HomeController {
 
         return "/home/test";
     }
-
-    @RequestMapping(value ="login",method = RequestMethod.GET)
-    public String getLogin(ModelMap modelMap) {
-
-        return "/home/login";
-    }
 }
