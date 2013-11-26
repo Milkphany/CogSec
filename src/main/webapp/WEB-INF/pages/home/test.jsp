@@ -42,7 +42,9 @@
         // This is just for the case that the browser window is resized
         var resizeTimer = null;
         $(window).bind('resize', function() {
+        // hide all the images until we resize them
             $('.Collage .Image_Wrapper').css("opacity", 0);
+        // set a timer to re-apply the plugin
             if (resizeTimer) clearTimeout(resizeTimer);
             resizeTimer = setTimeout(collage, 200);
         });
@@ -55,6 +57,16 @@
 
     <jsp:include page="../pagefrags/nav.jsp"/>
 
+    <form>
+    <div class="input-group">
+
+        <input type="text" class="form-control" required placeholder="Search images">
+        <div class="input-group-btn">
+            <input type='submit' class="btn btn-primary" id="submit" value='Search'/>
+        </div>
+
+    </div>
+    </form>
 
     <div class="maincontent">
         <div class="Collage effect-parent">
