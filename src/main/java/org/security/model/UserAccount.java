@@ -15,7 +15,7 @@ public class UserAccount {
     @Id
     private String username;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @Column(nullable = false)
     private List<Coglet> password;
 
