@@ -16,6 +16,7 @@ public class UserAccount {
     private String username;
 
     @OneToMany
+    @Column(nullable = false)
     private List<Coglet> password;
 
     public UserAccount() {

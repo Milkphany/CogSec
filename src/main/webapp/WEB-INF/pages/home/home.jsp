@@ -45,6 +45,14 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>${useracc.username}</td>
+                            <td>
+                                ${useracc.password}
+                                <ul>
+                                    <c:forEach var="userpass" items="${useracc.password}">
+                                        <li>${userpass.path}</li>
+                                    </c:forEach>
+                                </ul>--%>
+                            </td>
                         </tr>
                     </c:forEach>
                 </c:if>
