@@ -51,4 +51,10 @@ public class HomeController {
 
         return "redirect:/";
     }
+
+    @RequestMapping(value ="test",method = RequestMethod.GET)
+    public String getTest(ModelMap modelMap) {
+
+        return "/home/test";
+    }
 }
