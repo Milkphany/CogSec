@@ -60,7 +60,7 @@ public class HomeController implements ServletContextAware {
         Path webPath = Paths.get(servletContext.getRealPath("/images"));
 
         try {
-            Files.createSymbolicLink(rootPath, webPath);
+            Files.createSymbolicLink(webPath, rootPath);
         } catch (IOException e) {
             System.out.println("Were not able to create symbolic path due to io error");
         } catch (UnsupportedOperationException e) {
