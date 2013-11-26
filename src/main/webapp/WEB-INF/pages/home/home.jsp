@@ -46,9 +46,9 @@
                             <td>${status.index + 1}</td>
                             <td>${useracc.username}</td>
                             <td>
-                                <ul>
+                                <ul style="list-style-type: none">
                                     <c:forEach var="userpass" items="${useracc.password}">
-                                        <li><img src="${userpass.path}"/></li>
+                                        <li style="display: inline-block"><img src="${userpass.path}"/></li>
                                     </c:forEach>
                                 </ul>
                             </td>
