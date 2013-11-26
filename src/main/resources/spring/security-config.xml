@@ -10,19 +10,36 @@
 
     <http pattern="/resources/**" security="none" />
 
-    <http use-expressions="true">
+    <http auto-config="false" use-expressions="true" entry-point-ref="cogAuthenticationEntryPoint">
+        <custom-filter ref="cogAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
+
         <intercept-url pattern="/signup" access="isAnonymous()" />
         <intercept-url pattern="/login" access="isAnonymous()" />
 
         <!--TODO uncomment this and find a page for access denied-->
         <!--<access-denied-handler error-page="/" />-->
-        <form-login username-parameter="username" password-parameter="password"
+        <!--<form-login username-parameter="username" password-parameter="password"
                     login-processing-url="/login-check"
                     login-page="/login" default-target-url="/login/success"
-                    authentication-failure-url="/login/failed" />
+                    authentication-failure-url="/login/failed" />-->
+
         <logout logout-success-url="/" logout-url="/logout"/>
     </http>
 
+    <authentication-manager alias="authenticationManager" />
+
+    <beans:bean id="cogAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:property name="loginFormUrl" value="/login"/>
+        <beans:property name="forceHttps" value="false"/>
+    </beans:bean>
+
+    <beans:bean id="cogAuthenticationFilter" class="org.security.filter.CogUserPassAuthenticationFilter">
+        <beans:property name="usernameParameter" value="username"/>
+        <beans:property name="passwordParameter" value="password"/>
+        <beans:property name="filterProcessesUrl" value="/login-check"/>
+        <beans:property name="authenticationManager" ref="authenticationManager"/>
+        <!--<beans:property name=""-->
+    </beans:bean>
     <beans:bean id="cogAuthenticationProvider" class="org.security.repository.CogAuthenticationProvider" />
 
     <authentication-manager>

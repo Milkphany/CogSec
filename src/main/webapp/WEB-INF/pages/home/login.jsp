@@ -32,6 +32,10 @@
             <p>
                 <input type='text' class='form-control' name='username' id='username' autofocus="autofocus" placeholder="NetId" required/>
             </p>
+            <input type="checkbox" name="password" value="Reading">Reading
+            <input type="checkbox" name="password" value="Movies">Movies
+            <input type="checkbox" name="password" value="Writing">Writing
+            <input type="checkbox" name="password" value="Singing">Singing
             <p>
                 <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'/>
             </p>
