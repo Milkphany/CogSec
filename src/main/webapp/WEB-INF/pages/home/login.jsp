@@ -31,7 +31,7 @@
             </p>
 
                     <p>
-                <input type='submit' class="btn btn-primary fat" id="submit" value='Continue'/>
+                <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'/>
             </p>
         </form:form>
     </div>

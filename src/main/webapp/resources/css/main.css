@@ -30,20 +30,6 @@ h1, .container h1, .container h4 {
     cursor: pointer;
 }
 
-/*NAV STYLES*/
-
-#aim-logo {
-    width: 200px;
-}
-
-#top-nav {
-    float:right;
-    display:inline;
-    font-family: 'Roboto', Arial, sans-serif;
-    font-weight: normal;
-    text-transform: none;
-    letter-spacing: normal;
-}
 
 /*CONTENT STYLES*/
 
@@ -57,11 +43,6 @@ h1, .container h1, .container h4 {
     padding-bottom:100px;
 }
 
-#centered-login {
-    position:fixed;
-    top: 100px;
-    width: 100%;
-}
 
 .centered {
     margin-right:auto;
@@ -73,8 +54,8 @@ h1, .container h1, .container h4 {
     margin-right: auto;
     min-width: 250px;
     max-width: 500px;
-    border: 1px solid #dcdcec;
-    padding: 40px 80px;
+    padding: 200px 80px;
+    text-align:center;
 }
 
 .error-login {
@@ -114,6 +95,10 @@ h1, .container h1, .container h4 {
     height: 45px;
     font-size: 14px ;
     background-color: #dcdcec;
+}
+
+.tall {
+    height: 40px;
 }
 
 .fat,

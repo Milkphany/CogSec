@@ -34,7 +34,7 @@
             $('.Collage').removeWhitespace().collagePlus(
                     {
 
-                        'targetHeight' : 200
+                        'targetHeight' : 160
                     }
             );
         };
