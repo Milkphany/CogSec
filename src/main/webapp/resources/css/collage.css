@@ -2,9 +2,19 @@ body {
     background-color:#F1F1F1;
 }
 .Collage img {
-    opacity:100;
-    box-shadow:0px 3px 4px #dcdcdc;
 
+    box-shadow:0px 3px 4px #dcdcdc;
+  }
+
+img:hover {
+    border: 2px solid #333;
+    cursor:pointer;
+}
+
+img:active{
+    -moz-box-shadow: inset -5px -5px 5px 5px #888;
+    -webkit-box-shadow: inset -5px -5px 5px 5px#888;
+    box-shadow: inset -5px -5px 5px 5px #888;
 }
 .Collage {
     /*
