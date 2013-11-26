@@ -35,7 +35,7 @@ public class InsertTests implements InitializingBean, ServletContextAware {
 
     private void createSymLink() {
         Path rootPath = Paths.get("/images");
-        Path webPath = Paths.get(servletContext.getRealPath("/") + "resources");
+        Path webPath = Paths.get(servletContext.getRealPath("/") + "resources/images");
 
         System.err.println(rootPath);
         System.err.println(webPath);
