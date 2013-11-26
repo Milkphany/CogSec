@@ -9,10 +9,8 @@
 
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css"/>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="/css/main.css"/>
 <link rel="stylesheet" type="text/css" href="/css/collage.css"/>
-
-<link rel="stylesheet" type="text/css" href="/css/jquery.mCustomScrollbar.css"/>
+<link rel="stylesheet" type="text/css" href="/css/main.css"/>
 
 
 <%--Fucking huge lesson learned today, there IS a difference between <script></script> vs <script />--%>
@@ -21,7 +19,4 @@
 <%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
 <script type="text/javascript" src="/js/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/modernizr.custom.js"></script>
-<script type="text/javascript" src="/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script type="text/javascript" src="/js/jquery.mCustomScrollbar.min.js"></script>
-<script type="text/javascript" src="/js/cbpTooltipMenu.min.js"></script>
+

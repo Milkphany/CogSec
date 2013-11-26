@@ -1,0 +1,225 @@
+/*GENERAL STYLES*/
+body, .row, h2 {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: normal;
+}
+
+h1, .container h1, .container h4 {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 300;
+    display: inline;
+}
+
+.hint {  /*italicized font used for tips and hints*/
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.hidden {
+    display:none;
+}
+
+.link {
+    cursor: pointer;
+    color: rgb(66, 139, 202);
+}
+
+.link:hover {
+    color: rgb(42, 100, 150);
+    cursor: pointer;
+}
+
+/*NAV STYLES*/
+
+#aim-logo {
+    width: 200px;
+}
+
+#top-nav {
+    float:right;
+    display:inline;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/*CONTENT STYLES*/
+
+.maincontent {
+    padding-bottom: 50px;
+}
+
+.content {
+    padding-top:30px;
+    border-top:1px solid #dcdcec;
+    padding-bottom:100px;
+}
+
+#centered-login {
+    position:fixed;
+    top: 100px;
+    width: 100%;
+}
+
+.centered {
+    margin-right:auto;
+    margin-left:auto;
+}
+
+#login {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 250px;
+    max-width: 500px;
+    border: 1px solid #dcdcec;
+    padding: 40px 80px;
+}
+
+.error-login {
+    color: darkviolet;
+}
+
+.bs-callout { /* Admin alert box */
+    background-color: #f0f7fd;
+    border-color: #d0e3f0;
+    margin: 20px 0;
+    padding: 15px 30px 15px 15px;
+    padding-top: 15px;
+    padding-right: 30px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    border-left: 5px solid #eee;
+}
+
+.add-btn-ex {
+    width:100%;
+    padding:16px;
+    text-align: center;
+    color: #777;
+    border-bottom:1px solid #dcdcec;
+}
+
+.add-btn {
+    width:100%;
+    padding:16px;
+    text-align: center;
+    color: #777;
+
+}
+
+.fat-btn {
+    width: 100%;
+    height: 45px;
+    font-size: 14px ;
+    background-color: #dcdcec;
+}
+
+.fat,
+.fat-select,
+.fat-textarea {
+    width:100%;
+}
+
+.year {  /*Add this class to text input fields in which user enters a year*/
+    width: 4em;
+}
+
+#search {
+    margin:0;
+}
+
+#list .row,
+#search .row {
+    margin:0;
+    border-bottom:1px solid #dcdcec;
+}
+
+#search-input-group {
+    width:100%;
+    padding:10px 0px 10px 15px;
+}
+
+#search-ico{
+    padding-right: 10px;
+}
+
+#search-field {
+    border:0;
+    padding:10px;
+    color:#777;
+    background: none;
+    -webkit-box-shadow: none;
+    -box-shadow: none;
+}
+
+#search-field:hover {
+    color:white;
+    cursor: pointer;
+}
+
+.searchbox {
+    text-align: center;
+    padding-top:150px;
+    padding-bottom: 150px;
+}
+
+.search-results {
+    max-height: 550px;
+    overflow: auto;
+}
+
+.search-results ul,
+.quicklinks ul {
+    list-style-type: none;
+    padding:0;
+    margin:0;
+}
+
+.search-results li,
+.quicklinks li{
+    border-bottom:1px solid #dcdcec;
+}
+
+.search-results li:hover,
+.search-results li a:hover,
+.quicklinks li a:hover,
+.blue-hover:hover{
+    color:#fff;
+    background-color: #428bca;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.search-results li a, .quicklinks li a, .search-list {
+    padding:10px;
+    display: block;
+}
+
+
+
+.editlink {float:right; display: inline-block}
+
+.importpage {
+    display:none;
+    min-height: 60%;
+}
+
+
+
+#header-form td{
+    background-color: rgb(238, 238, 238);
+}
+
+
+/*FOOTER STYLES*/
+
+.copyrights {
+    text-align: center;
+    color: #777;
+}
