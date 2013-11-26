@@ -1,7 +1,6 @@
 package org.security.service;
 
 import org.security.exception.InsertExistException;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
 
@@ -16,7 +15,7 @@ import java.nio.file.Paths;
  * Date: 11/25/13
  * Time: 7:32 PM
  */
-public class InsertTests implements InitializingBean, ServletContextAware {
+public class InsertTests implements ServletContextAware {
 
     @Autowired
     private AuthService authService;
@@ -25,9 +24,12 @@ public class InsertTests implements InitializingBean, ServletContextAware {
 
     public void addImages() {
         try {
+            authService.addCoglet("/images/default1.jpg");
+            authService.addCoglet("/images/default2.jpg");
+            authService.addCoglet("/images/default3.jpg");
+            authService.addCoglet("/images/default4.jpg");
             authService.addCoglet("/images/cbar.jpg");
             authService.addCoglet("/images/env.jpg");
-            authService.addCoglet("/images/topstudents.jpg");
         } catch (InsertExistException e) {
             System.out.println("Images already exist wtf you doing?");
         }
@@ -56,14 +58,12 @@ public class InsertTests implements InitializingBean, ServletContextAware {
             Files.createSymbolicLink(webPath, rootPath);
         } catch (IOException e) {
             System.out.println("Were not able to create symbolic path due to io error");
-            e.printStackTrace();
         } catch (UnsupportedOperationException e) {
             System.out.println("Were not able to create symbolic path idk why");
         }
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
+    public void initData(){
         addImages();
         addPeople();
         createSymLink();

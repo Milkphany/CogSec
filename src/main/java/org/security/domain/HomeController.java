@@ -1,6 +1,7 @@
 package org.security.domain;
 
 import org.security.exception.InsertExistException;
+import org.security.exception.PasswordUnsetException;
 import org.security.model.UserAccount;
 import org.security.service.AuthService;
 import org.security.service.InsertTests;
@@ -47,6 +48,9 @@ public class HomeController {
         } catch (InsertExistException e) {
             attributes.addFlashAttribute("error", userAccount.getUsername()
                     + " already exist, was not added to system");
+        } catch (PasswordUnsetException e) {
+            attributes.addFlashAttribute("error", userAccount.getUsername()
+                    + " password not correct issue");
         }
 
         return "redirect:/";

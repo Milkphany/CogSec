@@ -17,6 +17,13 @@ public class Coglet {
     @Id
     private String path;
 
+    public Coglet() {
+    }
+
+    public Coglet(String path) {
+        this.path = path;
+    }
+
     public String getPath() {
         return path;
     }

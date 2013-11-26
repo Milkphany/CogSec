@@ -17,4 +17,6 @@ public interface CogletDao {
     public Coglet getImage(String imagePath);
 
     public List<Coglet> getAllImages();
+
+    public List<Coglet> getDefaultCoglets();
 }

@@ -15,7 +15,17 @@ public class UserAccount {
     @Id
     private String username;
 
-//    private List<Coglet> password;
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @Column(nullable = false)
+    private List<Coglet> password;
+
+    public UserAccount() {
+    }
+
+    public UserAccount(String username, List<Coglet> password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;
@@ -25,11 +35,11 @@ public class UserAccount {
         this.username = username;
     }
 
-    /*  public List<Coglet> getPassword() {
+    public List<Coglet> getPassword() {
         return password;
     }
 
     public void setPassword(List<Coglet> password) {
         this.password = password;
-    }*/
+    }
 }

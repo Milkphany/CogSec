@@ -33,7 +33,7 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
@@ -44,7 +44,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <bean id="insertTests" class="org.security.service.InsertTests" init-method="addImages"/>
+    <bean id="insertTests" class="org.security.service.InsertTests" init-method="initData"/>
 
     <beans profile="dev">
         <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
