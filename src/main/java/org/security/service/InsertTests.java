@@ -40,7 +40,7 @@ public class InsertTests implements InitializingBean, ServletContextAware {
         System.err.println(rootPath);
         System.err.println(webPath);
         try {
-            Files.createSymbolicLink(rootPath, webPath);
+            Files.createSymbolicLink(webPath, rootPath);
         } catch (IOException e) {
             System.out.println("Were not able to create symbolic path due to io error");
             e.printStackTrace();
