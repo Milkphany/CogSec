@@ -23,12 +23,10 @@ import java.nio.file.Paths;
 
 @Controller
 @RequestMapping("/")
-public class HomeController implements ServletContextAware {
+public class HomeController {
 
     @Autowired
     private AuthService authService;
-
-    private ServletContext servletContext;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap modelMap) {
@@ -52,24 +50,5 @@ public class HomeController implements ServletContextAware {
         }
 
         return "redirect:/";
-    }
-
-    @PostConstruct
-    private void createSymLink() {
-        Path rootPath = Paths.get("/images");
-        Path webPath = Paths.get(servletContext.getRealPath("/") + "resources/images");
-
-        try {
-            Files.createLink(webPath, rootPath);
-        } catch (IOException e) {
-            System.out.println("Were not able to create symbolic path due to io error");
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Were not able to create symbolic path idk why");
-        }
-    }
-
-    @Override
-    public void setServletContext(ServletContext servletContext) {
-        this.servletContext = servletContext;
     }
 }
