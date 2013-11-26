@@ -5,9 +5,10 @@
   Time: 1:10 AM
 --%>
 <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,500'  >
-<link rel="stylesheet" type="text/css" href="/css/nav/default.css"/>
-<link rel="stylesheet" type="text/css" href="/css/nav/component.css"/>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css"/>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="/css/main.css"/>
 <link rel="stylesheet" type="text/css" href="/css/jquery.mCustomScrollbar.css"/>
 
