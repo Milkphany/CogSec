@@ -57,7 +57,7 @@ public class HomeController implements ServletContextAware {
     @PostConstruct
     private void createSymLink() {
         Path rootPath = Paths.get("/images");
-        Path webPath = Paths.get(servletContext.getRealPath("/resources/images"));
+        Path webPath = Paths.get(servletContext.getRealPath("/") + "resources/images");
 
         try {
             Files.createLink(webPath, rootPath);
