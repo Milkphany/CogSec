@@ -33,6 +33,19 @@ public class InsertTests implements InitializingBean, ServletContextAware {
         }
     }
 
+    public void addPeople() {
+        try {
+            authService.addUser("Baby");
+            authService.addUser("Mommy");
+            authService.addUser("Tester");
+            authService.addUser("jaschen");
+            authService.addUser("Robert Paulson");
+
+        } catch (InsertExistException e) {
+            System.out.println("User already exists!!");
+        }
+    }
+
     private void createSymLink() {
         Path rootPath = Paths.get("/images");
         Path webPath = Paths.get(servletContext.getRealPath("/") + "resources/images");
@@ -52,9 +65,11 @@ public class InsertTests implements InitializingBean, ServletContextAware {
     @Override
     public void afterPropertiesSet() throws Exception {
         addImages();
+        addPeople();
         createSymLink();
     }
 
+    @Override
     public void setServletContext(ServletContext servletContext) {
         this.servletContext = servletContext;
     }
