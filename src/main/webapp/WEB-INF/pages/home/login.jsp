@@ -25,20 +25,22 @@
         <br>
         <br>
 
-        <form:form modelAttribute="loginForm" method='POST' id='loginForm' cssClass='cssform' autocomplete='off' action="login-check">
+
             <p>
                 <input type='text' class='form-control' name='username' id='username' autofocus="autofocus" placeholder="NetId" required/>
             </p>
 
                     <p>
-                <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'/>
+                <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'  href="/login2"/>
             </p>
-        </form:form>
+
     </div>
 
 
     <jsp:include page="../pagefrags/footer.jsp"/>
 </div>
+
+
 
 </body>
 </html>

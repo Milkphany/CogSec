@@ -67,4 +67,10 @@ public class HomeController {
 
         return "/home/login";
     }
+
+    @RequestMapping(value ="login2",method = RequestMethod.GET)
+    public String getNextLogin(ModelMap modelMap) {
+
+        return "/home/login2";
+    }
 }
