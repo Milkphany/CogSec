@@ -7,6 +7,7 @@
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <beans:import resource="mvc-dispatcher-servlet.xml" />
 
     <http pattern="/resources/**" security="none" />
 
@@ -26,8 +27,6 @@
         <logout logout-success-url="/" logout-url="/logout"/>
     </http>
 
-    <authentication-manager alias="authenticationManager" />
-
     <beans:bean id="cogAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
         <beans:property name="loginFormUrl" value="/login"/>
         <beans:property name="forceHttps" value="false"/>
@@ -40,9 +39,9 @@
         <beans:property name="authenticationManager" ref="authenticationManager"/>
         <!--<beans:property name=""-->
     </beans:bean>
-    <beans:bean id="cogAuthenticationProvider" class="org.security.repository.CogAuthenticationProvider" />
+    <beans:bean id="cogAuthenticationProvider" class="org.security.service.CogAuthenticationProvider" />
 
-    <authentication-manager>
+    <authentication-manager alias="authenticationManager">
         <authentication-provider ref="cogAuthenticationProvider"/>
     </authentication-manager>
 

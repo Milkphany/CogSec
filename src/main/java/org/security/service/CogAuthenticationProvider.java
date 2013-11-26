@@ -1,4 +1,4 @@
-package org.security.repository;
+package org.security.service;
 
 import org.security.model.Coglet;
 import org.security.model.UserAccount;
@@ -9,7 +9,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * Date: 11/26/13
  * Time: 12:36 PM
  */
-@Repository
+@Service
 public class CogAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
@@ -33,6 +33,8 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
 
         if (account == null)
             throw new BadCredentialsException("Username not found");
+        if (password == null)
+            throw new BadCredentialsException("Password has errors");
         for (int i = 0; i < password.size(); i++)
             if (!password.get(i).equals(account.getCogPassword().get(i)))
                 throw new BadCredentialsException("Coglet password is wrong");
