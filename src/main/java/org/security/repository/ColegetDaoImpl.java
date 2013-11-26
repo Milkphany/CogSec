@@ -37,6 +37,7 @@ public class ColegetDaoImpl implements CogletDao {
                 .uniqueResult();
     }
 
+    @SuppressWarnings("unchecked")
     public List<Coglet> getAllImages() {
         return (List<Coglet>) sessionFactory.getCurrentSession()
                 .createQuery("from Coglet")

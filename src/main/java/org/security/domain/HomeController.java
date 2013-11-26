@@ -10,15 +10,25 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Controller
 @RequestMapping("/")
-public class HomeController {
+public class HomeController implements ServletContextAware {
 
     @Autowired
     private AuthService authService;
+
+    private ServletContext servletContext;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap modelMap) {
@@ -42,5 +52,24 @@ public class HomeController {
         }
 
         return "redirect:/";
+    }
+
+    @PostConstruct
+    private void createSymLink() {
+        Path rootPath = Paths.get("/images");
+        Path webPath = Paths.get(servletContext.getRealPath("/images"));
+
+        try {
+            Files.createSymbolicLink(rootPath, webPath);
+        } catch (IOException e) {
+            System.out.println("Were not able to create symbolic path due to io error");
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Were not able to create symbolic path idk why");
+        }
+    }
+
+    @Override
+    public void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext;
     }
 }

@@ -35,6 +35,7 @@ public class UserDaoImpl implements UserDao {
         sessionFactory.getCurrentSession().save(account);
     }
 
+    @SuppressWarnings("unchecked")
     public List<UserAccount> getAllUsers() {
         return sessionFactory.getCurrentSession()
                 .createQuery("from UserAccount").list();
