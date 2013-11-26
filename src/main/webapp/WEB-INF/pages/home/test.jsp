@@ -14,6 +14,42 @@
 <head>
     <jsp:include page="../pagefrags/imports.jsp"/>
 
+    <script type="text/javascript" src="/js/jquery.removeWhitespace.js"></script>
+    <script type="text/javascript" src="/js/collage.js"></script>
+
+    <script type="text/javascript">
+
+        // All images need to be loaded for this plugin to work so
+        // we end up waiting for the whole window to load in this example
+        $(window).load(function () {
+            $(document).ready(function(){
+                collage();
+                $('.Collage').collageCaption();
+            });
+        });
+
+
+        // Here we apply the actual CollagePlus plugin
+        function collage() {
+            $('.Collage').removeWhitespace().collagePlus(
+                    {
+                        'fadeSpeed' : 2000,
+                        'targetHeight' : 200
+                    }
+            );
+        };
+
+        // This is just for the case that the browser window is resized
+        var resizeTimer = null;
+        $(window).bind('resize', function() {
+// hide all the images until we resize them
+            $('.Collage .Image_Wrapper').css("opacity", 0);
+// set a timer to re-apply the plugin
+            if (resizeTimer) clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(collage, 200);
+        });
+
+    </script>
 
 </head>
 <body>
@@ -44,26 +80,12 @@
             <img src="http://i.imgur.com/E59TaCy.jpg">
             <img src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
             <img src="http://i.imgur.com/VNHzA.jpg">
-            <img src="http://i.imgur.com/0MgS4od.jpg">
-            <img src="http://i.imgur.com/cYWveEa.jpg">
-            <img src="http://i.imgur.com/ir4Ii.jpg">
-            <img src="http://i.imgur.com/E59TaCy.jpg">
-            <img src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-            <img src="http://i.imgur.com/VNHzA.jpg">
-            <img src="http://i.imgur.com/0MgS4od.jpg">
-            <img src="http://i.imgur.com/cYWveEa.jpg">
-            <img src="http://i.imgur.com/ir4Ii.jpg">
-            <img src="http://i.imgur.com/E59TaCy.jpg">
-            <img src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-            <img src="http://i.imgur.com/VNHzA.jpg">
-            <img src="http://i.imgur.com/0MgS4od.jpg">
-            <img src="http://i.imgur.com/cYWveEa.jpg">
+
         </div>
     </div>
 
     <jsp:include page="../pagefrags/footer.jsp"/>
 </div>
-<script type="text/javascript" src="/js/jquery.removeWhitespace.js"></script>
-<script type="text/javascript" src="/js/collage.js"></script>
+
 </body>
 </html>
