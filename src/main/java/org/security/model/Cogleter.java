@@ -14,19 +14,19 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Coglet", uniqueConstraints = @UniqueConstraint(columnNames = "path"))
-public class Coglet implements Serializable {
+public class Cogleter implements Serializable {
 
     @Id
     private String path;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Cogtag> tags;
+    private List<Cogtager> tags;
 
-    public Coglet() {
+    public Cogleter() {
     }
 
-    public Coglet(String path) {
+    public Cogleter(String path) {
         this.path = path;
     }
 
@@ -38,11 +38,11 @@ public class Coglet implements Serializable {
         this.path = path;
     }
 
-    public List<Cogtag> getTags() {
+    public List<Cogtager> getTags() {
         return tags;
     }
 
-    public void setTags(List<Cogtag> tags) {
+    public void setTags(List<Cogtager> tags) {
         this.tags = tags;
     }
 
@@ -51,7 +51,7 @@ public class Coglet implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Coglet coglet = (Coglet) o;
+        Cogleter coglet = (Cogleter) o;
 
         return this.path.equals(coglet.getPath());
     }

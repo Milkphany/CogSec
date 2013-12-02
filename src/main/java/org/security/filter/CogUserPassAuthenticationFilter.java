@@ -1,6 +1,6 @@
 package org.security.filter;
 
-import org.security.model.Coglet;
+import org.security.model.Cogleter;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,19 +32,19 @@ public class CogUserPassAuthenticationFilter extends UsernamePasswordAuthenticat
         }
 
         String username = obtainUsername(request);
-        List<Coglet> password = new ArrayList<Coglet>();
+        List<Cogleter> password = new ArrayList<Cogleter>();
 
         if (username == null) {
             username = "";
         }
 
         if (password == null) {
-            password = new ArrayList<Coglet>();
+            password = new ArrayList<Cogleter>();
         }
 
         if (request.getParameterValues(getPasswordParameter()) != null)
             for (String passlet : request.getParameterValues(getPasswordParameter()))
-                password.add(new Coglet(passlet));
+                password.add(new Cogleter(passlet));
 
 
         username = username.trim();
