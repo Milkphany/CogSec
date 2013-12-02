@@ -34,9 +34,6 @@ public class CogUserPassAuthenticationFilter extends UsernamePasswordAuthenticat
         String username = obtainUsername(request);
         List<Coglet> password = new ArrayList<Coglet>();
 
-        for (String passlet : request.getParameterValues(getPasswordParameter()))
-            password.add(new Coglet(passlet));
-
         if (username == null) {
             username = "";
         }
@@ -44,6 +41,11 @@ public class CogUserPassAuthenticationFilter extends UsernamePasswordAuthenticat
         if (password == null) {
             password = new ArrayList<Coglet>();
         }
+
+        if (request.getParameterValues(getPasswordParameter()) != null)
+            for (String passlet : request.getParameterValues(getPasswordParameter()))
+                password.add(new Coglet(passlet));
+
 
         username = username.trim();
 

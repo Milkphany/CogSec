@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.security.dao.CogletDao;
 
+import org.security.model.Cogtag;
 import org.security.model.Coglet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,23 +21,20 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class ColegetDaoImpl implements CogletDao {
+public class CogletDaoImpl implements CogletDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void addImage(String imagePath) {
-        Coglet coglet = new Coglet();
-        coglet.setPath(imagePath);
-
+    @Override
+    public void addCoglet(Coglet coglet) {
         sessionFactory.getCurrentSession().save(coglet);
     }
 
-    public Coglet getImage(String imagePath) {
+    @Override
+    public Coglet getCoglet(Coglet coglet) {
         return (Coglet) sessionFactory.getCurrentSession()
-                .createQuery("from Coglet where id = :imagePath")
-                .setString("imagePath", imagePath)
-                .uniqueResult();
+                .get(Coglet.class, coglet.getPath());
     }
 
     @SuppressWarnings("unchecked")
@@ -56,4 +54,5 @@ public class ColegetDaoImpl implements CogletDao {
 
         return defaultCogs;
     }
+
 }

@@ -3,7 +3,6 @@ package org.security.service;
 import org.security.exception.InsertExistException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.ServletContextAware;
 
 import javax.servlet.ServletContext;
 import java.io.IOException;
@@ -27,12 +26,10 @@ public class InsertTests implements InitializingBean {
 
     public void addImages() {
         try {
-            authService.addCoglet("/images/default1.jpg");
-            authService.addCoglet("/images/default2.jpg");
-            authService.addCoglet("/images/default3.jpg");
-            authService.addCoglet("/images/default4.jpg");
-            authService.addCoglet("/images/cbar.jpg");
-            authService.addCoglet("/images/env.jpg");
+            authService.addCoglet("/images/default1.jpg", new String[]{"admin", "user"});
+            authService.addCoglet("/images/default2.jpg", new String[]{"admin", "user"});
+            authService.addCoglet("/images/default3.jpg", new String[]{"admin", "student"});
+            authService.addCoglet("/images/default4.jpg", new String[]{"admin"});
         } catch (InsertExistException e) {
             System.out.println("Images already exist wtf you doing?");
         }
@@ -40,11 +37,11 @@ public class InsertTests implements InitializingBean {
 
     public void addPeople() {
         try {
-            authService.addUser("Baby");
-            authService.addUser("Mommy");
-            authService.addUser("Tester");
-            authService.addUser("jaschen");
-            authService.addUser("Robert Paulson");
+            authService.addDefaultUser("Baby");
+            authService.addDefaultUser("Mommy");
+            authService.addDefaultUser("Tester");
+            authService.addDefaultUser("jaschen");
+            authService.addDefaultUser("Robert Paulson");
 
         } catch (InsertExistException e) {
             System.out.println("User already exists!!");

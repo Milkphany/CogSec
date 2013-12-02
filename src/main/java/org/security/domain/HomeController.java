@@ -46,6 +46,7 @@ public class HomeController {
         try {
             userAccount.setPassword(authService.getDefaultPassword());
             userAccount.setRole(new Role("ROLE_ADMIN"));
+
             authService.addUser(userAccount);
             attributes.addFlashAttribute("newuser", userAccount);
         } catch (InsertExistException e) {
