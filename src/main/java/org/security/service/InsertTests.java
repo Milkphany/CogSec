@@ -1,6 +1,7 @@
 package org.security.service;
 
 import org.security.exception.InsertExistException;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
 
@@ -15,13 +16,14 @@ import java.nio.file.Paths;
  * Date: 11/25/13
  * Time: 7:32 PM
  */
-public class InsertTests {
+public class InsertTests implements InitializingBean {
 
     @Autowired
     private AuthService authService;
 
     @Autowired
     private ServletContext servletContext;
+
 
     public void addImages() {
         try {
@@ -64,7 +66,8 @@ public class InsertTests {
         }
     }
 
-    public void initData(){
+    @Override
+    public void afterPropertiesSet() throws Exception {
         addImages();
         addPeople();
         createSymLink();
