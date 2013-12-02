@@ -26,8 +26,8 @@ public class InsertTests implements InitializingBean {
 
     public void addImages() {
         try {
+            authService.addCoglet("/images/default3.jpg", new String[]{"admin", "user"});
             authService.addCoglet("/images/default1.jpg", new String[]{"admin", "user"});
-            authService.addCoglet("/images/default2.jpg", new String[]{"admin", "user"});
             authService.addCoglet("/images/default3.jpg", new String[]{"admin", "student"});
             authService.addCoglet("/images/default4.jpg", new String[]{"admin"});
         } catch (InsertExistException e) {
