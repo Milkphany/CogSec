@@ -24,7 +24,7 @@ public class UserAccount {
     @ManyToMany(cascade = CascadeType.ALL)
     @Column(nullable = false)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Cogleter> password;
+    private List<Coglet> password;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Role role;
@@ -32,7 +32,7 @@ public class UserAccount {
     public UserAccount() {
     }
 
-    public UserAccount(String username, List<Cogleter> password) {
+    public UserAccount(String username, List<Coglet> password) {
         this.username = username;
         this.password = password;
     }
@@ -45,11 +45,11 @@ public class UserAccount {
         return username;
     }
 
-    public List<Cogleter> getPassword() {
+    public List<Coglet> getPassword() {
         return password;
     }
 
-    public void setPassword(List<Cogleter> password) {
+    public void setPassword(List<Coglet> password) {
         this.password = password;
     }
 

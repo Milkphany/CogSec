@@ -11,12 +11,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CogTag")
-public class Cogtager {
+public class Cogtag {
 
-    public Cogtager() {
+    public Cogtag() {
     }
 
-    public Cogtager(String tagName) {
+    public Cogtag(String tagName) {
         this.tagName = tagName;
     }
 

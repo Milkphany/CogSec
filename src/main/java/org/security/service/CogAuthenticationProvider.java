@@ -1,6 +1,6 @@
 package org.security.service;
 
-import org.security.model.Cogleter;
+import org.security.model.Coglet;
 import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -26,7 +26,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
-        List<Cogleter> password = (List<Cogleter>)authentication.getCredentials();
+        List<Coglet> password = (List<Coglet>)authentication.getCredentials();
 
         UserAccount account = authService.getUser(username);
 
@@ -36,7 +36,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("Password has errors");
         for (int i = 0; i < password.size(); i++)
             if (!password.get(i).equals(account.getPassword().get(i)))
-                throw new BadCredentialsException("Cogleter password is wrong");
+                throw new BadCredentialsException("Coglet password is wrong");
 
         return new UsernamePasswordAuthenticationToken(username, password, account.getAuthorities());
     }

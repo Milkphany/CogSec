@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.security.dao.CogletDao;
 
-import org.security.model.Cogleter;
+import org.security.model.Coglet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,30 +26,30 @@ public class CogletDaoImpl implements CogletDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void addCoglet(Cogleter coglet) {
+    public void addCoglet(Coglet coglet) {
         sessionFactory.getCurrentSession().save(coglet);
     }
 
     @Override
-    public Cogleter getCoglet(Cogleter coglet) {
-        return (Cogleter) sessionFactory.getCurrentSession()
-                .get(Cogleter.class, coglet.getPath());
+    public Coglet getCoglet(Coglet coglet) {
+        return (Coglet) sessionFactory.getCurrentSession()
+                .get(Coglet.class, coglet.getPath());
     }
 
     @SuppressWarnings("unchecked")
-    public List<Cogleter> getAllImages() {
-        return (List<Cogleter>) sessionFactory.getCurrentSession()
-                .createQuery("from Cogleter")
+    public List<Coglet> getAllImages() {
+        return (List<Coglet>) sessionFactory.getCurrentSession()
+                .createQuery("from Coglet")
                 .list();
     }
 
-    public List<Cogleter> getDefaultCoglets() {
+    public List<Coglet> getDefaultCoglets() {
         Session session = sessionFactory.getCurrentSession();
-        List<Cogleter> defaultCogs = new ArrayList<Cogleter>();
-        defaultCogs.add((Cogleter) session.createQuery("from Cogleter where path = '/images/default1.jpg'").uniqueResult());
-        defaultCogs.add((Cogleter) session.createQuery("from Cogleter where path = '/images/default2.jpg'").uniqueResult());
-        defaultCogs.add((Cogleter) session.createQuery("from Cogleter where path = '/images/default3.jpg'").uniqueResult());
-        defaultCogs.add((Cogleter) session.createQuery("from Cogleter where path = '/images/default4.jpg'").uniqueResult());
+        List<Coglet> defaultCogs = new ArrayList<Coglet>();
+        defaultCogs.add((Coglet) session.createQuery("from Coglet where path = '/images/default1.jpg'").uniqueResult());
+        defaultCogs.add((Coglet) session.createQuery("from Coglet where path = '/images/default2.jpg'").uniqueResult());
+        defaultCogs.add((Coglet) session.createQuery("from Coglet where path = '/images/default3.jpg'").uniqueResult());
+        defaultCogs.add((Coglet) session.createQuery("from Coglet where path = '/images/default4.jpg'").uniqueResult());
 
         return defaultCogs;
     }
