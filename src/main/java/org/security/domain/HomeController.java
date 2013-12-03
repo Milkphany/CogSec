@@ -25,7 +25,7 @@ public class HomeController {
         modelMap.addAttribute("user", new UserAccount());
         modelMap.addAttribute("users", authService.getAllUsers());
         modelMap.addAttribute("coglets", authService.getAllCoglets());
-        modelMap.addAttribute("categories", authService.getAllCogtags());
+        //modelMap.addAttribute("categories", authService.getAllCogtags());
 
         modelMap.addAttribute("specific", authService.getCogletWithCogtag("admin"));
 

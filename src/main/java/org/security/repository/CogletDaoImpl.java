@@ -63,10 +63,10 @@ public class CogletDaoImpl implements CogletDao {
     }
 
     @Override
-    public List<Coglet> getCogletsCategory(Cogtag cogtagId) {
+    public List<Coglet> getCogletsCategory(Cogtag cogtag) {
         List<Coglet> coglets = sessionFactory.getCurrentSession()
-                .createQuery("select coglet from Coglet as coglet inner join coglet.tags where coglet.tags = :cogtagId")
-                .setString("cogtagId", cogtagId.getTagName())
+                .createQuery("from Coglet as cg where :cogtag in elements(cg.tags)")
+                .setString("cogtag", cogtag.getTagName())
                 .list();
         return coglets;
     }
