@@ -30,4 +30,5 @@ public class Cogtag {
     public void setTagName(String tagName) {
         this.tagName = tagName;
     }
+
 }

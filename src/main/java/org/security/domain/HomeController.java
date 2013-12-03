@@ -5,23 +5,13 @@ import org.security.exception.PasswordUnsetException;
 import org.security.model.Role;
 import org.security.model.UserAccount;
 import org.security.service.AuthService;
-import org.security.service.InsertTests;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.ServletContextAware;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.ServletContext;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Controller
 @RequestMapping("/")
@@ -35,6 +25,9 @@ public class HomeController {
         modelMap.addAttribute("user", new UserAccount());
         modelMap.addAttribute("users", authService.getAllUsers());
         modelMap.addAttribute("coglets", authService.getAllCoglets());
+        modelMap.addAttribute("categories", authService.getAllCogtags());
+
+        modelMap.addAttribute("specific", authService.getCogletWithCogtag("admin"));
 
 		return "home/home";
 	}

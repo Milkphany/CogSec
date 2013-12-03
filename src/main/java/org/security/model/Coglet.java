@@ -20,6 +20,7 @@ public class Coglet implements Serializable {
     private String path;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "path")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Cogtag> tags;
 

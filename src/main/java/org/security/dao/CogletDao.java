@@ -2,6 +2,7 @@ package org.security.dao;
 
 
 import org.security.model.Coglet;
+import org.security.model.Cogtag;
 
 import java.util.List;
 
@@ -18,6 +19,10 @@ public interface CogletDao {
 
     public List<Coglet> getAllImages();
 
+    public List<Cogtag> getAllTags();
+
     public List<Coglet> getDefaultCoglets();
+
+    public List<Coglet> getCogletsCategory(Cogtag cogtag);
 
 }
