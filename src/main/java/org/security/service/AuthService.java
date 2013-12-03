@@ -79,8 +79,16 @@ public class AuthService {
         addCoglet(coglet);
     }
 
+    public List<Coglet> getCogletWithCogtag(String tag) {
+        return cogletDao.getCogletsCategory(new Cogtag(tag));
+    }
+
     public List<Coglet> getAllCoglets() {
         return cogletDao.getAllImages();
+    }
+
+    public List<Cogtag> getAllCogtags() {
+        return cogletDao.getAllTags();
     }
 
 }

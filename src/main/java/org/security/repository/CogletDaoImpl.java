@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.security.dao.CogletDao;
 
 import org.security.model.Coglet;
+import org.security.model.Cogtag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +44,13 @@ public class CogletDaoImpl implements CogletDao {
                 .list();
     }
 
+    @Override
+    public List<Cogtag> getAllTags() {
+        return sessionFactory.getCurrentSession()
+                .createQuery("from Cogtag")
+                .list();
+    }
+
     public List<Coglet> getDefaultCoglets() {
         Session session = sessionFactory.getCurrentSession();
         List<Coglet> defaultCogs = new ArrayList<Coglet>();
@@ -54,4 +62,12 @@ public class CogletDaoImpl implements CogletDao {
         return defaultCogs;
     }
 
+    @Override
+    public List<Coglet> getCogletsCategory(Cogtag cogtagId) {
+        List<Coglet> coglets = sessionFactory.getCurrentSession()
+                .createQuery("select coglet from Coglet as coglet inner join coglet.tags where coglet.tags = :cogtagId")
+                .setString("cogtagId", cogtagId.getTagName())
+                .list();
+        return coglets;
+    }
 }
