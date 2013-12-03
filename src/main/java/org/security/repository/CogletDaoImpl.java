@@ -41,6 +41,7 @@ public class CogletDaoImpl implements CogletDao {
     public List<Coglet> getAllImages() {
         return (List<Coglet>) sessionFactory.getCurrentSession()
                 .createQuery("from Coglet")
+                .setMaxResults(500)
                 .list();
     }
 
