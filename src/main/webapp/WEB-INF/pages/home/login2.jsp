@@ -121,7 +121,6 @@
         for (var i = 0; i < pw.length; i++) {
             html += "<img height ='100' src='" + pw[i] + "'/>";
             $("input[name=img" + i + "]").val(pw[i]);
-            console.log($("input[name=img" + i + "]").val());
         }
         $(".images").html(html);
 
