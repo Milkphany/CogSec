@@ -20,8 +20,7 @@
                     'targetHeight': 160
                 }
         );
-    }
-    ;
+    };
 
     // This is just for the case that the browser window is resized
     var resizeTimer = null;

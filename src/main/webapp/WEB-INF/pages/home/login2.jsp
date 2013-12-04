@@ -88,12 +88,13 @@
             <h4 class="info">You've entered:</h4>
 
             <form method="POST">
-                <input type="hidden" name="img0" value=""/>
-                <input type="hidden" name="img1" value=""/>
-                <input type="hidden" name="img2" value=""/>
-                <input type="hidden" name="img3" value=""/>
+                <input type="hidden" name="username" value=""/>
+                <input type="hidden" name="password" id="img0" value=""/>
+                <input type="hidden" name="password" id="img1" value=""/>
+                <input type="hidden" name="password" id="img2" value=""/>
+                <input type="hidden" name="password" id="img3" value=""/>
                 <span class="images"></span>
-                <button type="button" class="btn btn-warning supertall">Undo</button>
+                <button type="button" class="undo btn btn-warning supertall">Undo</button>
                 <input type="submit" class="login btn btn-primary supertall" value="Log In"/>
             </form>
         </div>
@@ -106,7 +107,7 @@
 
     var pw = new Array();
 
-    $("button").attr("disabled", pw.length == 0);
+    $(".undo").attr("disabled", pw.length == 0);
     $(".login").attr("disabled", pw.length != 4);
     $(".info").toggleClass("hidden", pw.length == 0);
 
@@ -120,24 +121,24 @@
         var html = "";
         for (var i = 0; i < pw.length; i++) {
             html += "<img height ='100' src='" + pw[i] + "'/>";
-            $("input[name=img" + i + "]").val(pw[i]);
+            $("input[id=img" + i + "]").val(pw[i]);
         }
         $(".images").html(html);
 
-        $("button").attr("disabled", pw.length == 0);
+        $(".undo").attr("disabled", pw.length == 0);
         $(".login").attr("disabled", pw.length != 4);
         $(".info").toggleClass("hidden", pw.length == 0);
         //$(".entered-pw").html(html+"<img height='150' src='"+src+"'/>");
     })
 
-    $("button").click(function () {
+    $(".undo").click(function () {
         pw.pop();
         var html = "";
         for (var i = 0; i < pw.length; i++) {
             html += "<img height ='100' src='" + pw[i] + "'/>";
         }
         $(".images").html(html);
-        $("button").attr("disabled", pw.length == 0);
+        $(".undo").attr("disabled", pw.length == 0);
         $(".login").attr("disabled", pw.length != 4);
         $(".info").toggleClass("hidden", pw.length == 0);
     })

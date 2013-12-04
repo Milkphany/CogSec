@@ -41,7 +41,7 @@
             <input type="checkbox" name="password" value="/images/default3.jpg">Writing
             <input type="checkbox" name="password" value="/images/default4.jpg">Singing
             <p>
-                <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'/>
+                <button type='button' class="btn btn-primary fat tall" id="submit">Continue</button>
             </p>
         </form:form>
     </div>
@@ -62,12 +62,19 @@
             //  $(".wrapper").removeClass("hidden");
         //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
         $(".pics").load("/login2");
+        var username = $("#username").val();
+        $("input[id=img" + i + "]").val(username);
 
     })
 
     $("img").click(function(){
         console.log("MEOWW");
     })
+
+    $("#submit").click(function(){
+        var username = $("#username").val();
+        $("input[id=img" + i + "]").val(username);
+    });
 </script>
 </body>
 </html>
