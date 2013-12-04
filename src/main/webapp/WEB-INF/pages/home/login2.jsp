@@ -39,7 +39,6 @@
 <body>
 <div class="container">
 
-    <jsp:include page="../pagefrags/nav.jsp"/>
 
     <div class="maincontent">
         <h1>Enter your PIN:</h1>
@@ -85,7 +84,7 @@
 
     <div class="wrapper">
         <div class="entered-pw maincontent">
-            <h4 class="info">You've entered:</h4>
+            <h3 class="info">You've entered:</h3>
 
             <form method="POST">
                 <input type="hidden" name="username" value=""/>

@@ -131,9 +131,24 @@ h1, .container h1, .container h4 {
     background-color: #dcdcec;
 }
 
+.h4 {
+    font-family: 'Roboto',Arial,sans-serif;
+    font-weight: 300;
+
+}
+
 .tall {
     height: 40px;
 }
+
+.half {
+    width:50%;
+    display:inline
+
+}
+
+.instructions {padding:10px}
+
 
 .supertall {
     height: 100px;

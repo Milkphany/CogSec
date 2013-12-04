@@ -67,14 +67,6 @@
 
     })
 
-    $("img").click(function(){
-        console.log("MEOWW");
-    })
-
-    $("#submit").click(function(){
-        var username = $("#username").val();
-        $("input[id=img" + i + "]").val(username);
-    });
 </script>
 </body>
 </html>
