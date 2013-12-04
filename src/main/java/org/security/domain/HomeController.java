@@ -56,10 +56,16 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @RequestMapping(value ="test",method = RequestMethod.GET)
+    @RequestMapping(value ="register",method = RequestMethod.GET)
     public String getTest(ModelMap modelMap) {
 
-        return "/home/test";
+        return "home/register";
+    }
+
+    @RequestMapping(value ="register-photos",method = RequestMethod.GET)
+    public String getRegistrationPhotos(ModelMap modelMap) {
+
+        return "home/register-photos";
     }
 
     @RequestMapping(value ="login",method = RequestMethod.GET)
