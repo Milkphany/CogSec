@@ -33,6 +33,40 @@ h1, .container h1, .container h4 {
 
 /*CONTENT STYLES*/
 
+.wrapper {
+    min-width:100%;
+
+}
+
+.entered-pw {
+    z-index: 999;
+
+    width:100%;
+    background: rgba(255, 255, 255, .8);
+    position: fixed;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.entered-pw img {
+    padding-left: 10px;
+}
+#aim-logo {
+    width: 200px;
+}
+
+#top-nav {
+    float:right;
+    display:inline;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
 .maincontent {
     padding-bottom: 50px;
 }
@@ -100,6 +134,15 @@ h1, .container h1, .container h4 {
 .tall {
     height: 40px;
 }
+
+.supertall {
+    height: 100px;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+h1 {padding-left: 10px}
+.info{padding-left: 10px}
 
 .fat,
 .fat-select,

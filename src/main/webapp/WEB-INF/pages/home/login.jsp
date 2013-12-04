@@ -18,6 +18,8 @@
 <body>
 <div class="container">
 
+    <div class="potato"><h1>Clicky</h1></div>
+
     <div id='login'>
         <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
             <div class="error">
@@ -40,16 +42,33 @@
             <input type="checkbox" name="password" value="/images/default4.jpg">Singing
             <p>
                 <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'/>
-
-                    <p>
-                <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'"/>
             </p>
         </form:form>
     </div>
 
+   <div class="pics"><jsp:include page="../home/login2.jsp"/> </div>
 
     <jsp:include page="../pagefrags/footer.jsp"/>
 </div>
 
+<script>
+
+    $(".potato").click(function(){
+        $('html,body').animate({
+            scrollTop: $(".pics").offset().top
+        }, 500);
+              $(".wrapper").removeClass("hidden");
+        //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
+        //$(".Collage").load("/test");
+        collage();
+        $('.Collage').collageCaption();
+    })
+
+    $("img").click(function(){
+       // alert("meow");
+    })
+
+
+</script>
 </body>
 </html>
