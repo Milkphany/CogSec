@@ -1,62 +1,76 @@
-<div class="Collage effect-parent">
-    <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg"><img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg"><img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-    <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-    <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-    <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-    <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
-    <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-    <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-    <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-    <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-    <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
+<%--
+  Created by IntelliJ IDEA.
+  User: Polak
+  Date: 11/25/13
+  Time: 9:57 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <jsp:include page="../pagefrags/imports.jsp"/>
+    <style>.error { color: red; }</style>
+</head>
+<body>
+<div class="container">
+
+    <div class="potato"><h1>Clicky</h1></div>
+
+    <div id='login'>
+        <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+            <div class="error">
+                Your login attempt was not successful, try again.<br/>
+                Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
+            </div>
+        </c:if>
+
+        <h1>Enter your NetId:</h1>
+        <br>
+        <br>
+
+        <form:form modelAttribute="loginForm" method='POST' id='loginForm' cssClass='cssform' autocomplete='off' action="login-check">
+            <p>
+                <input type='text' class='form-control' name='username' id='username' autofocus="autofocus" placeholder="NetId" required/>
+            </p>
+            <input type="checkbox" name="password" value="/images/default1.jpg">Reading
+            <input type="checkbox" name="password" value="/images/default2.jpg">Movies
+            <input type="checkbox" name="password" value="/images/default3.jpg">Writing
+            <input type="checkbox" name="password" value="/images/default4.jpg">Singing
+            <p>
+                <input type='submit' class="btn btn-primary fat tall" id="submit" value='Continue'/>
+            </p>
+        </form:form>
+    </div>
+
+    <div class="pics">
+
+    </div>
+
+    <jsp:include page="../pagefrags/footer.jsp"/>
 </div>
 
-<script type="text/javascript">
-    collage();
-    $('.Collage').collageCaption();
+<script>
 
-    var pw = new Array();
+    $(".potato").click(function(){
+        $('html,body').animate({
+            scrollTop: $(".pics").offset().top
+        }, 500);
+        //  $(".wrapper").removeClass("hidden");
+        //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
+        $(".pics").load("/login2");
 
-    $("button").attr("disabled", pw.length == 0);
-    $(".login").attr("disabled", pw.length != 4);
-    $(".info").toggleClass("hidden", pw.length == 0);
 
-    $(".Collage img").click(function () {
-        // alert($(this).attr("src"));
-        var src = $(this).attr("src");
-
-        if (pw.length < 4)
-            pw.push(src);
-
-        var html = "";
-        for (var i = 0; i < pw.length; i++) {
-            html += "<img height ='100' src='" + pw[i] + "'/>";
-            $("input[name=img" + i + "]").val(pw[i]);
-            console.log($("input[name=img" + i + "]").val());
-        }
-        $(".images").html(html);
-
-        $("button").attr("disabled", pw.length == 0);
-        $(".login").attr("disabled", pw.length != 4);
-        $(".info").toggleClass("hidden", pw.length == 0);
-        //$(".entered-pw").html(html+"<img height='150' src='"+src+"'/>");
     })
-
-    $("button").click(function () {
-        pw.pop();
-        var html = "";
-        for (var i = 0; i < pw.length; i++) {
-            html += "<img height ='100' src='" + pw[i] + "'/>";
-        }
-        $(".images").html(html);
-        $("button").attr("disabled", pw.length == 0);
-        $(".login").attr("disabled", pw.length != 4);
-        $(".info").toggleClass("hidden", pw.length == 0);
-    })
-
-    $(".entered-pw").width($(".maincontent").width());
 
     $("img").click(function(){
         console.log("MEOWW");
     })
+
+
 </script>
+</body>
+</html>

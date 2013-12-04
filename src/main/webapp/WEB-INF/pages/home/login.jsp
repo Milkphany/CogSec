@@ -63,14 +63,11 @@
         //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
         $(".pics").load("/login2");
 
-
     })
 
     $("img").click(function(){
-       console.log("MEOWW");
+        console.log("MEOWW");
     })
-
-
 </script>
 </body>
 </html>
