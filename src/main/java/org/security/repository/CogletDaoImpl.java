@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.security.dao.CogletDao;
 
 import org.security.model.Coglet;
+import org.security.model.Cogtag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,29 +21,33 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class ColegetDaoImpl implements CogletDao {
+public class CogletDaoImpl implements CogletDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void addImage(String imagePath) {
-        Coglet coglet = new Coglet();
-        coglet.setPath(imagePath);
-
+    @Override
+    public void addCoglet(Coglet coglet) {
         sessionFactory.getCurrentSession().save(coglet);
     }
 
-    public Coglet getImage(String imagePath) {
+    @Override
+    public Coglet getCoglet(Coglet coglet) {
         return (Coglet) sessionFactory.getCurrentSession()
-                .createQuery("from Coglet where id = :imagePath")
-                .setString("imagePath", imagePath)
-                .uniqueResult();
+                .get(Coglet.class, coglet.getPath());
     }
 
     @SuppressWarnings("unchecked")
     public List<Coglet> getAllImages() {
         return (List<Coglet>) sessionFactory.getCurrentSession()
                 .createQuery("from Coglet")
+                .list();
+    }
+
+    @Override
+    public List<Cogtag> getAllTags() {
+        return sessionFactory.getCurrentSession()
+                .createQuery("from Cogtag")
                 .list();
     }
 
@@ -55,5 +60,14 @@ public class ColegetDaoImpl implements CogletDao {
         defaultCogs.add((Coglet) session.createQuery("from Coglet where path = '/images/default4.jpg'").uniqueResult());
 
         return defaultCogs;
+    }
+
+    @Override
+    public List<Coglet> getCogletsCategory(Cogtag cogtag) {
+        List<Coglet> coglets = sessionFactory.getCurrentSession()
+                .createQuery("from Coglet as cg where :cogtag in elements(cg.tags)")
+                .setString("cogtag", cogtag.getTagName())
+                .list();
+        return coglets;
     }
 }

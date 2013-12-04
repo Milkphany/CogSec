@@ -66,6 +66,11 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>${coglet.path}</td>
+                            <td>
+                                <c:forEach var="cogtag" items="${coglet.tags}" >
+                                    ${cogtag.tagName}
+                                </c:forEach>
+                            </td>
                         </tr>
                     </c:forEach>
                 </c:if>

@@ -1,9 +1,11 @@
 package org.security.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * User: Milky
@@ -12,10 +14,15 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "Coglet", uniqueConstraints = @UniqueConstraint(columnNames = "path"))
-public class Coglet {
+public class Coglet implements Serializable {
 
     @Id
     private String path;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "path")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Cogtag> tags;
 
     public Coglet() {
     }
@@ -30,6 +37,14 @@ public class Coglet {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public List<Cogtag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Cogtag> tags) {
+        this.tags = tags;
     }
 
     @Override

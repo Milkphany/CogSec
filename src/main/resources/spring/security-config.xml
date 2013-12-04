@@ -30,11 +30,16 @@
         <beans:property name="forceHttps" value="false"/>
     </beans:bean>
 
+    <beans:bean id="authenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+        <beans:property name="defaultFailureUrl" value="/login" />
+    </beans:bean>
+
     <beans:bean id="cogAuthenticationFilter" class="org.security.filter.CogUserPassAuthenticationFilter">
         <beans:property name="usernameParameter" value="username"/>
         <beans:property name="passwordParameter" value="password"/>
         <beans:property name="filterProcessesUrl" value="/login-check"/>
         <beans:property name="authenticationManager" ref="authenticationManager"/>
+        <beans:property name="authenticationFailureHandler" ref="authenticationFailureHandler"/>
         <!--<beans:property name=""-->
     </beans:bean>
     <beans:bean id="cogAuthenticationProvider" class="org.security.service.CogAuthenticationProvider" />

@@ -5,13 +5,13 @@ import org.security.dao.UserDao;
 import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
 import org.security.model.Coglet;
+import org.security.model.Cogtag;
 import org.security.model.Role;
 import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +28,7 @@ public class AuthService {
     @Autowired
     private CogletDao cogletDao;
 
-    public void addUser(String username) throws InsertExistException {
+    public void addDefaultUser(String username) throws InsertExistException {
         if (getUser(username) == null) {
             UserAccount userAccount = new UserAccount();
             List<Coglet> password = cogletDao.getDefaultCoglets();
@@ -61,15 +61,34 @@ public class AuthService {
         return userDao.getAllUsers();
     }
 
-    public void addCoglet(String imagePath) throws InsertExistException {
-        if (cogletDao.getImage(imagePath) == null)
-            cogletDao.addImage(imagePath);
+    public void addCoglet(Coglet coglet) throws InsertExistException {
+        if (cogletDao.getCoglet(coglet) == null)
+            cogletDao.addCoglet(coglet);
         else
             throw new InsertExistException();
     }
 
+    public void addCoglet(String imagePath, String[] tags) throws InsertExistException {
+        Coglet coglet = new Coglet(imagePath);
+
+        List<Cogtag> cogTags = new ArrayList<Cogtag>();
+        for (String tag : tags)
+            cogTags.add(new Cogtag(tag));
+
+        coglet.setTags(cogTags);
+        addCoglet(coglet);
+    }
+
+    public List<Coglet> getCogletWithCogtag(String tag) {
+        return cogletDao.getCogletsCategory(new Cogtag(tag));
+    }
+
     public List<Coglet> getAllCoglets() {
         return cogletDao.getAllImages();
+    }
+
+    public List<Cogtag> getAllCogtags() {
+        return cogletDao.getAllTags();
     }
 
 }

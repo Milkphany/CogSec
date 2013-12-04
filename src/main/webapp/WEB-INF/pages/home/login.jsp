@@ -13,16 +13,18 @@
 <html>
 <head>
     <jsp:include page="../pagefrags/imports.jsp"/>
+    <style>.error { color: red; }</style>
 </head>
 <body>
 <div class="container">
 
     <div id='login'>
-        <div class="error">
-            Your login attempt was not successful, try again.<br/>
-            Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
-        </div>
-
+        <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+            <div class="error">
+                Your login attempt was not successful, try again.<br/>
+                Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
+            </div>
+        </c:if>
 
         <h1>Enter your NetId:</h1>
         <br>

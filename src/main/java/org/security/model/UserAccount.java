@@ -1,5 +1,7 @@
 package org.security.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -19,8 +21,9 @@ public class UserAccount {
     @Id
     private String username;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     @Column(nullable = false)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Coglet> password;
 
     @ManyToOne(cascade = CascadeType.ALL)

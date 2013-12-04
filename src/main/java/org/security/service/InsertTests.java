@@ -1,8 +1,8 @@
 package org.security.service;
 
 import org.security.exception.InsertExistException;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.ServletContextAware;
 
 import javax.servlet.ServletContext;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.nio.file.Paths;
  * Date: 11/25/13
  * Time: 7:32 PM
  */
-public class InsertTests {
+public class InsertTests implements InitializingBean {
 
     @Autowired
     private AuthService authService;
@@ -23,14 +23,13 @@ public class InsertTests {
     @Autowired
     private ServletContext servletContext;
 
+
     public void addImages() {
         try {
-            authService.addCoglet("/images/default1.jpg");
-            authService.addCoglet("/images/default2.jpg");
-            authService.addCoglet("/images/default3.jpg");
-            authService.addCoglet("/images/default4.jpg");
-            authService.addCoglet("/images/cbar.jpg");
-            authService.addCoglet("/images/env.jpg");
+            authService.addCoglet("/images/default3.jpg", new String[]{"admin", "user"});
+            authService.addCoglet("/images/default1.jpg", new String[]{"admin", "user"});
+            authService.addCoglet("/images/default3.jpg", new String[]{"admin", "student"});
+            authService.addCoglet("/images/default4.jpg", new String[]{"admin"});
         } catch (InsertExistException e) {
             System.out.println("Images already exist wtf you doing?");
         }
@@ -38,11 +37,11 @@ public class InsertTests {
 
     public void addPeople() {
         try {
-            authService.addUser("Baby");
-            authService.addUser("Mommy");
-            authService.addUser("Tester");
-            authService.addUser("jaschen");
-            authService.addUser("Robert Paulson");
+            authService.addDefaultUser("Baby");
+            authService.addDefaultUser("Mommy");
+            authService.addDefaultUser("Tester");
+            authService.addDefaultUser("jaschen");
+            authService.addDefaultUser("Robert Paulson");
 
         } catch (InsertExistException e) {
             System.out.println("User already exists!!");
@@ -64,7 +63,8 @@ public class InsertTests {
         }
     }
 
-    public void initData(){
+    @Override
+    public void afterPropertiesSet() throws Exception {
         addImages();
         addPeople();
         createSymLink();
