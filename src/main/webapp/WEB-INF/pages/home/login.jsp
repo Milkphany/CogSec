@@ -7,7 +7,6 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -17,8 +16,6 @@
 </head>
 <body>
 <div class="container">
-
-    <div class="potato"><h1>Clicky</h1></div>
 
     <div id='login'>
         <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
@@ -31,19 +28,12 @@
         <h1>Enter your NetId:</h1>
         <br>
         <br>
-
-        <form:form modelAttribute="loginForm" method='POST' id='loginForm' cssClass='cssform' autocomplete='off' action="login-check">
             <p>
                 <input type='text' class='form-control' name='username' id='username' autofocus="autofocus" placeholder="NetId" required/>
             </p>
-            <input type="checkbox" name="password" value="/images/default1.jpg">Reading
-            <input type="checkbox" name="password" value="/images/default2.jpg">Movies
-            <input type="checkbox" name="password" value="/images/default3.jpg">Writing
-            <input type="checkbox" name="password" value="/images/default4.jpg">Singing
             <p>
                 <button type='button' class="btn btn-primary fat tall" id="submit">Continue</button>
             </p>
-        </form:form>
     </div>
 
    <div class="pics">
@@ -55,18 +45,15 @@
 
 <script>
 
-    $(".potato").click(function(){
+    $("#submit").click(function(){
         $('html,body').animate({
             scrollTop: $(".pics").offset().top
         }, 500);
             //  $(".wrapper").removeClass("hidden");
         //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
-        $(".pics").load("/login2");
-        var username = $("#username").val();
-        $("input[id=img" + i + "]").val(username);
+        $(".pics").load("/login2", $("#username"));
 
     })
-
 </script>
 </body>
 </html>

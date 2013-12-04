@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <jsp:include page="../pagefrags/imports.jsp"/>
 
 <script type="text/javascript" src="/js/jquery.removeWhitespace.js"></script>
@@ -9,20 +11,13 @@
     // we end up waiting for the whole window to load in this example
 
     $(document).ready(function () {
-        collage();
-        //$('.Collage').collageCaption();
-    });
 
-    // Here we apply the actual CollagePlus plugin
-    function collage() {
         $('.Collage').removeWhitespace().collagePlus(
                 {
-
                     'targetHeight': 160
                 }
-        );
-    }
-    ;
+        );        //$('.Collage').collageCaption();
+    });
 
     // This is just for the case that the browser window is resized
     var resizeTimer = null;
@@ -33,7 +28,6 @@
         if (resizeTimer) clearTimeout(resizeTimer);
         resizeTimer = setTimeout(collage, 200);
     });
-
 </script>
 
 <body>
@@ -86,8 +80,8 @@
         <div class="entered-pw maincontent">
             <h3 class="info">You've entered:</h3>
 
-            <form method="POST">
-                <input type="hidden" name="username" value=""/>
+            <form:form modelAttribute="loginForm" method='POST' id='loginForm' cssClass='cssform' autocomplete='off' action="login-check">
+                <input type="hidden" id="userinput" name="username" value="${username}"/>
                 <input type="hidden" name="password" id="img0" value=""/>
                 <input type="hidden" name="password" id="img1" value=""/>
                 <input type="hidden" name="password" id="img2" value=""/>
@@ -95,7 +89,7 @@
                 <span class="images"></span>
                 <button type="button" class="undo btn btn-warning supertall">Undo</button>
                 <input type="submit" class="login btn btn-primary supertall" value="Log In"/>
-            </form>
+            </form:form>
         </div>
     </div>
     <jsp:include page="../pagefrags/footer.jsp"/>
