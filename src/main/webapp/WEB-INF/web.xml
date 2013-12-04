@@ -4,6 +4,11 @@
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
 	<display-name>Cognometric 509 Application</display-name>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:/spring/mvc-dispatcher-servlet.xml,
+            classpath:spring/security-config.xml</param-value>
+    </context-param>
 
     <!-- Default profile for dev -->
     <context-param>
@@ -16,7 +21,8 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring/mvc-dispatcher-servlet.xml</param-value>
+            <param-value>classpath:spring/mvc-dispatcher-servlet.xml,
+                classpath:spring/security-config.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
 	</servlet>
@@ -25,4 +31,17 @@
 		<servlet-name>cognometric-sec</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 </web-app>

@@ -31,4 +31,15 @@ public class Coglet {
     public void setPath(String path) {
         this.path = path;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Coglet coglet = (Coglet) o;
+
+        return this.path.equals(coglet.getPath());
+    }
+
 }

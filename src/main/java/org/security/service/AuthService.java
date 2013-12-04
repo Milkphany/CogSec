@@ -5,11 +5,13 @@ import org.security.dao.UserDao;
 import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
 import org.security.model.Coglet;
+import org.security.model.Role;
 import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,25 +22,28 @@ import java.util.List;
 @Service
 public class AuthService {
 
+    @Autowired
     private UserDao userDao;
-    private CogletDao cogletDao;
 
     @Autowired
-    public AuthService(UserDao userDao, CogletDao cogletDao) {
-        this.userDao = userDao;
-        this.cogletDao = cogletDao;
-    }
+    private CogletDao cogletDao;
 
     public void addUser(String username) throws InsertExistException {
         if (getUser(username) == null) {
             UserAccount userAccount = new UserAccount();
             List<Coglet> password = cogletDao.getDefaultCoglets();
+            Role role = new Role("ROLE_ADMIN");
 
             userAccount.setUsername(username);
             userAccount.setPassword(password);
+            userAccount.setRole(role);
             userDao.addUser(userAccount);
         } else
             throw new InsertExistException();
+    }
+
+    public List<Coglet> getDefaultPassword() {
+        return cogletDao.getDefaultCoglets();
     }
 
     public void addUser(UserAccount userAccount) throws InsertExistException, PasswordUnsetException {
@@ -66,4 +71,5 @@ public class AuthService {
     public List<Coglet> getAllCoglets() {
         return cogletDao.getAllImages();
     }
+
 }

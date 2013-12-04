@@ -1,6 +1,10 @@
 package org.security.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,9 +19,12 @@ public class UserAccount {
     @Id
     private String username;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Column(nullable = false)
     private List<Coglet> password;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Role role;
 
     public UserAccount() {
     }
@@ -27,12 +34,12 @@ public class UserAccount {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public List<Coglet> getPassword() {
@@ -41,5 +48,19 @@ public class UserAccount {
 
     public void setPassword(List<Coglet> password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+        roles.add(role);
+        return roles;
     }
 }
