@@ -46,7 +46,9 @@
         </form:form>
     </div>
 
-   <div class="pics"><jsp:include page="../home/login2.jsp"/> </div>
+   <div class="pics">
+
+   </div>
 
     <jsp:include page="../pagefrags/footer.jsp"/>
 </div>
@@ -57,15 +59,15 @@
         $('html,body').animate({
             scrollTop: $(".pics").offset().top
         }, 500);
-              $(".wrapper").removeClass("hidden");
+            //  $(".wrapper").removeClass("hidden");
         //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
-        //$(".Collage").load("/test");
-        collage();
-        $('.Collage').collageCaption();
+        $(".pics").load("/login2");
+
+
     })
 
     $("img").click(function(){
-       // alert("meow");
+       console.log("MEOWW");
     })
 
 

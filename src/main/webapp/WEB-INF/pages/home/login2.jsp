@@ -1,17 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Polak
-  Date: 11/25/13
-  Time: 9:57 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html>
-<head>
     <jsp:include page="../pagefrags/imports.jsp"/>
 
     <script type="text/javascript" src="/js/jquery.removeWhitespace.js"></script>
@@ -24,7 +10,6 @@
         $(window).load(function () {
             $(document).ready(function () {
                 collage();
-                $('.Collage').collageCaption();
             });
         });
 
@@ -52,14 +37,14 @@
 
     </script>
 
-</head>
 <body>
 <div class="container">
 
     <jsp:include page="../pagefrags/nav.jsp"/>
 
     <div class="maincontent">
-        <h1>Enter your password:</h1>
+        <h1>Enter your PIN:</h1>
+        <div class="collagewrap" >
         <div class="Collage effect-parent">
 
             <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
@@ -93,11 +78,12 @@
             <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
             <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
         </div>
+        </div>
         <br/>
 
     </div>
 
-    <div class="wrapper hidden">
+    <div class="wrapper">
         <div class="entered-pw maincontent">
             <h4 class="info">You've entered:</h4>
             <form method="POST">
@@ -115,6 +101,11 @@
 </div>
 
 <script type="text/javascript">
+
+
+    collage();
+
+
     var pw = new Array();
 
     $("button").attr("disabled", pw.length ==0);
@@ -157,6 +148,3 @@
     $(".entered-pw").width($(".maincontent").width())
 </script>
 
-
-</body>
-</html>
