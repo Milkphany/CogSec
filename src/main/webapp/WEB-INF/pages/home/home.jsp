@@ -97,7 +97,9 @@
 <script>
     function collage(){
         $('.Collage').removeWhitespace().collagePlus({
-            'targetHeight': 160
+            'targetHeight': 160,
+            'allowPartialLastRow': true,
+            'direction': 'vertical'
         });
     }
 
@@ -118,17 +120,12 @@
         $('html,body').animate({
             scrollTop: $(".pics").offset().top
         }, 500);
-        //  $(".wrapper").removeClass("hidden");
-        //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
+
         $(".pics").load("/register-photos/", function () {
             setTimeout(recollage, 100);
             $("#hidden-uname").val($("#username").val())
         });
     })
-
-    $("#submit").click(function () {
-
-    });
 </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,13 @@
 
         <p class="instructions"><span class="h4">Please complete this short questionnaire.</span> <br/>
 
-        <form>
+        <sec:authorize access="isAuthenticated()">
+            <h2>Thank you for your participation!</h2>
+        </sec:authorize>
+        <sec:authorize access="isAnonymous()">
+            <h2>You're not logged in!</h2>
+        </sec:authorize>
+        <form method="POST">
             <ol class="survey">
                 <li>Did you encounter any difficulties while trying to create your PIN? If so, what were they?
                     <textarea required name="difficulties-creating" class="form-control" rows="3"></textarea>

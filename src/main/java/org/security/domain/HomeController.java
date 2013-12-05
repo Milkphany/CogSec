@@ -6,7 +6,13 @@ import org.security.model.Coglet;
 import org.security.model.Role;
 import org.security.model.UserAccount;
 import org.security.service.AuthService;
+import org.security.service.CogAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/")
@@ -24,6 +31,10 @@ public class HomeController {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    @Qualifier("cogAuthenticationProvider")
+    private CogAuthenticationProvider authenticationProvider;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap modelMap) {
@@ -56,12 +67,37 @@ public class HomeController {
                     + " password not correct issue");
         }
 
-        return "redirect:/";
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+                userAccount.getUsername(), userAccount.getPassword());
+
+        // generate session if one doesn't exist
+        request.getSession();
+
+        token.setDetails(new WebAuthenticationDetails(request));
+        Authentication authenticatedUser = authenticationProvider.authenticate(token);
+
+        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+
+        return "redirect:/survey";
     }
 
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
     public String getRegistrationPhotos(ModelMap modelMap) {
-        modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag("natures", 24));
+        Random random = new Random();
+        String category;
+
+        switch(random.nextInt(3)) {
+            case 0:
+                category = "natures";
+                break;
+            case 1:
+                category = "animals";
+                break;
+            default:
+                category = "faces";
+        }
+
+        modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag(category, 24));
         modelMap.addAttribute("user", new UserAccount());
         return "home/register-photos";
     }
@@ -69,6 +105,11 @@ public class HomeController {
     @RequestMapping(value ="survey",method = RequestMethod.GET)
     public String getSurvey(ModelMap modelMap) {
         return "home/survey";
+    }
+
+    @RequestMapping(value ="survey", method = RequestMethod.POST)
+    public String submitSurvey() {
+        return "redirect:/";
     }
 
     @RequestMapping(value ="login",method = RequestMethod.GET)
