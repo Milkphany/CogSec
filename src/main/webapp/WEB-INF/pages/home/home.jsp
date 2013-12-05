@@ -44,53 +44,54 @@
             <div class="pics">
             </div>
         </div>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <h2>All users</h2>
 
-        <h2>All users</h2>
+            <div>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    <c:if test="${not empty users}">
+                        <c:forEach var="useracc" items="${users}" varStatus="status">
+                            <tr>
+                                <td>${status.index + 1}</td>
+                                <td>${useracc.username}</td>
+                                <td>
+                                    <ul style="list-style-type: none">
+                                        <c:forEach var="userpass" items="${useracc.password}">
+                                            <li style="display: inline-block"><img class="user-pass" src="${userpass.path}"/></li>
+                                        </c:forEach>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                </table>
+            </div>
+            <h2>All images</h2>
 
-        <div>
-            <table>
-                <tr>
-                    <th>Name</th>
-                </tr>
-                <c:if test="${not empty users}">
-                    <c:forEach var="useracc" items="${users}" varStatus="status">
-                        <tr>
-                            <td>${status.index + 1}</td>
-                            <td>${useracc.username}</td>
-                            <td>
-                                <ul style="list-style-type: none">
-                                    <c:forEach var="userpass" items="${useracc.password}">
-                                        <li style="display: inline-block"><img class="user-pass" src="${userpass.path}"/></li>
+            <div>
+                <table>
+                    <tr>
+                        <th>Image Path</th>
+                    </tr>
+                    <c:if test="${not empty coglets}">
+                        <c:forEach var="coglet" items="${coglets}" varStatus="status">
+                            <tr>
+                                <td>${status.index + 1}</td>
+                                <td>${coglet.path}</td>
+                                <td>
+                                    <c:forEach var="cogtag" items="${coglet.tags}">
+                                        ${cogtag.tagName}
                                     </c:forEach>
-                                </ul>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </c:if>
-            </table>
-        </div>
-        <h2>All images</h2>
-
-        <div>
-            <table>
-                <tr>
-                    <th>Image Path</th>
-                </tr>
-                <c:if test="${not empty coglets}">
-                    <c:forEach var="coglet" items="${coglets}" varStatus="status">
-                        <tr>
-                            <td>${status.index + 1}</td>
-                            <td>${coglet.path}</td>
-                            <td>
-                                <c:forEach var="cogtag" items="${coglet.tags}">
-                                    ${cogtag.tagName}
-                                </c:forEach>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </c:if>
-            </table>
-        </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                </table>
+            </div>
+        </sec:authorize>
     </div>
 
     <jsp:include page="../pagefrags/footer.jsp"/>
