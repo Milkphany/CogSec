@@ -1,5 +1,6 @@
 <jsp:include page="../pagefrags/imports.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <script type="text/javascript" src="/js/jquery.removeWhitespace.js"></script>
 <script type="text/javascript" src="/js/collage.js"></script>
@@ -43,8 +44,8 @@
     <div class="entered-pw maincontent" style="width: 1110px">
         <h3 class="info">You've entered:</h3>
 
-        <form method="POST">
-            <input type="hidden" name="username" value=""/>
+        <form:form commandName="user" method="POST">
+            <form:input path="username" type="hidden" id="hidden-uname" value=""/>
             <input type="hidden" name="password" id="img0" value=""/>
             <input type="hidden" name="password" id="img1" value=""/>
             <input type="hidden" name="password" id="img2" value=""/>
@@ -55,7 +56,7 @@
                 <button type="button" class="undo btn btn-warning supertall">Undo</button>
                 <input type="submit" class="login btn btn-primary supertall" value="Continue"/>
             </div>
-        </form>
+        </form:form>
     </div>
 </div>
 

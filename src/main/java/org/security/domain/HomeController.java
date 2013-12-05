@@ -26,14 +26,15 @@ public class HomeController {
 	public String printWelcome(ModelMap modelMap) {
         modelMap.addAttribute("users", authService.getAllUsers());
         modelMap.addAttribute("coglets", authService.getAllCoglets());
-        //modelMap.addAttribute("categories", authService.getAllCogtags());
+
         modelMap.addAttribute("user", new UserAccount());
 
         return "home/home";
 	}
 
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String addUser(@ModelAttribute("userAccount") UserAccount userAccount,
+                          HttpServletRequest request,
                           RedirectAttributes attributes) {
 
         try {
@@ -53,15 +54,9 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @RequestMapping(value ="register",method = RequestMethod.GET)
-    public String getRegistration(ModelMap modelMap) {
-
-        return "home/register";
-    }
-
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
     public String getRegistrationPhotos(ModelMap modelMap) {
-        modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag("natures", 25));
+        modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag("natures", 24));
         return "home/register-photos";
     }
 

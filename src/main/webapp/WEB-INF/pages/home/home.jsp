@@ -25,16 +25,6 @@
             <h3 class="form-error">${error}</h3>
         </c:if>
         <div id="Registration">
-            <%--<form:form commandName="user" action="/new">
-                <table>
-                    <tr>
-                        <td>NetID:</td>
-                        <td><form:input path="username" /></td>
-                    </tr>
-                </table>
-                <input type="submit" value="Register" />
-            </form:form>--%>
-
             <div class="collagewrap">
                 <h1>Registration</h1>
 
@@ -130,31 +120,14 @@
         }, 500);
         //  $(".wrapper").removeClass("hidden");
         //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
-        $(".pics").load("/register-photos", function () {
+        $(".pics").load("/register-photos/", function () {
             setTimeout(recollage, 100);
-            console.log("loaded");
+            $("#hidden-uname").val($("#username").val())
         });
-        /*$.ajax({
-            url: "/register-photos",
-            type: 'GET',
-            async: false,
-            cache: false,
-            timeout: 3000,
-            error: function() {
-                console.log("It doesnt work")
-            },
-            success: function(msg) {
-                $(".pics").html(msg);
-                *//*recollage();*//*
-                console.log("it works...")
-                //alert("test");
-            }
-        });*/
     })
 
     $("#submit").click(function () {
-        var username = $("#username").val();
-        $("input[id=img" + i + "]").val(username);
+
     });
 </script>
 </body>
