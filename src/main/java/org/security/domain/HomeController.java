@@ -105,7 +105,7 @@ public class HomeController {
 
     @RequestMapping(value ="surveys",method = RequestMethod.GET)
     public String getSurvey(ModelMap modelMap) {
-        return "home/survey";
+        return "home/register-survey";
     }
 
     @RequestMapping(value ="surveys", method = RequestMethod.POST)
