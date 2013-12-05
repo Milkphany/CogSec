@@ -79,7 +79,7 @@ public class HomeController {
 
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
 
-        return "redirect:/survey";
+        return "redirect:/surveys";
     }
 
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
@@ -103,12 +103,12 @@ public class HomeController {
         return "home/register-photos";
     }
 
-    @RequestMapping(value ="survey",method = RequestMethod.GET)
+    @RequestMapping(value ="surveys",method = RequestMethod.GET)
     public String getSurvey(ModelMap modelMap) {
         return "home/survey";
     }
 
-    @RequestMapping(value ="survey", method = RequestMethod.POST)
+    @RequestMapping(value ="surveys", method = RequestMethod.POST)
     public String submitSurvey() {
         return "redirect:/";
     }
