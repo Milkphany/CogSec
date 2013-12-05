@@ -45,13 +45,37 @@
 
 <script>
 
+    function collage(){
+        $('.Collage').removeWhitespace().collagePlus({
+            'targetHeight': 160,
+            'allowPartialLastRow': true,
+            'direction': 'vertical'
+        });
+    }
+
+    function recollage() {
+        collage();
+        // This is just for the case that the browser window is resized
+        var resizeTimer = null;
+        $(window).bind('resize', function () {
+            // hide all the images until we resize them
+            $('.Collage .Image_Wrapper').css("opacity", 0);
+            // set a timer to re-apply the plugin
+            if (resizeTimer) clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(collage, 200);
+        });
+
+    }
+
     $("#submit").click(function(){
         $('html,body').animate({
             scrollTop: $(".pics").offset().top
         }, 500);
             //  $(".wrapper").removeClass("hidden");
         //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
-        $(".pics").load("/login2", $("#username"));
+        $(".pics").load("/login2", $("#username"), function() {
+            setTimeout(recollage, 50);
+        });
 
     })
 </script>

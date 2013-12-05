@@ -5,31 +5,6 @@
 <script type="text/javascript" src="/js/jquery.removeWhitespace.js"></script>
 <script type="text/javascript" src="/js/collage.js"></script>
 
-<script type="text/javascript">
-
-    // All images need to be loaded for this plugin to work so
-    // we end up waiting for the whole window to load in this example
-
-    $(document).ready(function () {
-
-        $('.Collage').removeWhitespace().collagePlus(
-                {
-                    'targetHeight': 160
-                }
-        );        //$('.Collage').collageCaption();
-    });
-
-    // This is just for the case that the browser window is resized
-    var resizeTimer = null;
-    $(window).bind('resize', function () {
-        // hide all the images until we resize them
-        $('.Collage .Image_Wrapper').css("opacity", 0);
-        // set a timer to re-apply the plugin
-        if (resizeTimer) clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(collage, 200);
-    });
-</script>
-
 <body>
 <div class="container">
 

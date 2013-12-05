@@ -6,6 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,9 @@
             <h3 class="form-error">${error}</h3>
         </c:if>
         <div id="Registration">
+            <sec:authorize access="isAuthenticated()">You are logged in, <sec:authentication property="principal"/></sec:authorize>
+            <sec:authorize access="isAnonymous()">Please register for an account to start</sec:authorize>
+
             <div class="collagewrap">
                 <h1>Registration</h1>
 
@@ -122,7 +126,7 @@
         }, 500);
 
         $(".pics").load("/register-photos/", function () {
-            setTimeout(recollage, 100);
+            setTimeout(recollage, 50);
             $("#hidden-uname").val($("#username").val())
         });
     })
