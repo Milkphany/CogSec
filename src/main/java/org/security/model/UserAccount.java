@@ -21,7 +21,7 @@ public class UserAccount {
     @Id
     private String username;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @Column(nullable = false)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Coglet> password;
