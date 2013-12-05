@@ -41,7 +41,7 @@ public class HomeController {
 
         try {
             userAccount.setPassword(authService.getDefaultPassword());
-            userAccount.setRole(new Role("ROLE_ADMIN"));
+            userAccount.setRole(new Role("ROLE_USER"));
 
             authService.addUser(userAccount);
             attributes.addFlashAttribute("newuser", userAccount);
