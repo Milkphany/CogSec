@@ -87,8 +87,10 @@
                 <input type="hidden" name="password" id="img2" value=""/>
                 <input type="hidden" name="password" id="img3" value=""/>
                 <span class="images"></span>
-                <button type="button" class="undo btn btn-warning supertall">Undo</button>
-                <input type="submit" class="login btn btn-primary supertall" value="Log In"/>
+                <div style="float: right; margin: 0px 15px 0px 15px">
+                    <button type="button" class="undo btn btn-warning supertall">Undo</button>
+                    <input type="submit" class="login btn btn-primary supertall" value="Log In"/>
+                </div>
             </form:form>
         </div>
     </div>
