@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="../pagefrags/imports.jsp"/>
 
@@ -14,37 +15,10 @@
 
         <div class="collagewrap">
             <div class="Collage effect-parent">
-
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-                <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-                <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-                <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-                <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-                <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-                <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-                <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-                <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-                <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-                <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-                <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-                <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
+                <%--${pass-candidates}--%>
+                <c:forEach var="pass" items="${passwordSelection}">
+                    <img class="darkencss" src="${pass.path}">
+                </c:forEach>
             </div>
         </div>
         <br/>

@@ -106,4 +106,7 @@ public class AuthService {
         return cogletDao.getAllTags();
     }
 
+    public Coglet getCogletById(String passfrag) {
+        return cogletDao.getCoglet(new Coglet(passfrag));
+    }
 }

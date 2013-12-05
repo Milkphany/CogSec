@@ -33,7 +33,7 @@
 <div class="collagewrap">
     <div class="Collage effect-parent">
         <c:forEach var="choice" items="${specific}">
-            <img class="darkencss" src="http://wontoncode.com/${choice.path}">
+            <img class="darkencss" src="${choice.path}">
         </c:forEach>
     </div>
 </div>

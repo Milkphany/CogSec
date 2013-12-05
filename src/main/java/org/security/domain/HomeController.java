@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -52,7 +53,7 @@ public class HomeController {
         try {
             List<Coglet> password = new ArrayList<Coglet>();
             for (String passfrag : request.getParameterValues("password"))
-                password.add(new Coglet(passfrag));
+                password.add(authService.getCogletById(passfrag));
 
             userAccount.setPassword(password);
             userAccount.setRole(new Role("ROLE_USER"));
@@ -120,9 +121,19 @@ public class HomeController {
 
     @RequestMapping(value ="login2",method = RequestMethod.POST)
     public String getNextLogin(ModelMap modelMap, HttpServletRequest request) {
+        String username = request.getParameter("username");
+        modelMap.addAttribute("username", username);
 
-        modelMap.addAttribute("username", request.getParameter("username"));
+        UserAccount userAccount = authService.getUser(username);
+        String category = userAccount.getPassword().get(0).getTags().get(0).getTagName();
 
+        List<Coglet> passwords = authService.getRandomCogletWithCogtag(category, 20);
+        for (Coglet pass : userAccount.getPassword())
+            passwords.add(pass);
+
+        Collections.shuffle(passwords);
+
+        modelMap.addAttribute("passwordSelection", passwords);
         return "/home/login2";
     }
 }
