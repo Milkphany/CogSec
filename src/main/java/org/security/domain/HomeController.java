@@ -98,7 +98,7 @@ public class HomeController {
                 category = "faces";
         }
 
-        modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag(category, 24));
+        modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag(category, 24, new Random()));
         modelMap.addAttribute("user", new UserAccount());
         return "home/register-photos";
     }
@@ -124,10 +124,12 @@ public class HomeController {
         String username = request.getParameter("username");
         modelMap.addAttribute("username", username);
 
+        Random random = new Random(username.hashCode());
+
         UserAccount userAccount = authService.getUser(username);
         String category = userAccount.getPassword().get(0).getTags().get(0).getTagName();
 
-        List<Coglet> passwords = authService.getRandomCogletWithCogtag(category, 20);
+        List<Coglet> passwords = authService.getRandomCogletWithCogtag(category, 20, random);
         for (Coglet pass : userAccount.getPassword())
             passwords.add(pass);
 

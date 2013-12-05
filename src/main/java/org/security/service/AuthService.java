@@ -82,8 +82,7 @@ public class AuthService {
         return cogletDao.getCogletsCategory(new Cogtag(tag));
     }
 
-    public List<Coglet> getRandomCogletWithCogtag(String tag, int num) {
-        Random rng = new Random();
+    public List<Coglet> getRandomCogletWithCogtag(String tag, int num, Random rng) {
         Cogtag cogtag = new Cogtag(tag);
         long numHave = cogletDao.getNumCogletCategory(cogtag);
 

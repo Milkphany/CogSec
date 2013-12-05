@@ -17,7 +17,7 @@
             <div class="Collage effect-parent">
                 <%--${pass-candidates}--%>
                 <c:forEach var="pass" items="${passwordSelection}">
-                    <img class="darkencss" src="${pass.path}">
+                    <img class="darkencss" src="${pass.path}" alt="${pass.path}">
                 </c:forEach>
             </div>
         </div>
