@@ -56,7 +56,7 @@
                             <td>
                                 <ul style="list-style-type: none">
                                     <c:forEach var="userpass" items="${useracc.password}">
-                                        <li style="display: inline-block"><img src="${userpass.path}"/></li>
+                                        <li style="display: inline-block"><img class="user-pass" src="${userpass.path}"/></li>
                                     </c:forEach>
                                 </ul>
                             </td>

@@ -16,6 +16,10 @@ h1, .container h1, .container h4 {
     font-style: italic;
 }
 
+.user-pass {
+    width: 200px;
+}
+
 .hidden {
     display:none;
 }

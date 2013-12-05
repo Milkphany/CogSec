@@ -2,6 +2,7 @@ package org.security.domain;
 
 import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
+import org.security.model.Coglet;
 import org.security.model.Role;
 import org.security.model.UserAccount;
 import org.security.service.AuthService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -27,8 +30,6 @@ public class HomeController {
         modelMap.addAttribute("users", authService.getAllUsers());
         modelMap.addAttribute("coglets", authService.getAllCoglets());
 
-        modelMap.addAttribute("user", new UserAccount());
-
         return "home/home";
 	}
 
@@ -38,7 +39,11 @@ public class HomeController {
                           RedirectAttributes attributes) {
 
         try {
-            userAccount.setPassword(authService.getDefaultPassword());
+            List<Coglet> password = new ArrayList<Coglet>();
+            for (String passfrag : request.getParameterValues("password"))
+                password.add(new Coglet(passfrag));
+
+            userAccount.setPassword(password);
             userAccount.setRole(new Role("ROLE_USER"));
 
             authService.addUser(userAccount);
@@ -57,6 +62,7 @@ public class HomeController {
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
     public String getRegistrationPhotos(ModelMap modelMap) {
         modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag("natures", 24));
+        modelMap.addAttribute("user", new UserAccount());
         return "home/register-photos";
     }
 
