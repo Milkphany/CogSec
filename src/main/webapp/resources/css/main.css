@@ -51,6 +51,9 @@ h1, .container h1, .container h4 {
     margin-right: auto;
 }
 
+.survey li {
+   padding:10px 0 10px 0;
+}
 .entered-pw img {
     padding-left: 10px;
 }
