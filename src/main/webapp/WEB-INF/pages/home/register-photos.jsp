@@ -3,27 +3,19 @@
 
 <script type="text/javascript" src="/js/jquery.removeWhitespace.js"></script>
 <script type="text/javascript" src="/js/collage.js"></script>
-
-<script type="text/javascript">
+<%--<script type="text/javascript">
 
     // All images need to be loaded for this plugin to work so
     // we end up waiting for the whole window to load in this example
 
-    $(document).ready(function () {
-        collage();
-        //$('.Collage').collageCaption();
-    });
-
     // Here we apply the actual CollagePlus plugin
-    function collage() {
+    function collage(){
         $('.Collage').removeWhitespace().collagePlus(
                 {
-
                     'targetHeight': 160
                 }
         );
-    }
-    ;
+    };
 
     // This is just for the case that the browser window is resized
     var resizeTimer = null;
@@ -35,37 +27,37 @@
         resizeTimer = setTimeout(collage, 200);
     });
 
-</script>
+</script>--%>
 
-        <div class="collagewrap">
-            <div class="Collage effect-parent">
-                <c:forEach var="choice" items="${specific}">
-                    <img class="darkencss" src="http://wontoncode.com/${choice.path}">
-                </c:forEach>
-            </div>
-        </div>
-        <br/>
-
-
-
-    <div class="wrapper">
-        <div class="entered-pw maincontent" style="width: 1110px">
-            <h3 class="info">You've entered:</h3>
-
-            <form method="POST">
-                <input type="hidden" name="username" value=""/>
-                <input type="hidden" name="password" id="img0" value=""/>
-                <input type="hidden" name="password" id="img1" value=""/>
-                <input type="hidden" name="password" id="img2" value=""/>
-                <input type="hidden" name="password" id="img3" value=""/>
-                <span class="images"></span>
-                <div style="float: right; margin: 0px 15px 0px 15px">
-                    <button type="button" class="undo btn btn-warning supertall">Undo</button>
-                    <input type="submit" class="login btn btn-primary supertall" value="Continue"/>
-                </div>
-            </form>
-        </div>
+<div class="collagewrap">
+    <div class="Collage effect-parent">
+        <c:forEach var="choice" items="${specific}">
+            <img class="darkencss" src="http://wontoncode.com/${choice.path}">
+        </c:forEach>
     </div>
+</div>
+<br/>
+
+
+<div class="wrapper">
+    <div class="entered-pw maincontent" style="width: 1110px">
+        <h3 class="info">You've entered:</h3>
+
+        <form method="POST">
+            <input type="hidden" name="username" value=""/>
+            <input type="hidden" name="password" id="img0" value=""/>
+            <input type="hidden" name="password" id="img1" value=""/>
+            <input type="hidden" name="password" id="img2" value=""/>
+            <input type="hidden" name="password" id="img3" value=""/>
+            <span class="images"></span>
+
+            <div style="float: right; margin: 0px 15px 0px 15px">
+                <button type="button" class="undo btn btn-warning supertall">Undo</button>
+                <input type="submit" class="login btn btn-primary supertall" value="Continue"/>
+            </div>
+        </form>
+    </div>
+</div>
 
 <script type="text/javascript">
 
@@ -102,7 +94,7 @@
     })
 
     $(".undo").click(function () {
-        var selector = "img[src='"+pw.pop()+"']";
+        var selector = "img[src='" + pw.pop() + "']";
         $(selector).css("visibility", "visible");
 
         var html = "";

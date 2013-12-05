@@ -37,25 +37,27 @@
 
             <div class="collagewrap">
                 <h1>Registration</h1>
+
                 <p class="instructions">
-                    <span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username" placeholder="NetId"/></span> <br/>
+                    <span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
+                                                                 placeholder="NetId"/></span> <br/>
                 </p>
 
                 <h4 class="instructions">2. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>
-                <c:forEach var="choice" items="${specific}">
-                    ${choice.path}
-                </c:forEach>
+                <button type="button" id="continue">Continue</button>
             </div>
 
             <div class="pics">
-
             </div>
         </div>
 
         <h2>All users</h2>
+
         <div>
             <table>
-                <tr><th>Name</th></tr>
+                <tr>
+                    <th>Name</th>
+                </tr>
                 <c:if test="${not empty users}">
                     <c:forEach var="useracc" items="${users}" varStatus="status">
                         <tr>
@@ -74,16 +76,19 @@
             </table>
         </div>
         <h2>All images</h2>
+
         <div>
             <table>
-                <tr><th>Image Path</th></tr>
+                <tr>
+                    <th>Image Path</th>
+                </tr>
                 <c:if test="${not empty coglets}">
                     <c:forEach var="coglet" items="${coglets}" varStatus="status">
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>${coglet.path}</td>
                             <td>
-                                <c:forEach var="cogtag" items="${coglet.tags}" >
+                                <c:forEach var="cogtag" items="${coglet.tags}">
                                     ${cogtag.tagName}
                                 </c:forEach>
                             </td>
@@ -100,22 +105,51 @@
 </div>
 
 <script>
-    $(".pics").load("/register-photos");
+    function collage(){
+        $('.Collage').removeWhitespace().collagePlus({
+            'targetHeight': 160
+        });
+    }
 
-    $(".potato").click(function () {
+    function recollage() {
+        collage();
+
+        var resizeTimer = null;
+        $(window).bind('resize', function () {
+            // hide all the images until we resize them
+            $('.Collage .Image_Wrapper').css("opacity", 0);
+            // set a timer to re-apply the plugin
+            if (resizeTimer) clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(collage, 200);
+        });
+    }
+
+    $("#continue").click(function () {
         $('html,body').animate({
             scrollTop: $(".pics").offset().top
         }, 500);
         //  $(".wrapper").removeClass("hidden");
         //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
-        $(".pics").load("/login2");
-        var username = $("#username").val();
-        $("input[id=img" + i + "]").val(username);
-
-    })
-
-    $("img").click(function () {
-        console.log("MEOWW");
+        $(".pics").load("/register-photos", function () {
+            setTimeout(recollage, 100);
+            console.log("loaded");
+        });
+        /*$.ajax({
+            url: "/register-photos",
+            type: 'GET',
+            async: false,
+            cache: false,
+            timeout: 3000,
+            error: function() {
+                console.log("It doesnt work")
+            },
+            success: function(msg) {
+                $(".pics").html(msg);
+                *//*recollage();*//*
+                console.log("it works...")
+                //alert("test");
+            }
+        });*/
     })
 
     $("#submit").click(function () {

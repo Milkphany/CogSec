@@ -61,7 +61,7 @@ public class HomeController {
 
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
     public String getRegistrationPhotos(ModelMap modelMap) {
-        modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag("natures", 20));
+        modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag("natures", 25));
         return "home/register-photos";
     }
 
