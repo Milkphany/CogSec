@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/")
@@ -38,7 +41,7 @@ public class HomeController {
 
         try {
             userAccount.setPassword(authService.getDefaultPassword());
-            userAccount.setRole(new Role("ROLE_ADMIN"));
+            userAccount.setRole(new Role("ROLE_USER"));
 
             authService.addUser(userAccount);
             attributes.addFlashAttribute("newuser", userAccount);
@@ -53,9 +56,29 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @RequestMapping(value ="test",method = RequestMethod.GET)
+    @RequestMapping(value ="register",method = RequestMethod.GET)
     public String getTest(ModelMap modelMap) {
 
-        return "/home/test";
+        return "home/register";
+    }
+
+    @RequestMapping(value ="register-photos",method = RequestMethod.GET)
+    public String getRegistrationPhotos(ModelMap modelMap) {
+
+        return "home/register-photos";
+    }
+
+    @RequestMapping(value ="login",method = RequestMethod.GET)
+    public String getLogin(ModelMap modelMap) {
+
+        return "/home/login";
+    }
+
+    @RequestMapping(value ="login2",method = RequestMethod.POST)
+    public String getNextLogin(ModelMap modelMap, HttpServletRequest request) {
+
+        modelMap.addAttribute("username", request.getParameter("username"));
+
+        return "/home/login2";
     }
 }

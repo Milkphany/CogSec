@@ -26,10 +26,10 @@ public class InsertTests implements InitializingBean {
 
     public void addImages() {
         try {
-            authService.addCoglet("/images/default3.jpg", new String[]{"admin", "user"});
-            authService.addCoglet("/images/default1.jpg", new String[]{"admin", "user"});
-            authService.addCoglet("/images/default3.jpg", new String[]{"admin", "student"});
-            authService.addCoglet("/images/default4.jpg", new String[]{"admin"});
+            authService.addCoglet("/images/default3.jpg", new String[]{"nature", "face"});
+            authService.addCoglet("/images/default1.jpg", new String[]{"nature"});
+            authService.addCoglet("/images/default3.jpg", new String[]{"nature", "face"});
+            authService.addCoglet("/images/default4.jpg", new String[]{"nature"});
         } catch (InsertExistException e) {
             System.out.println("Images already exist wtf you doing?");
         }
@@ -37,11 +37,7 @@ public class InsertTests implements InitializingBean {
 
     public void addPeople() {
         try {
-            authService.addDefaultUser("Baby");
-            authService.addDefaultUser("Mommy");
-            authService.addDefaultUser("Tester");
-            authService.addDefaultUser("jaschen");
-            authService.addDefaultUser("Robert Paulson");
+            authService.addDefaultUser("milky");
 
         } catch (InsertExistException e) {
             System.out.println("User already exists!!");
