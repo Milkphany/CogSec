@@ -1,4 +1,5 @@
 <jsp:include page="../pagefrags/imports.jsp"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script type="text/javascript" src="/js/jquery.removeWhitespace.js"></script>
 <script type="text/javascript" src="/js/collage.js"></script>
@@ -38,28 +39,9 @@
 
         <div class="collagewrap">
             <div class="Collage effect-parent">
-
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-                <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-                <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-                <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-                <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="https://hostr.co/file/63mGxsgsk3UL/wallpaper_14271933.jpg">
-                <img class="darkencss" src="http://i.imgur.com/VNHzA.jpg">
-                <img class="darkencss" src="http://i.imgur.com/0MgS4od.jpg">
-                <img class="darkencss" src="http://i.imgur.com/ir4Ii.jpg">
-                <img class="darkencss" src="http://i.imgur.com/E59TaCy.jpg">
-                <img class="darkencss" src="http://ppcdn.500px.org/44746914/d0276b9a1b7757060e4dc9ff26b95a17c6e88793/2048.jpg">
-                <img class="darkencss" src="http://ppcdn.500px.org/37900426/6d316a44c0dc1fdf4cced48d31fb4510cb585eb2/5.jpg">
-                <img class="darkencss" src="http://ppcdn.500px.org/44746914/d0276b9a1b7757060e4dc9ff26b95a17c6e88793/2048.jpg">
-
+                <c:forEach var="choice" items="${specific}">
+                    <img class="darkencss" src="http://wontoncode.com/${choice.path}">
+                </c:forEach>
             </div>
         </div>
         <br/>
@@ -67,7 +49,7 @@
 
 
     <div class="wrapper">
-        <div class="entered-pw maincontent">
+        <div class="entered-pw maincontent" style="width: 1110px">
             <h3 class="info">You've entered:</h3>
 
             <form method="POST">
@@ -77,8 +59,10 @@
                 <input type="hidden" name="password" id="img2" value=""/>
                 <input type="hidden" name="password" id="img3" value=""/>
                 <span class="images"></span>
-                <button type="button" class="undo btn btn-warning supertall">Undo</button>
-                <input type="submit" class="login btn btn-primary supertall" value="Continue"/>
+                <div style="float: right; margin: 0px 15px 0px 15px">
+                    <button type="button" class="undo btn btn-warning supertall">Undo</button>
+                    <input type="submit" class="login btn btn-primary supertall" value="Continue"/>
+                </div>
             </form>
         </div>
     </div>

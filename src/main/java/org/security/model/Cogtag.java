@@ -1,5 +1,7 @@
 package org.security.model;
 
+import org.hibernate.annotations.IndexColumn;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

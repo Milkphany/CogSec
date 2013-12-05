@@ -25,4 +25,7 @@ public interface CogletDao {
 
     public List<Coglet> getCogletsCategory(Cogtag cogtag);
 
+    public Integer getNumCogletCategory(Cogtag cogtag);
+
+    public Coglet getCogletWithCategoryPosition(Cogtag cogtag, Integer pos);
 }

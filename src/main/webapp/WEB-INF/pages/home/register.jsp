@@ -20,18 +20,17 @@
 <body>
 <div class="container">
 
+    <div class="collagewrap">
 
+        <h1>Registration</h1>
 
-        <div class="collagewrap">
+        <p class="instructions"><span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
+                                                                             placeholder="NetId"/>    </span> <br/>
+        </p>
 
-            <h1>Registration</h1>
+        <h4 class="instructions">2. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>
 
-            <p class="instructions"><span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
-                                                            placeholder="NetId"/>    </span> <br/>
-            </p>
-
-            <h4 class="instructions">2. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>
-        </div>
+    </div>
 
 
     <div class="pics">

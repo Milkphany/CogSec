@@ -71,4 +71,22 @@ public class CogletDaoImpl implements CogletDao {
                 .list();
         return coglets;
     }
+
+    @Override
+    public Integer getNumCogletCategory(Cogtag cogtag) {
+        return ((Long) sessionFactory.getCurrentSession()
+                .createQuery("select count(*) from Coglet as cg where :cogtag in elements(cg.tags)")
+                .setString("cogtag", cogtag.getTagName())
+                .uniqueResult()).intValue();
+    }
+
+    @Override
+    public Coglet getCogletWithCategoryPosition(Cogtag cogtag, Integer pos) {
+        return (Coglet) sessionFactory.getCurrentSession()
+                .createQuery("from Coglet as cg where :cogtag in elements(cg.tags)")
+                .setString("cogtag", cogtag.getTagName())
+                .setFirstResult(pos)
+                .setMaxResults(1)
+                .uniqueResult();
+    }
 }

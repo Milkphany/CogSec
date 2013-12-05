@@ -24,17 +24,15 @@ public class HomeController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap modelMap) {
-        modelMap.addAttribute("user", new UserAccount());
         modelMap.addAttribute("users", authService.getAllUsers());
         modelMap.addAttribute("coglets", authService.getAllCoglets());
         //modelMap.addAttribute("categories", authService.getAllCogtags());
+        modelMap.addAttribute("user", new UserAccount());
 
-        modelMap.addAttribute("specific", authService.getCogletWithCogtag("admin"));
-
-		return "home/home";
+        return "home/home";
 	}
 
-    @RequestMapping(value = "new", method = RequestMethod.POST)
+    @RequestMapping(value = "register", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("userAccount") UserAccount userAccount,
                           RedirectAttributes attributes) {
 
@@ -56,20 +54,19 @@ public class HomeController {
     }
 
     @RequestMapping(value ="register",method = RequestMethod.GET)
-    public String getTest(ModelMap modelMap) {
+    public String getRegistration(ModelMap modelMap) {
 
         return "home/register";
     }
 
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
     public String getRegistrationPhotos(ModelMap modelMap) {
-
+        modelMap.addAttribute("specific", authService.getRandomCogletWithCogtag("natures", 20));
         return "home/register-photos";
     }
 
     @RequestMapping(value ="survey",method = RequestMethod.GET)
     public String getSurvey(ModelMap modelMap) {
-
         return "home/survey";
     }
 

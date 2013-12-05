@@ -11,8 +11,7 @@ import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * User: Milky
@@ -81,6 +80,22 @@ public class AuthService {
 
     public List<Coglet> getCogletWithCogtag(String tag) {
         return cogletDao.getCogletsCategory(new Cogtag(tag));
+    }
+
+    public List<Coglet> getRandomCogletWithCogtag(String tag, int num) {
+        Random rng = new Random();
+        Cogtag cogtag = new Cogtag(tag);
+        long numHave = cogletDao.getNumCogletCategory(cogtag);
+
+        Set<Integer> generated = new LinkedHashSet<Integer>(num);
+        List<Coglet> list = new ArrayList<Coglet>(num);
+        while (generated.size() < num)
+            generated.add(rng.nextInt((int) numHave));
+
+        for (Integer gen : generated)
+            list.add(cogletDao.getCogletWithCategoryPosition(cogtag, gen));
+
+        return list;
     }
 
     public List<Coglet> getAllCoglets() {
