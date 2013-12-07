@@ -40,56 +40,58 @@
                 <h4 class="instructions">2. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>
                 <button type="button" id="continue">Continue</button>
             </div>
-
-            <div class="pics">
+            <div class="pics panel-body">
             </div>
         </div>
+
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <h2>All users</h2>
+            <div class="panel-body">
+                <h2>All users</h2>
 
-            <div>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                    <c:if test="${not empty users}">
-                        <c:forEach var="useracc" items="${users}" varStatus="status">
-                            <tr>
-                                <td>${status.index + 1}</td>
-                                <td>${useracc.username}</td>
-                                <td>
-                                    <ul style="list-style-type: none">
-                                        <c:forEach var="userpass" items="${useracc.password}">
-                                            <li style="display: inline-block"><img class="user-pass" src="${userpass.path}"/></li>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                        </tr>
+                        <c:if test="${not empty users}">
+                            <c:forEach var="useracc" items="${users}" varStatus="status">
+                                <tr>
+                                    <td>${status.index + 1}</td>
+                                    <td>${useracc.username}</td>
+                                    <td>
+                                        <ul style="list-style-type: none">
+                                            <c:forEach var="userpass" items="${useracc.password}">
+                                                <li style="display: inline-block"><img class="user-pass" src="${userpass.path}"/></li>
+                                            </c:forEach>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </c:if>
+                    </table>
+                </div>
+                <h2>All images</h2>
+
+                <div>
+                    <table>
+                        <tr>
+                            <th>Image Path</th>
+                        </tr>
+                        <c:if test="${not empty coglets}">
+                            <c:forEach var="coglet" items="${coglets}" varStatus="status">
+                                <tr>
+                                    <td>${status.index + 1}</td>
+                                    <td>${coglet.path}</td>
+                                    <td>
+                                        <c:forEach var="cogtag" items="${coglet.tags}">
+                                            ${cogtag.tagName}
                                         </c:forEach>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </c:if>
-                </table>
-            </div>
-            <h2>All images</h2>
-
-            <div>
-                <table>
-                    <tr>
-                        <th>Image Path</th>
-                    </tr>
-                    <c:if test="${not empty coglets}">
-                        <c:forEach var="coglet" items="${coglets}" varStatus="status">
-                            <tr>
-                                <td>${status.index + 1}</td>
-                                <td>${coglet.path}</td>
-                                <td>
-                                    <c:forEach var="cogtag" items="${coglet.tags}">
-                                        ${cogtag.tagName}
-                                    </c:forEach>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </c:if>
-                </table>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </c:if>
+                    </table>
+                </div>
             </div>
         </sec:authorize>
     </div>

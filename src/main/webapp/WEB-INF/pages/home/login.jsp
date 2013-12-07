@@ -25,7 +25,7 @@
             </div>
         </c:if>
 
-        <h1>Enter your NetId:</h1>
+        <h1 id="login-heading">Enter your NetId:</h1>
         <br>
         <br>
             <p>
@@ -67,13 +67,17 @@
 
     }
 
-    $("#submit").click(function(){
+    $("#submit").click(function(event){
+        $('#submit').hide();
+
         $('html,body').animate({
             scrollTop: $(".pics").offset().top
         }, 500);
             //  $(".wrapper").removeClass("hidden");
         //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
         $(".pics").load("/login2", $("#username"), function() {
+            $('#login').css('padding', '20px 20px').css('max-width', '1920px').css('margin-left', '0px');
+            $('#login-heading').hide();
             setTimeout(recollage, 50);
         });
 
