@@ -25,7 +25,7 @@
         <c:if test="${not empty error}">
             <h3 class="form-error">${error}</h3>
         </c:if>
-        <sec:authorize access="isAuthenticated()">
+        <sec:authorize access="isAnonymous()">
             <div id="Registration" class="panel panel-default">
                 <div class="collagewrap panel-body">
                     <h1>Cognometric Analysis</h1>
