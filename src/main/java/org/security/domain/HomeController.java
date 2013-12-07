@@ -108,6 +108,11 @@ public class HomeController {
         return "home/register-survey";
     }
 
+    @RequestMapping(value ="consent",method = RequestMethod.GET)
+    public String getConsent(ModelMap modelMap) {
+        return "home/informed-consent";
+    }
+
     @RequestMapping(value ="surveys", method = RequestMethod.POST)
     public String submitSurvey() {
         return "redirect:/";

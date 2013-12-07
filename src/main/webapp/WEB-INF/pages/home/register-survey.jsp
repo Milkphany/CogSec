@@ -41,6 +41,12 @@
                     </select>
                 </li>
                 <li>
+                    What is your gender?
+                </li>
+                <li>
+                    Which of these best describes you?
+                </li>
+                <li>
                     What is your major?
                     <input type="text" class="form-control" required name="major"/>
                 </li>
