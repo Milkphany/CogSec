@@ -25,26 +25,26 @@
         <c:if test="${not empty error}">
             <h3 class="form-error">${error}</h3>
         </c:if>
-        <div id="Registration" class="panel panel-default">
-            <div class="collagewrap panel-body">
-                <h1>Cognometric Analysis</h1>
-                <p class="instructions">Cognometric passwords are passwords using non text authentication.</br>
-                    This is a study of recognizability and communicability of image passwords.</br>
-                    Please start the registration process by entering your netid, or alternatively login at the top right.</p>
+        <sec:authorize access="isAnonymous()">
+            <div id="Registration" class="panel panel-default">
+                <div class="collagewrap panel-body">
+                    <h1>Cognometric Analysis</h1>
+                    <p class="instructions">Cognometric passwords Are passwords using non text authentication.</br>
+                        This is a study of recognizability and communicability of image passwords.</br>
+                        Please start the registration process by entering your netid, or alternatively login at the top right.</p>
 
-                <p class="instructions">
-                    <span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
-                                                                 placeholder="NetId"/></span>
-                    <button class="btn btn-default btn-lg" type="button" id="continue">Continue</button>
-                    <br/>
-                </p>
+                    <p class="instructions">
+                        <span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
+                                                                     placeholder="NetId"/></span> <br/>
+                    </p>
 
-                <h4 class="instructions">2. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>
-
+                    <h4 class="instructions">2. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>
+                    <button type="button" id="continue">Continue</button>
+                </div>
+                <div class="pics panel-body">
+                </div>
             </div>
-            <div class="pics panel-body">
-            </div>
-        </div>
+        </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <div class="panel panel-default">
