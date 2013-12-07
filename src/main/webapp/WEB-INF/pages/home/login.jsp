@@ -69,6 +69,8 @@
 
     $("#submit").click(function(event){
         $('#submit').hide();
+        $('#login').css('padding', '20px 20px').css('max-width', '1920px').css('margin-left', '0px');
+        $('#login-heading').hide();
 
         $('html,body').animate({
             scrollTop: $(".pics").offset().top
@@ -76,8 +78,7 @@
             //  $(".wrapper").removeClass("hidden");
         //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
         $(".pics").load("/login2", $("#username"), function() {
-            $('#login').css('padding', '20px 20px').css('max-width', '1920px').css('margin-left', '0px');
-            $('#login-heading').hide();
+
             setTimeout(recollage, 50);
         });
 
