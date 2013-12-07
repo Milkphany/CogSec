@@ -28,7 +28,7 @@
         <h1 id="login-heading">Enter your NetId:</h1>
         <br>
         <br>
-            <p>
+            <p id="username-section">
                 <input type='text' class='form-control' name='username' id='username' autofocus="autofocus" placeholder="NetId" required/>
             </p>
             <p>
@@ -68,8 +68,9 @@
     }
 
     $("#submit").click(function(event){
-        $('#submit').hide();
-        $('#login').css('padding', '20px 20px').css('max-width', '1920px').css('margin-left', '0px');
+        $('#submit').text('Change Username');
+        $('#submit').removeClass('btn-primary').addClass('btn-default');
+        $('#login').css('padding', '0px 20px').css('max-width', '1080px').css('margin-left', '0px');
         $('#login-heading').hide();
 
         $('html,body').animate({

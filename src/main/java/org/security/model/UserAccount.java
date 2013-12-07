@@ -29,6 +29,9 @@ public class UserAccount {
     @ManyToOne(cascade = CascadeType.ALL)
     private Role role;
 
+    @OneToOne
+    private Survey survey;
+
     public UserAccount() {
     }
 

@@ -26,10 +26,10 @@ public class InsertTests implements InitializingBean {
 
     public void addImages() {
         try {
-            authService.addCoglet("/images/default3.jpg", new String[]{"nature", "face"});
-            authService.addCoglet("/images/default1.jpg", new String[]{"nature"});
-            authService.addCoglet("/images/default3.jpg", new String[]{"nature", "face"});
-            authService.addCoglet("/images/default4.jpg", new String[]{"nature"});
+            authService.addCoglet("/images/default1.jpg", new String[]{"natures", "faces"});
+            authService.addCoglet("/images/default2.jpg", new String[]{"natures"});
+            authService.addCoglet("/images/default3.jpg", new String[]{"natures", "faces"});
+            authService.addCoglet("/images/default4.jpg", new String[]{"natures"});
         } catch (InsertExistException e) {
             System.out.println("Images already exist wtf you doing?");
         }
