@@ -1,5 +1,10 @@
 /*GENERAL STYLES*/
-body, .row, h2 {
+body {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+body, .row {
     font-family: 'Roboto', Arial, sans-serif;
     font-weight: normal;
 }

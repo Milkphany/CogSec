@@ -25,12 +25,12 @@
         <c:if test="${not empty error}">
             <h3 class="form-error">${error}</h3>
         </c:if>
-        <div id="Registration">
-            <sec:authorize access="isAuthenticated()">You are logged in, <sec:authentication property="principal"/></sec:authorize>
-            <sec:authorize access="isAnonymous()">Please register for an account to start</sec:authorize>
-
-            <div class="collagewrap">
-                <h1>Registration</h1>
+        <div id="Registration" class="panel panel-default">
+            <div class="collagewrap panel-body">
+                <h1>Cognometric Analysis</h1>
+                <p class="instructions">Cognometric passwords Are passwords using non text authentication.</br>
+                    This is a study of recognizability and communicability of image passwords.</br>
+                    Please start the registration process by entering your netid, or alternatively login at the top right.</p>
 
                 <p class="instructions">
                     <span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
