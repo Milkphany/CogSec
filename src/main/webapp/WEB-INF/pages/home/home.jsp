@@ -64,13 +64,14 @@
                 <c:otherwise>
                     <div class="panel-body">
                         <h1>Your survey response:</h1>
+                        </br>
                         <table class="table table-bordered">
-                            <th>
-                                <td>NetID</td>
-                                <td>Age</td>
-                                <td>Major</td>
-                                <td>Difficulties Creating Account</td>
-                            </th>
+                            <tr>
+                                <th>NetID</th>
+                                <th>Age</th>
+                                <th>Major</th>
+                                <th>Difficulties Creating Account</th>
+                            </tr>
                             <tr>
                                 <td>${logUser.username}</td>
                                 <td>${logUser.survey.age}</td>
@@ -78,7 +79,7 @@
                                 <td>${logUser.survey.difficultyCreate}</td>
                             </tr>
                         </table>
-                        <h2>Survey Agreement</h2>
+                        <h1>Survey Agreement</h1>
                         <div><jsp:include page="informed-consent.jsp"/></div>
                     </div>
                 </c:otherwise>

@@ -104,10 +104,10 @@ public class HomeController {
                     "please complete Part 1 by logging back into your account at <a href=\"http://wontoncode.com/login\"/>\n\n" +
                     "We will contact you this week to schedule an appointment for completing Part 2 of the study, \nin which we will test your ability " +
                     "to guess another participant's password based on their description of the images.\n\n" +
-                    "For inquiries regarding this study, please feel free to contact <a href=\"mailto:jason.chen@stonybrook.edu\">Jason Chen</a>," +
-                    "<a href=\"mailto:yangsheng.fang@stonybrook.edu\">Yang Sheng Fang</a>, or <a href=\"mailto:monika.tuchowska@stonybrook.edu\">Monika Tuchowska</a>.",
+                    "For inquiries regarding this study, please feel free to contact Jason Chen (jason.chen@stonybrook.edu)," +
+                    "Yang Sheng Fang (yangsheng.fang@stonybrook.edu), or Monika Tuchowska (monika.tuchowska@stonybrook.edu).",
                     userAccount.getUsername());
-            String subject = "Participation confirmed for " + userAccount.getUsername();
+            String subject = "\"Participation confirmed for " + userAccount.getUsername() + "\"";
 
             try {
                 new ProcessBuilder("/scripts/email.sh", content, subject, userAccount.getEmail()).start();
