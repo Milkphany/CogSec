@@ -42,8 +42,12 @@ public class HomeController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap modelMap) {
-        modelMap.addAttribute("users", authService.getAllUsers());
-        modelMap.addAttribute("coglets", authService.getAllCoglets());
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.getAuthorities().contains(new Role("ROLE_ADMIN"))) {
+            modelMap.addAttribute("users", authService.getAllUsers());
+            modelMap.addAttribute("coglets", authService.getAllCoglets());
+        }
 
         return "home/home";
 	}
@@ -137,9 +141,14 @@ public class HomeController {
     public String submitSurvey(@ModelAttribute Survey survey, RedirectAttributes attributes,
                                HttpServletRequest request, HttpServletResponse response) {
 
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null)
+        if (auth != null) {
+            UserAccount account = authService.getUser(auth.getName());
+            account.setSurvey(survey);
+            authService.updateUser(account);
             new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
         SecurityContextHolder.getContext().setAuthentication(null);
 
         attributes.addFlashAttribute("loginMessage", "Please login to ensure your password is working correctly");
