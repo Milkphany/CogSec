@@ -33,7 +33,7 @@
         <p><h4> Voluntary Participation:</h4>Your participation in this experiment is completely voluntary. Your completion of the registration process and survey expresses your consent to participate. You may withdraw from this study at any time prior to the close of the experiment a week from now; if you choose to do so, your responses and results will be discarded and will not be included in the study.
         </p>
 
-        <p><h4> Contact Information: </h4>If you have any questions or concerns about this study, please feel free to contact Jason Chen (<a href="mailto:jason.chen@stonybrook.edu"/>), Yang Sheng Fang <a href="mailto:yangshengfang@stonybrook.edu"/> , or Monika Tuchowska (<a href="monika.tuchowska@stonybrook.edu"/>).
+        <p><h4> Contact Information: </h4>If you have any questions or concerns about this study, please feel free to contact Jason Chen (<a href="mailto:jason.chen@stonybrook.edu">jason.chen@stonybrook.edu</a>), Yang Sheng Fang (<a href="mailto:yangshengfang@stonybrook.edu">yangshengfang@stonybrook.edu</a>) , or Monika Tuchowska (<a href="monika.tuchowska@stonybrook.edu">monika.tuchowska@stonybrook.edu</a>).
         </p>
 
         <p>

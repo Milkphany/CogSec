@@ -64,7 +64,7 @@
                 <c:otherwise>
                     <div class="panel-body">
                         <h1>Your survey response:</h1>
-                        </br>
+                        <p></p>
                         <table class="table table-bordered">
                             <tr>
                                 <th>NetID</th>
