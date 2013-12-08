@@ -42,4 +42,14 @@ public class Role implements GrantedAuthority, Comparable<Role> {
     public int compareTo(Role o) {
         return role.compareTo(o.getRole());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return role.equals(((Role)o).getRole());
+    }
+
+    @Override
+    public int hashCode() {
+        return role != null ? role.hashCode() : 0;
+    }
 }

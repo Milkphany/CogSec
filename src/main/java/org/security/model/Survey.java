@@ -63,4 +63,12 @@ public class Survey {
     public void setDifficultyCreate(String create) {
         this.difficultyCreate = create;
     }
+
+    public UserAccount getUser() {
+        return user;
+    }
+
+    public void setUser(UserAccount user) {
+        this.user = user;
+    }
 }

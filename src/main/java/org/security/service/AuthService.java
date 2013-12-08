@@ -4,10 +4,7 @@ import org.security.dao.CogletDao;
 import org.security.dao.UserDao;
 import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
-import org.security.model.Coglet;
-import org.security.model.Cogtag;
-import org.security.model.Role;
-import org.security.model.UserAccount;
+import org.security.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -111,5 +108,10 @@ public class AuthService {
 
     public void updateUser(UserAccount account) {
         userDao.updateUser(account);
+    }
+
+    public void saveSurvey(Survey survey) {
+        userDao.saveSurvey
+                (survey);
     }
 }

@@ -145,8 +145,8 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             UserAccount account = authService.getUser(auth.getName());
-            account.setSurvey(survey);
-            authService.updateUser(account);
+            survey.setUser(account);
+            authService.saveSurvey(survey);
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         SecurityContextHolder.getContext().setAuthentication(null);

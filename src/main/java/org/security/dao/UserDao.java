@@ -1,5 +1,6 @@
 package org.security.dao;
 
+import org.security.model.Survey;
 import org.security.model.UserAccount;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UserDao {
     public List<UserAccount>  getAllUsers();
 
     public void updateUser(UserAccount account);
+
+    public void saveSurvey(Survey survey);
 }
