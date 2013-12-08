@@ -51,7 +51,7 @@
         </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_USER')">
-
+            <div class="panel panel-default">
             <c:choose>
                 <c:when test="${logUser.survey == null}">
                     <h2>Please fill out the survey below</h2>
@@ -62,16 +62,28 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <table class="table-bordered">
-                        <tr>
-                            <td>${logUser.username}</td>
-                            <td>${logUser.survey.age}</td>
-                            <td>${logUser.survey.major}</td>
-                            <td>${logUser.survey.difficultyCreate}</td>
-                        </tr>
-                    </table>
+                    <div class="panel-body">
+                        <h1>Your survey response:</h1>
+                        <table class="table table-bordered">
+                            <th>
+                                <td>NetID</td>
+                                <td>Age</td>
+                                <td>Major</td>
+                                <td>Difficulties Creating Account</td>
+                            </th>
+                            <tr>
+                                <td>${logUser.username}</td>
+                                <td>${logUser.survey.age}</td>
+                                <td>${logUser.survey.major}</td>
+                                <td>${logUser.survey.difficultyCreate}</td>
+                            </tr>
+                        </table>
+                        <h2>Survey Agreement</h2>
+                        <div><jsp:include page="informed-consent.jsp"/></div>
+                    </div>
                 </c:otherwise>
             </c:choose>
+            </div>
         </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
