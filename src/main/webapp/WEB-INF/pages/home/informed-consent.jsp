@@ -39,25 +39,9 @@
         <p>
             <br/>
 
-            <button type="button" class="undo btn btn-primary fat tall">Proceed to Registration</button>
-
+            <%--<button type="button" class="undo btn btn-primary fat tall">Proceed to Registration</button>--%>
         </p>
-
-
-
-
-
-
-
-
-
-
-        </p>
-
-
-
     </div>
-
 
     <jsp:include page="../pagefrags/footer.jsp"/>
 </div>
