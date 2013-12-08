@@ -25,9 +25,9 @@
             </div>
         </c:if>
         <c:if test="${not empty loginMessage}">
-            <div>
+            <h2>
                 ${loginMessage}
-            </div>
+            </h2>
         </c:if>
 
         <h1 id="login-heading">Enter your NetId:</h1>
