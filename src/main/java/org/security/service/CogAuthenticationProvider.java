@@ -57,6 +57,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
 
     private BadCredentialsException saveAttempt(UserAccount account, String message) {
         account.setAttemptedLogin(account.getAttemptedLogin() + 1);
+        authService.updateUser(account);
         return new BadCredentialsException(message);
     }
 
