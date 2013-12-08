@@ -90,11 +90,7 @@
             <h1>You're not logged in! Please register at the <a href="/">home</a> page.</h1>
         </sec:authorize>
         </p>
-
-
     </div>
-
-
     <jsp:include page="../pagefrags/footer.jsp"/>
 </div>
 

@@ -140,7 +140,7 @@
             scrollTop: $(".pics").offset().top
         }, 500);
 
-        $(".pics").load("/register-photos/", function () {
+        $(".pics").load("/register-photos?username="+$('#username').val(), function () {
             setTimeout(recollage, 50);
             $("#hidden-uname").val($("#username").val())
             $("#hidden-email").val($("#email").val())

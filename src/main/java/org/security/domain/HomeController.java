@@ -100,7 +100,7 @@ public class HomeController {
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
     public String getRegistrationPhotos(@RequestParam String username, ModelMap modelMap) {
 
-        if (authService.getUser(username) == null)
+        if (authService.getUser(username) != null)
             return "forward:/taken";
 
         Random random = new Random();
