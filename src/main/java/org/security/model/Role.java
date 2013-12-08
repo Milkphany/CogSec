@@ -13,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Role")
-public class Role implements GrantedAuthority {
+public class Role implements GrantedAuthority, Comparable<Role> {
 
     @Id
     private String role;
@@ -36,5 +36,10 @@ public class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return role;
+    }
+
+    @Override
+    public int compareTo(Role o) {
+        return role.compareTo(o.getRole());
     }
 }
