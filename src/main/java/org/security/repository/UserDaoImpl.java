@@ -44,8 +44,4 @@ public class UserDaoImpl implements UserDao {
         sessionFactory.getCurrentSession().update(account);
     }
 
-    @Override
-    public void saveSurvey(Survey survey) {
-        sessionFactory.getCurrentSession().save(survey);
-    }
 }

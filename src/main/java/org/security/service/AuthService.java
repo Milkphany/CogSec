@@ -110,8 +110,4 @@ public class AuthService {
         userDao.updateUser(account);
     }
 
-    public void saveSurvey(Survey survey) {
-        userDao.saveSurvey
-                (survey);
-    }
 }
