@@ -52,14 +52,26 @@
 
         <sec:authorize access="hasRole('ROLE_USER')">
 
-            <c:if test="${logUser.survey == null}">
-                <h2>Please fill out the survey below</h2>
-                <div id="survey">
-                    <script>
-                        $('#survey').load('/surveys .collagewrap')
-                    </script>
-                </div>
-            </c:if>
+            <c:choose>
+                <c:when test="${logUser.survey == null}">
+                    <h2>Please fill out the survey below</h2>
+                    <div id="survey">
+                        <script>
+                            $('#survey').load('/surveys .collagewrap')
+                        </script>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <table class="table-bordered">
+                        <tr>
+                            <td>${logUser.username}</td>
+                            <td>${logUser.survey.age}</td>
+                            <td>${logUser.survey.major}</td>
+                            <td>${logUser.survey.difficultyCreate}</td>
+                        </tr>
+                    </table>
+                </c:otherwise>
+            </c:choose>
         </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
