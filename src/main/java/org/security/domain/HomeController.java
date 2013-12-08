@@ -101,7 +101,7 @@ public class HomeController {
         if (!userAccount.getEmail().isEmpty()) {
             String content = String.format("Hello %s,\n\n" +
                     "Thank you for signing up to participate in this study.\n If you have not yet done so, " +
-                    "please complete Part 1 by logging back into your account at <a href=\"http://wontoncode.com/login\"/>\n\n" +
+                    "please complete Part 1 by logging back into your account at http://wontoncode.com/login\n\n" +
                     "We will contact you this week to schedule an appointment for completing Part 2 of the study, \nin which we will test your ability " +
                     "to guess another participant's password based on their description of the images.\n\n" +
                     "For inquiries regarding this study, please feel free to contact Jason Chen (jason.chen@stonybrook.edu)," +
@@ -180,12 +180,15 @@ public class HomeController {
             account.setSurvey(survey);
             authService.updateUser(account);
 
+            attributes.addFlashAttribute("loginMessage", "Thank you for completing the survey. You will receive a confirmation email at: " + account.getEmail() +
+                    "<br>Please log in to make sure your password is working correctly.");
+
+
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
 
         SecurityContextHolder.getContext().setAuthentication(null);
 
-        attributes.addFlashAttribute("loginMessage", "Thank you for completing the survey.<br>Please log in to make sure your password is working correctly.");
         return "redirect:/login";
     }
 
