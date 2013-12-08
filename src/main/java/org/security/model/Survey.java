@@ -21,7 +21,7 @@ public class Survey implements Serializable {
     private Integer age;
     private String major;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private UserAccount userAccount;
 
     public Integer getId() {

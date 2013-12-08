@@ -2,7 +2,6 @@ package org.security.repository;
 
 import org.hibernate.SessionFactory;
 import org.security.dao.UserDao;
-import org.security.model.Survey;
 import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -41,12 +40,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void updateUser(UserAccount account) {
-        sessionFactory.getCurrentSession().update(account);
+        sessionFactory.getCurrentSession().saveOrUpdate(account);
     }
-
-    public Survey saveSurvey(Survey survey) {
-
-        return (Survey) sessionFactory.getCurrentSession().save(survey);
-    }
-
 }
