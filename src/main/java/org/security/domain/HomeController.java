@@ -17,9 +17,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -90,8 +88,17 @@ public class HomeController {
         return new ModelAndView(view);
     }
 
+    @RequestMapping(value = "taken", method = RequestMethod.GET)
+    public @ResponseBody String getError() {
+        return "User name is already taken";
+    }
+
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
-    public String getRegistrationPhotos(ModelMap modelMap) {
+    public String getRegistrationPhotos(@RequestParam String username, ModelMap modelMap) {
+
+        if (authService.getUser(username) == null)
+            return "forward:/taken";
+
         Random random = new Random();
         String category;
 

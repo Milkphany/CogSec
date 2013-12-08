@@ -108,4 +108,8 @@ public class AuthService {
     public Coglet getCogletById(String passfrag) {
         return cogletDao.getCoglet(new Coglet(passfrag));
     }
+
+    public void updateUser(UserAccount account) {
+        userDao.updateUser(account);
+    }
 }

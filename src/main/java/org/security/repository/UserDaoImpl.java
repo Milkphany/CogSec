@@ -37,4 +37,9 @@ public class UserDaoImpl implements UserDao {
         return sessionFactory.getCurrentSession()
                 .createQuery("from UserAccount").list();
     }
+
+    @Override
+    public void updateUser(UserAccount account) {
+        sessionFactory.getCurrentSession().update(account);
+    }
 }

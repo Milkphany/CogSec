@@ -34,6 +34,10 @@ public class UserAccount {
     @OneToOne
     private Survey survey;
 
+    private Integer attemptedLogin = 0;
+
+    private Integer successLogin = 0;
+
     public UserAccount() {
     }
 
@@ -72,6 +76,30 @@ public class UserAccount {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getAttemptedLogin() {
+        return attemptedLogin;
+    }
+
+    public void setAttemptedLogin(Integer attemptedLogin) {
+        this.attemptedLogin = attemptedLogin;
+    }
+
+    public Integer getSuccessLogin() {
+        return successLogin;
+    }
+
+    public void setSuccessLogin(Integer successLogin) {
+        this.successLogin = successLogin;
+    }
+
+    public Survey getSurvey() {
+        return survey;
+    }
+
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -1,5 +1,6 @@
 package org.security.service;
 
+import org.jboss.logging.Logger;
 import org.security.model.Coglet;
 import org.security.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private AuthService authService;
 
+    private static final Logger logger = Logger.getLogger(CogAuthenticationProvider.class);
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
@@ -32,13 +35,29 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
 
         if (account == null)
             throw new BadCredentialsException("Username not found");
-        if (password == null || password.size() != account.getPassword().size())
-            throw new BadCredentialsException("Password has errors");
-        for (int i = 0; i < password.size(); i++)
-            if (!password.get(i).equals(account.getPassword().get(i)))
-                throw new BadCredentialsException("Coglet password is wrong");
+        if (password == null || password.size() != account.getPassword().size()) {
+            logger.error(username + " tried to submit an incorrectly sized password.");
+            throw saveAttempt(account, "Password has errors");
+        } for (int i = 0; i < password.size(); i++) {
+            if (!password.get(i).equals(account.getPassword().get(i))) {
+                logger.info(username + " made an unsuccessful attempt " + account.getAttemptedLogin());
+                throw saveAttempt(account, "Password is incorrect!");
+            }
+        }
+
+        account.setAttemptedLogin(account.getAttemptedLogin() + 1);
+        account.setSuccessLogin(account.getSuccessLogin() + 1);
+        authService.updateUser(account);
+
+
+        logger.info(username + " has successfully logged in.");
 
         return new UsernamePasswordAuthenticationToken(username, password, account.getAuthorities());
+    }
+
+    private BadCredentialsException saveAttempt(UserAccount account, String message) {
+        account.setAttemptedLogin(account.getAttemptedLogin() + 1);
+        return new BadCredentialsException(message);
     }
 
     @Override
