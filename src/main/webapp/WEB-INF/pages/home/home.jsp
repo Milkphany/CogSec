@@ -52,6 +52,13 @@
 
         <sec:authorize access="hasRole('ROLE_USER')">
 
+            <c:if test="${logUser.survey == null}">
+                <h2>Please fill out the survey below</h2>
+                <div>
+
+                </div>
+            </c:if>
+            <h2>Thanks for filling out the survey</h2>
         </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
