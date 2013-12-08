@@ -22,6 +22,9 @@ public class DefaultModelInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object o, ModelAndView modelAndView) throws Exception {
 
+        if (SecurityContextHolder.getContext() == null)
+            return;
+
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!(principal instanceof String && principal.equals("anonymousUser")))
             modelAndView.addObject("currentUser", principal);
