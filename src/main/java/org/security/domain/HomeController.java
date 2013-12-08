@@ -98,20 +98,22 @@ public class HomeController {
 
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
 
-        String content = String.format("Hello %s,\n\n" +
-                "Thank you for signing up to participate in this study.\n If you have not yet done so, " +
-                "please complete Part 1 by logging back into your account at <a href=\"http://wontoncode.com/login\"/>\n\n" +
-                "We will contact you this week to schedule an appointment for completing Part 2 of the study, \nin which we will test your ability " +
-                "to guess another participant's password based on their description of the images.\n\n" +
-                "For inquiries regarding this study, please feel free to contact <a href=\"mailto:jason.chen@stonybrook.edu\">Jason Chen</a>," +
-                "<a href=\"mailto:yangsheng.fang@stonybrook.edu\">Yang Sheng Fang</a>, or <a href=\"mailto:monika.tuchowska@stonybrook.edu\">Monika Tuchowska</a>.",
-                userAccount.getUsername());
-        String subject = "Participation confirmed for " + userAccount.getUsername();
+        if (!userAccount.getEmail().isEmpty()) {
+            String content = String.format("Hello %s,\n\n" +
+                    "Thank you for signing up to participate in this study.\n If you have not yet done so, " +
+                    "please complete Part 1 by logging back into your account at <a href=\"http://wontoncode.com/login\"/>\n\n" +
+                    "We will contact you this week to schedule an appointment for completing Part 2 of the study, \nin which we will test your ability " +
+                    "to guess another participant's password based on their description of the images.\n\n" +
+                    "For inquiries regarding this study, please feel free to contact <a href=\"mailto:jason.chen@stonybrook.edu\">Jason Chen</a>," +
+                    "<a href=\"mailto:yangsheng.fang@stonybrook.edu\">Yang Sheng Fang</a>, or <a href=\"mailto:monika.tuchowska@stonybrook.edu\">Monika Tuchowska</a>.",
+                    userAccount.getUsername());
+            String subject = "Participation confirmed for " + userAccount.getUsername();
 
-        try {
-            new ProcessBuilder("/scripts/email.sh", content, subject, userAccount.getEmail()).start();
-        } catch (IOException e) {
-            logger.error("Was not able to send message for username " + userAccount.getEmail());
+            try {
+                new ProcessBuilder("/scripts/email.sh", content, subject, userAccount.getEmail()).start();
+            } catch (IOException e) {
+                logger.error("Was not able to send message for username " + userAccount.getEmail());
+            }
         }
 
         RedirectView view = new RedirectView("/surveys");
