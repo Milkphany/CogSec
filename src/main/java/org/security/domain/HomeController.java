@@ -107,7 +107,7 @@ public class HomeController {
                     "For inquiries regarding this study, please feel free to contact Jason Chen (jason.chen@stonybrook.edu)," +
                     "Yang Sheng Fang (yangsheng.fang@stonybrook.edu), or Monika Tuchowska (monika.tuchowska@stonybrook.edu).",
                     userAccount.getUsername());
-            String subject = "\"Participation confirmed for " + userAccount.getUsername() + "\"";
+            String subject = "Participation confirmed for " + userAccount.getUsername();
 
             try {
                 new ProcessBuilder("/scripts/email.sh", content, subject, userAccount.getEmail()).start();
