@@ -14,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -125,7 +127,14 @@ public class HomeController {
     }
 
     @RequestMapping(value ="surveys", method = RequestMethod.POST)
-    public String submitSurvey(RedirectAttributes attributes) {
+    public String submitSurvey(@ModelAttribute Survey survey, RedirectAttributes attributes,
+                               HttpServletRequest request, HttpServletResponse response) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null)
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        SecurityContextHolder.getContext().setAuthentication(null);
+
         attributes.addFlashAttribute("loginMessage", "Please login to ensure your password is working correctly");
         return "redirect:/login";
     }

@@ -24,6 +24,11 @@
                 Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
             </div>
         </c:if>
+        <c:if test="${not empty loginMessage}">
+            <div>
+                ${loginMessage}
+            </div>
+        </c:if>
 
         <h1 id="login-heading">Enter your NetId:</h1>
         <br>
@@ -77,7 +82,7 @@
             scrollTop: $(".pics").offset().top
         }, 500);
             //  $(".wrapper").removeClass("hidden");
-        //$(".Collage").html("<img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'><img class='darkencss' src='http://i.imgur.com/ir4Ii.jpg'>")
+
         $(".pics").load("/login2", $("#username"), function() {
 
             setTimeout(recollage, 50);

@@ -51,11 +51,7 @@
         </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_USER')">
-            <c:if test="${principal.survey eq null}">
-                <p class="error-login">You have not completed your survey! Please do it here:</p>
-                <div id="user-survey"></div>
-                <script>$('user-survey').load('/surveys .collagewrap');</script>
-            </c:if>
+
         </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
