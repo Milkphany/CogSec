@@ -36,7 +36,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
         if (account == null)
             throw new BadCredentialsException("Username not found");
         if (password == null || password.size() != account.getPassword().size()) {
-            logger.error(username + " tried to submit an incorrectly sized password.");
+            logger.info(username + " tried to submit an incorrectly sized password.");
             throw saveAttempt(account, "Password has errors");
         } for (int i = 0; i < password.size(); i++) {
             if (!password.get(i).equals(account.getPassword().get(i))) {
