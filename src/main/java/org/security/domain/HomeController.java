@@ -100,11 +100,11 @@ public class HomeController {
 
         if (!userAccount.getEmail().isEmpty()) {
             String content = String.format("Hello %s,\n\n" +
-                    "Thank you for signing up to participate in this study.\n If you have not yet done so, " +
+                    "Thank you for signing up to participate in this study.\nIf you have not yet done so, " +
                     "please complete Part 1 by logging back into your account at http://wontoncode.com/login\n\n" +
-                    "We will contact you this week to schedule an appointment for completing Part 2 of the study, \nin which we will test your ability " +
+                    "We will contact you this week to schedule an appointment for completing Part 2 of the study, in which we will test your ability " +
                     "to guess another participant's password based on their description of the images.\n\n" +
-                    "For inquiries regarding this study, please feel free to contact Jason Chen (jason.chen@stonybrook.edu)," +
+                    "For inquiries regarding this study, please feel free to contact\nJason Chen (jason.chen@stonybrook.edu)," +
                     "Yang Sheng Fang (yangsheng.fang@stonybrook.edu), or Monika Tuchowska (monika.tuchowska@stonybrook.edu).",
                     userAccount.getUsername());
             String subject = "Participation confirmed for " + userAccount.getUsername();

@@ -52,38 +52,43 @@
 
         <sec:authorize access="hasRole('ROLE_USER')">
             <div class="panel panel-default">
-            <c:choose>
-                <c:when test="${logUser.survey == null}">
-                    <h2>Please fill out the survey below</h2>
-                    <div id="survey">
-                        <script>
-                            $('#survey').load('/surveys .collagewrap')
-                        </script>
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <div class="panel-body">
-                        <h1>Your survey response:</h1>
-                        <p></p>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>NetID</th>
-                                <th>Age</th>
-                                <th>Major</th>
-                                <th>Difficulties Creating Account</th>
-                            </tr>
-                            <tr>
-                                <td>${logUser.username}</td>
-                                <td>${logUser.survey.age}</td>
-                                <td>${logUser.survey.major}</td>
-                                <td>${logUser.survey.difficultyCreate}</td>
-                            </tr>
-                        </table>
-                        <h1>Survey Agreement</h1>
-                        <div><jsp:include page="informed-consent.jsp"/></div>
-                    </div>
-                </c:otherwise>
-            </c:choose>
+                <div class="panel-body">
+                    <c:choose>
+                        <c:when test="${logUser.survey == null}">
+                            <h2>Please fill out the survey below</h2>
+
+                            <div id="survey">
+                                <script>
+                                    $('#survey').load('/surveys .collagewrap')
+                                </script>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <h1>Your survey response:</h1>
+
+                            <p></p>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>NetID</th>
+                                    <th>Age</th>
+                                    <th>Major</th>
+                                    <th>Difficulties Creating Account</th>
+                                </tr>
+                                <tr>
+                                    <td>${logUser.username}</td>
+                                    <td>${logUser.survey.age}</td>
+                                    <td>${logUser.survey.major}</td>
+                                    <td>${logUser.survey.difficultyCreate}</td>
+                                </tr>
+                            </table>
+                            <h1>Survey Agreement</h1>
+
+                            <div>
+                                <jsp:include page="informed-consent.jsp"/>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
             </div>
         </sec:authorize>
 
