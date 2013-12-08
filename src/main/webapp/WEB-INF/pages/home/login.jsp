@@ -12,10 +12,18 @@
 <html>
 <head>
     <jsp:include page="../pagefrags/imports.jsp"/>
-    <style>.error { color: red; }</style>
+    <style>.error {
+        color: red;
+    }</style>
 </head>
 <body>
 <div class="container">
+
+    <c:if test="${not empty loginMessage}">
+        <div class="alert alert-success login-msg"><h4>Thank you for completing the survey.
+            <br>Please log in to make sure your password is working correctly.</h4>
+        </div>
+    </c:if>
 
     <div id='login'>
         <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
@@ -24,33 +32,31 @@
                 Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
             </div>
         </c:if>
-        <c:if test="${not empty loginMessage}">
-            <h2>
-                ${loginMessage}
-            </h2>
-        </c:if>
 
         <h1 id="login-heading">Enter your NetId:</h1>
         <br>
         <br>
-            <p id="username-section">
-                <input type='text' class='form-control' name='username' id='username' autofocus="autofocus" placeholder="NetId" required/>
-            </p>
-            <p>
-                <button type='button' class="btn btn-primary fat tall" id="submit">Continue</button>
-            </p>
+
+        <p id="username-section">
+            <input type='text' class='form-control' name='username' id='username' autofocus="autofocus"
+                   placeholder="NetId" required/>
+        </p>
+
+        <p>
+            <button type='button' class="btn btn-primary fat tall" id="submit">Continue</button>
+        </p>
     </div>
 
-   <div class="pics">
+    <div class="pics">
 
-   </div>
+    </div>
 
     <jsp:include page="../pagefrags/footer.jsp"/>
 </div>
 
 <script>
 
-    function collage(){
+    function collage() {
         $('.Collage').removeWhitespace().collagePlus({
             'targetHeight': 160,
             'allowPartialLastRow': true,
@@ -72,7 +78,7 @@
 
     }
 
-    $("#submit").click(function(event){
+    $("#submit").click(function (event) {
         $('#submit').text('Change Username');
         $('#submit').removeClass('btn-primary').addClass('btn-default');
         $('#login').css('padding', '0px 20px').css('max-width', '1080px').css('margin-left', '0px');
@@ -81,9 +87,9 @@
         $('html,body').animate({
             scrollTop: $(".pics").offset().top
         }, 500);
-            //  $(".wrapper").removeClass("hidden");
+        //  $(".wrapper").removeClass("hidden");
 
-        $(".pics").load("/login2", $("#username"), function() {
+        $(".pics").load("/login2", $("#username"), function () {
 
             setTimeout(recollage, 50);
         });

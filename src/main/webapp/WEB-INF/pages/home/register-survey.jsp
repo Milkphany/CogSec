@@ -24,9 +24,6 @@
                 <li>Did you encounter any difficulties while trying to create your PIN? If so, what were they?
                     <form:textarea required="required" name="difficulties-creating" class="form-control" rows="3" path="difficultyCreate"/>
                 </li>
-                <li>Did you encounter any difficulties while trying to log in with your new PIN? If so, what were they?
-                    <form:textarea required="required" name="difficulties-login" class="form-control" rows="3" path="difficultyLogin"/>
-                </li>
                 <li>
                     How old are you?
                     <form:select required="required" name="age" class="form-inline" path="age">
