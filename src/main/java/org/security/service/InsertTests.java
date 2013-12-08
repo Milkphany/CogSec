@@ -48,6 +48,7 @@ public class InsertTests implements InitializingBean {
         Path rootPath = Paths.get("/images");
         Path webPath = Paths.get(servletContext.getRealPath("/") + "resources/images");
 
+
         System.err.println(rootPath);
         System.err.println(webPath);
         try {
