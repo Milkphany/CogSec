@@ -63,6 +63,13 @@ h1, .container h1, .container h4 {
 .survey li {
    padding:10px 0 10px 0;
 }
+
+.login-msg{
+    margin-top: 30px;
+    width:100%;
+    margin-bottom:-105px
+}
+
 .entered-pw img {
     padding-left: 10px;
 }

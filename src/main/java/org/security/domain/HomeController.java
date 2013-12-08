@@ -151,7 +151,7 @@ public class HomeController {
         }
         SecurityContextHolder.getContext().setAuthentication(null);
 
-        attributes.addFlashAttribute("loginMessage", "Please login to ensure your password is working correctly");
+        attributes.addFlashAttribute("loginMessage", "Thank you for completing the survey.<br>Please log in to make sure your password is working correctly.");
         return "redirect:/login";
     }
 
