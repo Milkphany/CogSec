@@ -20,6 +20,7 @@
         <h3 class="info">You've entered:</h3>
 
         <form:form commandName="user" method="POST" action="/">
+            <form:input path="email" type="hidden" id="hidden-email" value=""/>
             <form:input path="username" type="hidden" id="hidden-uname" value=""/>
             <input type="hidden" name="password" id="img0" value=""/>
             <input type="hidden" name="password" id="img1" value=""/>

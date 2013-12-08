@@ -36,16 +36,26 @@
 
                     <p class="instructions">
                         <span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
-                                                                     placeholder="NetId"/></span>
+                                                                     autofocus="autofocus" placeholder="NetId"/></span></br></br>
+                        <span class="h4">2. Enter your email address:
+                            <input type="email" class="input-lg form-control half" id="email" placeholder="Email Address"></span>
                         <button class="btn btn-lg btn-default" type="button" id="continue">Continue</button><br/>
                     </p>
 
-                    <h4 class="instructions">2. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>
+                    <h4 class="instructions">3. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>
 
                 </div>
                 <div class="pics panel-body">
                 </div>
             </div>
+        </sec:authorize>
+
+        <sec:authorize access="hasRole('ROLE_USER')">
+            <c:if test="${principal.survey eq null}">
+                <p class="error-login">You have not completed your survey! Please do it here:</p>
+                <div id="user-survey"></div>
+                <script>$('user-survey').load('/surveys .collagewrap');</script>
+            </c:if>
         </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -137,6 +147,7 @@
         $(".pics").load("/register-photos/", function () {
             setTimeout(recollage, 50);
             $("#hidden-uname").val($("#username").val())
+            $("#hidden-email").val($("#email").val())
         });
     })
 </script>

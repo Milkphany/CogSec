@@ -21,6 +21,8 @@ public class UserAccount {
     @Id
     private String username;
 
+    private String email;
+
     @ManyToMany(cascade = CascadeType.MERGE)
     @Column(nullable = false)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -62,6 +64,14 @@ public class UserAccount {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {

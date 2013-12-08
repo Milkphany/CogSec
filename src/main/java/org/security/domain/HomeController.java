@@ -4,6 +4,7 @@ import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
 import org.security.model.Coglet;
 import org.security.model.Role;
+import org.security.model.Survey;
 import org.security.model.UserAccount;
 import org.security.service.AuthService;
 import org.security.service.CogAuthenticationProvider;
@@ -18,7 +19,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -46,7 +49,7 @@ public class HomeController {
 	}
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("userAccount") UserAccount userAccount,
+    public ModelAndView addUser(@ModelAttribute("userAccount") UserAccount userAccount,
                           HttpServletRequest request,
                           RedirectAttributes attributes) {
 
@@ -79,7 +82,10 @@ public class HomeController {
 
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
 
-        return "redirect:/surveys";
+        RedirectView view = new RedirectView("/surveys");
+        view.setExposeModelAttributes(false);
+
+        return new ModelAndView(view);
     }
 
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
@@ -103,6 +109,11 @@ public class HomeController {
         return "home/register-photos";
     }
 
+    @ModelAttribute("surveyForm")
+    public Survey surveyForm() {
+        return new Survey();
+    }
+
     @RequestMapping(value ="surveys",method = RequestMethod.GET)
     public String getSurvey(ModelMap modelMap) {
         return "home/register-survey";
@@ -114,8 +125,9 @@ public class HomeController {
     }
 
     @RequestMapping(value ="surveys", method = RequestMethod.POST)
-    public String submitSurvey() {
-        return "redirect:/";
+    public String submitSurvey(RedirectAttributes attributes) {
+        attributes.addFlashAttribute("loginMessage", "Please login to ensure your password is working correctly");
+        return "redirect:/login";
     }
 
     @RequestMapping(value ="login",method = RequestMethod.GET)

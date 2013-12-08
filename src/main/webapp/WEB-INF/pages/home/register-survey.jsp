@@ -19,14 +19,13 @@
         <p class="instructions"><span class="h4">Please complete this short questionnaire.</span> <br/>
 
         <sec:authorize access="isAuthenticated()">
-            <h2>Thank you for your participation!</h2>
-            <form method="POST">
+            <form:form method="POST" commandName="surveyForm">
                 <ol class="survey">
                     <li>Did you encounter any difficulties while trying to create your PIN? If so, what were they?
-                        <textarea required name="difficulties-creating" class="form-control" rows="3"></textarea>
+                        <form:textarea required="required" name="difficulties-creating" class="form-control" rows="3" path="difficultyCreate"/>
                     </li>
                     <li>Did you encounter any difficulties while trying to log in with your new PIN? If so, what were they?
-                        <textarea required name="difficulties-login" class="form-control" rows="3"></textarea>
+                        <form:textarea required="required" name="difficulties-login" class="form-control" rows="3" path="difficultyLogin"/>
                     </li>
                     <li>
                         How old are you?
@@ -38,9 +37,10 @@
                     </li>
                     <li>
                         What is your gender?
-                    </li>
-                    <li>
-                        Which of these best describes you?
+                        <select required="gender" class="form-inline">
+                            <option value="male">M</option>
+                            <option value="female">F</option>
+                        </select>
                     </li>
                     <li>
                         What is your major?
@@ -87,7 +87,7 @@
 
                 </ol>
                 <input type="submit" class="login btn btn-primary fat" value="Submit"/>
-            </form>
+            </form:form>
         </sec:authorize>
         <sec:authorize access="isAnonymous()">
             <h1>You're not logged in! Please register at the <a href="/">home</a> page.</h1>
