@@ -79,6 +79,7 @@
     }
 
     $("#submit").click(function (event) {
+        $(".login-msg").hide();
         $('#submit').text('Change Username');
         $('#submit').removeClass('btn-primary').addClass('btn-default');
         $('#login').css('padding', '0px 20px').css('max-width', '1080px').css('margin-left', '0px');
