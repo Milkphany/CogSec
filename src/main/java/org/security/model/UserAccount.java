@@ -32,7 +32,7 @@ public class UserAccount {
     private Role role;
 
     @OneToOne(mappedBy = "userAccount", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "id")
     private Survey survey;
 
     private Integer attemptedLogin = 0;

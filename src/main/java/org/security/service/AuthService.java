@@ -109,5 +109,4 @@ public class AuthService {
     public void updateUser(UserAccount account) {
         userDao.updateUser(account);
     }
-
 }

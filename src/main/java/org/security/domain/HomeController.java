@@ -44,7 +44,14 @@ public class HomeController {
 	public String printWelcome(ModelMap modelMap) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!auth.getPrincipal().equals("anonymousUser") && auth.getAuthorities().contains(new Role("ROLE_ADMIN"))) {
+
+        if (auth.getPrincipal().equals("anonymousUser"))
+            return "home/home";
+
+        if (auth.getAuthorities().contains(new Role("ROLE_USER")))
+            modelMap.addAttribute("logUser", authService.getUser(auth.getName()));
+
+        if (auth.getAuthorities().contains(new Role("ROLE_ADMIN"))) {
             modelMap.addAttribute("users", authService.getAllUsers());
             modelMap.addAttribute("coglets", authService.getAllCoglets());
         }
@@ -145,6 +152,8 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             UserAccount account = authService.getUser(auth.getName());
+
+            survey.setUserAccount(account);
             account.setSurvey(survey);
             authService.updateUser(account);
             new SecurityContextLogoutHandler().logout(request, response, auth);
