@@ -22,7 +22,7 @@ public class DefaultModelInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object o, ModelAndView modelAndView) throws Exception {
 
-        if (SecurityContextHolder.getContext() == null)
+        if (SecurityContextHolder.getContext().getAuthentication() == null)
             return;
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
