@@ -44,4 +44,9 @@ public class UserDaoImpl implements UserDao {
         sessionFactory.getCurrentSession().update(account);
     }
 
+    public Survey saveSurvey(Survey survey) {
+
+        return (Survey) sessionFactory.getCurrentSession().save(survey);
+    }
+
 }

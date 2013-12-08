@@ -16,4 +16,5 @@ public interface UserDao {
     public void addUser(UserAccount userAccount);
     public List<UserAccount>  getAllUsers();
     public void updateUser(UserAccount account);
+    public Survey saveSurvey(Survey survey);
 }

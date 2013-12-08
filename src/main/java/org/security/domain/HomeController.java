@@ -146,6 +146,7 @@ public class HomeController {
         if (auth != null) {
             UserAccount account = authService.getUser(auth.getName());
             account.setSurvey(survey);
+            authService.saveSurvey(survey);
             authService.updateUser(account);
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }

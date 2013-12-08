@@ -1,6 +1,7 @@
 package org.security.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: Milky
@@ -9,10 +10,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Survey")
-public class Survey {
+public class Survey implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Integer id;
 
     private String difficultyCreate;
