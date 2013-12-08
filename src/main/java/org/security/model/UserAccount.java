@@ -31,7 +31,8 @@ public class UserAccount {
     @ManyToOne(cascade = CascadeType.ALL)
     private Role role;
 
-    @OneToOne
+    @OneToOne(mappedBy = "userAccount", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Survey survey;
 
     private Integer attemptedLogin = 0;

@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "Survey")
 public class Survey {
 
-
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
@@ -20,10 +20,9 @@ public class Survey {
     private Integer age;
     private String major;
 
-    @OneToOne(mappedBy = "survey")
-    private UserAccount user;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private UserAccount userAccount;
 
-    @Id
     public Integer getId() {
         return id;
     }
@@ -64,11 +63,11 @@ public class Survey {
         this.difficultyCreate = create;
     }
 
-    public UserAccount getUser() {
-        return user;
+    public UserAccount getUserAccount() {
+        return userAccount;
     }
 
-    public void setUser(UserAccount user) {
-        this.user = user;
+    public void setUserAccount(UserAccount user) {
+        this.userAccount = user;
     }
 }

@@ -44,7 +44,7 @@ public class HomeController {
 	public String printWelcome(ModelMap modelMap) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth.getAuthorities().contains(new Role("ROLE_ADMIN"))) {
+        if (!auth.getPrincipal().equals("anonymousUser") && auth.getAuthorities().contains(new Role("ROLE_ADMIN"))) {
             modelMap.addAttribute("users", authService.getAllUsers());
             modelMap.addAttribute("coglets", authService.getAllCoglets());
         }
@@ -100,7 +100,7 @@ public class HomeController {
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
     public String getRegistrationPhotos(@RequestParam String username, ModelMap modelMap) {
 
-        if (authService.getUser(username) != null)
+        if (username.isEmpty() || authService.getUser(username) != null)
             return "forward:/taken";
 
         Random random = new Random();
@@ -145,7 +145,7 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             UserAccount account = authService.getUser(auth.getName());
-            survey.setUser(account);
+            survey.setUserAccount(account);
             authService.saveSurvey(survey);
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
