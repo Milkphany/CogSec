@@ -1,5 +1,6 @@
 package org.security.domain;
 
+import org.jboss.logging.Logger;
 import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
 import org.security.model.Coglet;
@@ -10,6 +11,7 @@ import org.security.service.AuthService;
 import org.security.service.CogAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +42,8 @@ public class HomeController {
     @Autowired
     @Qualifier("cogAuthenticationProvider")
     private CogAuthenticationProvider authenticationProvider;
+
+    private Logger logger = Logger.getLogger(HomeController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap modelMap) {
@@ -92,6 +97,24 @@ public class HomeController {
         Authentication authenticatedUser = authenticationProvider.authenticate(token);
 
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+
+        if (!userAccount.getEmail().isEmpty()) {
+            String content = String.format("Hello %s,\n\n" +
+                    "Thank you for signing up to participate in this study.\nIf you have not yet done so, " +
+                    "please complete Part 1 by logging back into your account at http://wontoncode.com/login\n\n" +
+                    "We will contact you this week to schedule an appointment for completing Part 2 of the study, in which we will test your ability " +
+                    "to guess another participant's password based on their description of the images.\n\n" +
+                    "For inquiries regarding this study, please feel free to contact\nJason Chen (jason.chen@stonybrook.edu)," +
+                    "Yang Sheng Fang (yangsheng.fang@stonybrook.edu), or Monika Tuchowska (monika.tuchowska@stonybrook.edu).",
+                    userAccount.getUsername());
+            String subject = "Participation confirmed for " + userAccount.getUsername();
+
+            try {
+                new ProcessBuilder("/scripts/email.sh", content, subject, userAccount.getEmail()).start();
+            } catch (IOException e) {
+                logger.error("Was not able to send message for username " + userAccount.getEmail());
+            }
+        }
 
         RedirectView view = new RedirectView("/surveys");
         view.setExposeModelAttributes(false);
@@ -156,17 +179,21 @@ public class HomeController {
             survey.setUserAccount(account);
             account.setSurvey(survey);
             authService.updateUser(account);
+
+            attributes.addFlashAttribute("loginMessage", "Thank you for completing the survey. You will receive a confirmation email at: " + account.getEmail() +
+                    "<br>Please log in to make sure your password is working correctly.");
+
+
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
+
         SecurityContextHolder.getContext().setAuthentication(null);
 
-        attributes.addFlashAttribute("loginMessage", "Thank you for completing the survey.<br>Please log in to make sure your password is working correctly.");
         return "redirect:/login";
     }
 
     @RequestMapping(value ="login",method = RequestMethod.GET)
     public String getLogin(ModelMap modelMap) {
-
         return "/home/login";
     }
 

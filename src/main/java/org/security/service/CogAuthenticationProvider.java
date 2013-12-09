@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
         if (account == null)
             throw new BadCredentialsException("Username not found");
         if (password == null || password.size() != account.getPassword().size()) {
-            logger.error(username + " tried to submit an incorrectly sized password.");
+            logger.info(username + " tried to submit an incorrectly sized password.");
             throw saveAttempt(account, "Password has errors");
         } for (int i = 0; i < password.size(); i++) {
             if (!password.get(i).equals(account.getPassword().get(i))) {
@@ -57,6 +58,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
 
     private BadCredentialsException saveAttempt(UserAccount account, String message) {
         account.setAttemptedLogin(account.getAttemptedLogin() + 1);
+        authService.updateUser(account);
         return new BadCredentialsException(message);
     }
 
