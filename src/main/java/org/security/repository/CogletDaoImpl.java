@@ -99,4 +99,11 @@ public class CogletDaoImpl implements CogletDao {
                 .setMaxResults(1)
                 .uniqueResult();
     }
+
+    public void updateCogletTag(Coglet coglet, List<Cogtag> cogtags){
+        sessionFactory.getCurrentSession()
+                .createQuery("update Coglet as cg set cg.tags = :cogtags where cg = :coglet")
+                .setString ("coglet", coglet.getPath())
+                .setEntity("cogtags", cogtags);
+    }
 }

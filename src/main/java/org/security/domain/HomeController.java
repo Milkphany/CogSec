@@ -27,6 +27,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -203,6 +204,12 @@ public class HomeController {
         modelMap.addAttribute("coglets",coglets);
 
         return "/home/img-tag";
+    }
+
+    @RequestMapping(value="ajax?cogId={cogpath}", method= RequestMethod.GET)
+    public void tagImg (@PathVariable String cogpath, ModelMap modelMap)  {
+
+
     }
 
     @RequestMapping(value ="login2",method = RequestMethod.POST)

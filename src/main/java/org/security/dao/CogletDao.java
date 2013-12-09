@@ -30,4 +30,6 @@ public interface CogletDao {
     public Integer getNumCogletCategory(Cogtag cogtag);
 
     public Coglet getCogletWithCategoryPosition(Cogtag cogtag, Integer pos);
+
+    public void updateCogletTag(Coglet coglet, List<Cogtag> cogtags);
 }

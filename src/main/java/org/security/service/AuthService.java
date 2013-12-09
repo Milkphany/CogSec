@@ -113,4 +113,8 @@ public class AuthService {
     public void updateUser(UserAccount account) {
         userDao.updateUser(account);
     }
+
+    public void updateCogletTag(Coglet coglet, List<Cogtag> cogtags) {
+       cogletDao.updateCogletTag(coglet,cogtags);
+    }
 }
