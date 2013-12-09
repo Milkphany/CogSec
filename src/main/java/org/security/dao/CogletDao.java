@@ -19,6 +19,8 @@ public interface CogletDao {
 
     public List<Coglet> getAllImages();
 
+    public List<Coglet> getUntaggedCoglets ();
+
     public List<Cogtag> getAllTags();
 
     public List<Coglet> getDefaultCoglets();

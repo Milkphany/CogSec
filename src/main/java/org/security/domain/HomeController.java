@@ -170,6 +170,14 @@ public class HomeController {
         return "/home/login";
     }
 
+    @RequestMapping(value ="tag",method = RequestMethod.GET)
+    public String tagImages (ModelMap modelMap) {
+        List<Coglet> coglets = authService.getUntaggedCoglets();
+        modelMap.addAttribute("coglets",coglets);
+
+        return "/home/img-tag";
+    }
+
     @RequestMapping(value ="login2",method = RequestMethod.POST)
     public String getNextLogin(ModelMap modelMap, HttpServletRequest request) {
         String username = request.getParameter("username");

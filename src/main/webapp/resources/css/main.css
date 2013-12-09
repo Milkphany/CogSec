@@ -15,7 +15,8 @@ h1, .container h1, .container h4 {
     display: inline;
 }
 
-.hint {  /*italicized font used for tips and hints*/
+.hint {
+    /*italicized font used for tips and hints*/
     font-family: 'Roboto', Arial, sans-serif;
     font-weight: 300;
     font-style: italic;
@@ -26,7 +27,7 @@ h1, .container h1, .container h4 {
 }
 
 .hidden {
-    display:none;
+    display: none;
 }
 
 .link {
@@ -39,18 +40,17 @@ h1, .container h1, .container h4 {
     cursor: pointer;
 }
 
-
 /*CONTENT STYLES*/
 
 .wrapper {
-    min-width:100%;
+    min-width: 100%;
 
 }
 
 .entered-pw {
     z-index: 999;
 
-    width:100%;
+    width: 100%;
     background: rgba(255, 255, 255, .8);
     position: fixed;
     padding-top: 20px;
@@ -61,25 +61,48 @@ h1, .container h1, .container h4 {
 }
 
 .survey li {
-   padding:10px 0 10px 0;
+    padding: 10px 0 10px 0;
 }
 
-.login-msg{
+.login-msg {
     margin-top: 30px;
-    width:100%;
-    margin-bottom:-105px
+    width: 100%;
+    margin-bottom: -105px
+}
+
+.img-tag {
+    text-align: center;
+    margin: 10px;
+    padding: 10px
+}
+
+.img-tag * {
+    margin-top: 10px;
+}
+
+.img-tag img {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 .entered-pw img {
     padding-left: 10px;
 }
+
 #aim-logo {
     width: 200px;
 }
 
+.image-tagaroni {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #top-nav {
-    float:right;
-    display:inline;
+    float: right;
+    display: inline;
     font-family: 'Roboto', Arial, sans-serif;
     font-weight: normal;
     text-transform: none;
@@ -91,15 +114,14 @@ h1, .container h1, .container h4 {
 }
 
 .content {
-    padding-top:30px;
-    border-top:1px solid #dcdcec;
-    padding-bottom:100px;
+    padding-top: 30px;
+    border-top: 1px solid #dcdcec;
+    padding-bottom: 100px;
 }
 
-
 .centered {
-    margin-right:auto;
-    margin-left:auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #login {
@@ -108,14 +130,15 @@ h1, .container h1, .container h4 {
     min-width: 250px;
     max-width: 500px;
     padding: 200px 80px;
-    text-align:center;
+    text-align: center;
 }
 
 .error-login {
     color: darkviolet;
 }
 
-.bs-callout { /* Admin alert box */
+.bs-callout {
+    /* Admin alert box */
     background-color: #f0f7fd;
     border-color: #d0e3f0;
     margin: 20px 0;
@@ -128,16 +151,16 @@ h1, .container h1, .container h4 {
 }
 
 .add-btn-ex {
-    width:100%;
-    padding:16px;
+    width: 100%;
+    padding: 16px;
     text-align: center;
     color: #777;
-    border-bottom:1px solid #dcdcec;
+    border-bottom: 1px solid #dcdcec;
 }
 
 .add-btn {
-    width:100%;
-    padding:16px;
+    width: 100%;
+    padding: 16px;
     text-align: center;
     color: #777;
 
@@ -146,12 +169,12 @@ h1, .container h1, .container h4 {
 .fat-btn {
     width: 100%;
     height: 45px;
-    font-size: 14px ;
+    font-size: 14px;
     background-color: #dcdcec;
 }
 
 .h4 {
-    font-family: 'Roboto',Arial,sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     font-weight: 300;
 
 }
@@ -161,13 +184,14 @@ h1, .container h1, .container h4 {
 }
 
 .half {
-    width:50%;
-    display:inline
+    width: 50%;
+    display: inline
 
 }
 
-.instructions {padding:10px}
-
+.instructions {
+    padding: 10px
+}
 
 .supertall {
     height: 100px;
@@ -175,55 +199,61 @@ h1, .container h1, .container h4 {
     margin-left: 10px;
 }
 
-h1 {padding-left: 10px}
-.info{padding-left: 10px}
+h1 {
+    padding-left: 10px
+}
+
+.info {
+    padding-left: 10px
+}
 
 .fat,
 .fat-select,
 .fat-textarea {
-    width:100%;
+    width: 100%;
 }
 
-.year {  /*Add this class to text input fields in which user enters a year*/
+.year {
+    /*Add this class to text input fields in which user enters a year*/
     width: 4em;
 }
 
 #search {
-    margin:0;
+    margin: 0;
 }
 
 #list .row,
 #search .row {
-    margin:0;
-    border-bottom:1px solid #dcdcec;
+    margin: 0;
+    border-bottom: 1px solid #dcdcec;
 }
 
 #search-input-group {
-    width:100%;
-    padding:10px 0px 10px 15px;
+    width: 100%;
+    padding: 10px 0px 10px 15px;
 }
 
-#search-ico{
+#search-ico {
     padding-right: 10px;
 }
 
 #search-field {
-    border:0;
-    padding:10px;
-    color:#777;
+    border: 0;
+    padding: 10px;
+    color: #777;
     background: none;
     -webkit-box-shadow: none;
     -box-shadow: none;
 }
 
 #search-field:hover {
-    color:white;
+    color: white;
     cursor: pointer;
 }
 
 .searchbox {
     text-align: center;
-    padding-top:150px;
+    padding-top: 150px;
     padding-bottom: 150px;
 }
 
@@ -235,49 +265,47 @@ h1 {padding-left: 10px}
 .search-results ul,
 .quicklinks ul {
     list-style-type: none;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
 }
 
 .search-results li,
-.quicklinks li{
-    border-bottom:1px solid #dcdcec;
+.quicklinks li {
+    border-bottom: 1px solid #dcdcec;
 }
 
 .search-results li:hover,
 .search-results li a:hover,
 .quicklinks li a:hover,
-.blue-hover:hover{
-    color:#fff;
+.blue-hover:hover {
+    color: #fff;
     background-color: #428bca;
-    -o-transition:.5s;
-    -ms-transition:.5s;
-    -moz-transition:.5s;
-    -webkit-transition:.5s;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
     cursor: pointer;
     text-decoration: none;
 }
 
 .search-results li a, .quicklinks li a, .search-list {
-    padding:10px;
+    padding: 10px;
     display: block;
 }
 
-
-
-.editlink {float:right; display: inline-block}
+.editlink {
+    float: right;
+    display: inline-block
+}
 
 .importpage {
-    display:none;
+    display: none;
     min-height: 60%;
 }
 
-
-
-#header-form td{
+#header-form td {
     background-color: rgb(238, 238, 238);
 }
-
 
 /*FOOTER STYLES*/
 

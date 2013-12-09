@@ -17,25 +17,25 @@
         <h1>Image Tagging</h1>
 
 
-
         <div class="row">
-            <c:forEach items="${coglets}" var="coglet">
-            <div class="img-tag col-md-3 panel-default panel">
-                <img height="170" src="http://wontoncode.com${coglet.path}"/>
-                <c:forEach items="${coglet.tags}" var="tag">
-                    <input type="text" value="${tag.tagName}" class="form-control" />
-                </c:forEach>
-                <input type="text" class="form-control" />
-                <input type="text" class="form-control" />
-                <input type="text" class="form-control" />
-                <button type="button" class="fat btn btn-default">Add Another</button>
-                <button type="button" class="fat btn btn-primary">Submit</button>
-            </div>
-            </c:forEach>
 
+            <c:forEach items="${coglets}" var="coglet">
+                <div class="img-tag col-md-3 col-sm-3 col-lg-3 panel-default panel">
+                    <img height="160" src="http://wontoncode.com${coglet.path}"/>
+                    <c:forEach items="${coglet.tags}" var="tag">
+                        <input type="text" value="${tag.tagName}" class="form-control"/>
+                    </c:forEach>
+                    <input type="text" class="form-control"/>
+                    <input type="text" class="form-control"/>
+                    <input type="text" class="form-control"/>
+                    <button type="button" class="fat btn btn-default">Add Another</button>
+                    <button type="button" class="fat btn btn-primary">Submit</button>
+                </div>
+            </c:forEach>
+                          </div>
+        </div>
+        <jsp:include page="../pagefrags/footer.jsp"/>
     </div>
-    <jsp:include page="../pagefrags/footer.jsp"/>
-</div>
 
 
 </body>

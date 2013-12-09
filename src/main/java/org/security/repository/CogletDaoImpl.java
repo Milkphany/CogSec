@@ -72,6 +72,16 @@ public class CogletDaoImpl implements CogletDao {
         return coglets;
     }
 
+    public List<Coglet> getUntaggedCoglets () {
+        List<Coglet> coglets = sessionFactory.getCurrentSession()
+                .createQuery("from Coglet as cg where cg.tags.size < 2")
+                .setFirstResult(0)
+                .setMaxResults(100)
+                .list();
+        return coglets;
+
+    }
+
     @Override
     public Integer getNumCogletCategory(Cogtag cogtag) {
         return ((Long) sessionFactory.getCurrentSession()
