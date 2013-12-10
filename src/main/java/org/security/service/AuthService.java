@@ -2,6 +2,7 @@ package org.security.service;
 
 import org.security.dao.CogletDao;
 import org.security.dao.UserDao;
+import org.security.exception.CogtagExistException;
 import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
 import org.security.model.*;
@@ -99,7 +100,7 @@ public class AuthService {
     }
 
     public List<Coglet> getAllCoglets() {
-        return cogletDao.getAllImages();
+        return cogletDao.getTopFiftyImages();
     }
 
     public List<Cogtag> getAllCogtags() {
@@ -114,7 +115,13 @@ public class AuthService {
         userDao.updateUser(account);
     }
 
-    public void updateCogletTag(Coglet coglet, List<Cogtag> cogtags) {
-       cogletDao.updateCogletTag(coglet,cogtags);
+    public void addCogtag(Cogtag cogtag) throws CogtagExistException {
+        if (cogletDao.getCogtag(cogtag) == null)
+            throw new CogtagExistException();
+        cogletDao.addCogtag(cogtag);
+    }
+
+    public void updateCoglet(Coglet coglet) {
+       cogletDao.updateCoglet(coglet);
     }
 }

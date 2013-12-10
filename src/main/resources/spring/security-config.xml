@@ -9,6 +9,8 @@
 
     <http pattern="/resources/**" security="none" />
 
+    <global-method-security pre-post-annotations="enabled" />
+
     <http auto-config="false" use-expressions="true" entry-point-ref="cogAuthenticationEntryPoint">
         <custom-filter ref="cogAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
 

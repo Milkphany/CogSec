@@ -7,6 +7,7 @@
 <html>
 <head>
     <jsp:include page="../pagefrags/imports.jsp"/>
+    <link rel="stylesheet" type="text/css" href="/css/tag.css"/>
     <title>Tag Images</title>
 </head>
 <body>
@@ -14,25 +15,21 @@
 
     <div class="maincontent">
 
-        <h1>Image Tagging</h1>
+        <div class="status"><h4>Status:</h4></div>
 
-        <h2 id="potato"></h2>
-
-
-        <div class="row">
+        <div class="row status-top">
 
             <c:forEach items="${coglets}" var="coglet">
                 <div class="img-tag col-md-3 col-sm-3 col-lg-3 panel-default panel"
                      id="${coglet.path}">
-                    <img height="160" src="http://wontoncode.com${coglet.path}"/>
+                    <img height="160" src="${coglet.path}"/>
                     <c:forEach items="${coglet.tags}" var="tag">
-                        <input type="text" value="${tag.tagName}" class="form-control"/>
+                        <label type="text" class="form-control">${tag.tagName}</label>
                     </c:forEach>
-                    <input type="text" class="form-control" name="tag1"/>
-                    <input type="text" class="form-control tag2"/>
-                    <input type="text" class="form-control tag3"/>
-                    <input type="text" class="form-control tag4"/>
-                    <button type="button" class="fat btn btn-default">Add Another</button>
+                    <input type="text" class="form-control" id="tags"/>
+                    <input type="text" class="form-control" id="tags"/>
+                    <input type="text" class="form-control" id="tags"/>
+                    <%--<button type="button" class="fat btn btn-default">Add Another</button>--%>
                     <button type="button" class="add-tags fat btn btn-primary">Submit</button>
                 </div>
             </c:forEach>
@@ -49,24 +46,24 @@
         var parent = $(this).parent();
         var input = $(parent).children("input");
         var tags = new Array();
-        for (var i = 0; i < 5; i++){
+        for (var i = 0; i < 3; i++){
              tags.push($(input).val());
             input = $(input).next();
         }
 
-        var request = $.ajax({
+        $.ajax({
             url: "/ajax",
-            type: "GET",
-            data: { cogId: $(parent).attr("id") }
+            type: "POST",
+            dataType: "html",
+            traditional: true,
+            data: {
+                cogId: $(parent).attr("id"),
+                tags: tags
+            },
+            success: function(sess) {
+                $(document).find('.status').html(sess).css('color', 'green');
+            }
         });
-
-        request.done(function(msg) {
-            console.log("DATA SENT TO SERVERRRRRR");
-
-            $("#potato").text("bark") ;
-        });
-
-
     })
 </script>
 </html>

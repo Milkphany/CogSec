@@ -15,9 +15,11 @@ public interface CogletDao {
 
     public void addCoglet(Coglet coglet);
 
+    public void addCogtag(Cogtag cogtag);
+
     public Coglet getCoglet(Coglet coglet);
 
-    public List<Coglet> getAllImages();
+    public List<Coglet> getTopFiftyImages();
 
     public List<Coglet> getUntaggedCoglets ();
 
@@ -31,5 +33,7 @@ public interface CogletDao {
 
     public Coglet getCogletWithCategoryPosition(Cogtag cogtag, Integer pos);
 
-    public void updateCogletTag(Coglet coglet, List<Cogtag> cogtags);
+    public void updateCoglet(Coglet coglet);
+
+    public Object getCogtag(Cogtag cogtag);
 }

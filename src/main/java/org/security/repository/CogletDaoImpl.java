@@ -32,13 +32,18 @@ public class CogletDaoImpl implements CogletDao {
     }
 
     @Override
+    public void addCogtag(Cogtag cogtag) {
+        sessionFactory.getCurrentSession().save(cogtag);
+    }
+
+    @Override
     public Coglet getCoglet(Coglet coglet) {
         return (Coglet) sessionFactory.getCurrentSession()
                 .get(Coglet.class, coglet.getPath());
     }
 
     @SuppressWarnings("unchecked")
-    public List<Coglet> getAllImages() {
+    public List<Coglet> getTopFiftyImages() {
         return (List<Coglet>) sessionFactory.getCurrentSession()
                 .createQuery("from Coglet")
                 .setMaxResults(50)
@@ -72,6 +77,15 @@ public class CogletDaoImpl implements CogletDao {
         return coglets;
     }
 
+    @Override
+    public Integer getNumCogletCategory(Cogtag cogtag) {
+        return ((Long) sessionFactory.getCurrentSession()
+                .createQuery("select count(*) from Coglet as cg where :cogtag in elements(cg.tags)")
+                .setString("cogtag", cogtag.getTagName())
+                .uniqueResult()).intValue();
+    }
+
+
     public List<Coglet> getUntaggedCoglets () {
         List<Coglet> coglets = sessionFactory.getCurrentSession()
                 .createQuery("from Coglet as cg where cg.tags.size < 2")
@@ -79,15 +93,6 @@ public class CogletDaoImpl implements CogletDao {
                 .setMaxResults(100)
                 .list();
         return coglets;
-
-    }
-
-    @Override
-    public Integer getNumCogletCategory(Cogtag cogtag) {
-        return ((Long) sessionFactory.getCurrentSession()
-                .createQuery("select count(*) from Coglet as cg where :cogtag in elements(cg.tags)")
-                .setString("cogtag", cogtag.getTagName())
-                .uniqueResult()).intValue();
     }
 
     @Override
@@ -100,10 +105,16 @@ public class CogletDaoImpl implements CogletDao {
                 .uniqueResult();
     }
 
-    public void updateCogletTag(Coglet coglet, List<Cogtag> cogtags){
-        sessionFactory.getCurrentSession()
-                .createQuery("update Coglet as cg set cg.tags = :cogtags where cg = :coglet")
-                .setString ("coglet", coglet.getPath())
-                .setEntity("cogtags", cogtags);
+    @Override
+    public void updateCoglet(Coglet coglet) {
+        sessionFactory.getCurrentSession().saveOrUpdate(coglet);
+    }
+
+    @Override
+    public Cogtag getCogtag(Cogtag cogtag) {
+        return (Cogtag) sessionFactory.getCurrentSession()
+                .createQuery("from Cogtag where tagName = :tag")
+                .setString("tag", cogtag.getTagName())
+                .uniqueResult();
     }
 }

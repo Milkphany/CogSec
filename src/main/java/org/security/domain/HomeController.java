@@ -1,12 +1,10 @@
 package org.security.domain;
 
 import org.jboss.logging.Logger;
+import org.security.exception.CogtagExistException;
 import org.security.exception.InsertExistException;
 import org.security.exception.PasswordUnsetException;
-import org.security.model.Coglet;
-import org.security.model.Role;
-import org.security.model.Survey;
-import org.security.model.UserAccount;
+import org.security.model.*;
 import org.security.service.AuthService;
 import org.security.service.CogAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -199,6 +196,7 @@ public class HomeController {
     }
 
     @RequestMapping(value ="tag",method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String tagImages (ModelMap modelMap) {
         List<Coglet> coglets = authService.getUntaggedCoglets();
         modelMap.addAttribute("coglets",coglets);
@@ -206,10 +204,42 @@ public class HomeController {
         return "/home/img-tag";
     }
 
-    @RequestMapping(value="ajax?cogId={cogpath}", method= RequestMethod.GET)
-    public void tagImg (@PathVariable String cogpath, ModelMap modelMap)  {
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value="ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    public @ResponseBody String tagImg (@RequestParam String cogId,
+                                        @RequestParam String[] tags)  {
 
+        Coglet coglet = authService.getCogletById(cogId);
+        if (coglet == null)
+            return "Image was not found on database";
 
+        List<Cogtag> cogtags = new ArrayList<Cogtag>(tags.length);
+        cogtags.addAll(coglet.getTags());
+
+        for (int i = 0; i < tags.length; i++) {
+            try {
+                if (tags[i].isEmpty()) {
+                    tags[i] = "Empty";
+                    continue;
+                }
+
+                Cogtag tag = new Cogtag(tags[i]);
+                authService.addCogtag(tag);
+                cogtags.add(tag);
+                tags[i] = tags[i] + " was added successfully.";
+            } catch (CogtagExistException e) {
+                tags[i] = tags[i] + " was not added because it alrady exists.";
+            }
+        }
+
+        coglet.setTags(cogtags);
+        authService.updateCoglet(coglet);
+
+        StringBuilder builder = new StringBuilder();
+        for (String tagMsg : tags)
+            builder.append(tagMsg + " ");
+
+        return "<img src=\"" + cogId + "\" /> was saved.</br>" + builder.toString();
     }
 
     @RequestMapping(value ="login2",method = RequestMethod.POST)
