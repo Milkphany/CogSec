@@ -14,7 +14,9 @@
 <body>
 <div class="container">
 
-    <div class="status panel panel-primary"><h4><b>Status:</b></h4></div>
+    <c:if test="${editable eq true}">
+        <div class="status panel panel-primary"><h4><b>Status:</b></h4></div>
+    </c:if>
 
     <jsp:include page="../pagefrags/nav.jsp"/>
 
@@ -30,14 +32,15 @@
                     <c:set var="size" value="${fn:length(coglet.tags)}"/>
                     <c:forEach items="${coglet.tags}" var="tag" varStatus="counter">
                         <label type="text" class="form-control">${tag.tagName}</label>
-                        <c:if test="${editable eq false and counter.count eq size and size < 6}">
-                            <c:forEach var="i" begin="0" end="${5 - size}" step="1">
+                        <c:if test="${editable eq false and counter.count eq size and size < 7}">
+                            <c:forEach var="i" begin="0" end="${6 - size}" step="1">
                                 <label type="text" class="form-control"></label>
                             </c:forEach>
                         </c:if>
                     </c:forEach>
 
                     <c:if test="${editable eq true}">
+                        <input type="text" class="form-control" id="tags"/>
                         <input type="text" class="form-control" id="tags"/>
                         <input type="text" class="form-control" id="tags"/>
                         <input type="text" class="form-control" id="tags"/>
@@ -59,7 +62,7 @@
         var parent = $(this).parent();
         var input = $(parent).children("input");
         var tags = new Array();
-        for (var i = 0; i < 3; i++){
+        for (var i = 0; i < 4; i++){
              tags.push($(input).val());
             input = $(input).next();
         }
@@ -74,7 +77,7 @@
                 tags: tags
             },
             success: function(sess) {
-                $(document).find('.status').html(sess).css('color', 'green');
+                $(document).find('.status').html(sess).css('color', 'green').css('z-index', '2000');
             }
         });
     })

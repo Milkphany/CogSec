@@ -241,7 +241,7 @@ public class HomeController {
                 cogtags.add(tag);
                 tags[i] = tags[i] + " was added successfully.";
             } catch (CogtagExistException e) {
-                tags[i] = tags[i] + " was not added because it alrady exists.";
+                tags[i] = "<font color=\"red\">" + tags[i] + " was not added because it already exists.</font>";
             }
         }
 
