@@ -77,7 +77,9 @@
                 tags: tags
             },
             success: function(sess) {
-                $(document).find('.status').html(sess).css('color', 'green').css('z-index', '2000');
+                var statImg = $(document).find('.status');
+                statImg.html(sess).css('color', 'green').css('z-index', '2000');
+                setTimeout(function() { statImg.css('z-index', '999');}, 4500);
             }
         });
     })
