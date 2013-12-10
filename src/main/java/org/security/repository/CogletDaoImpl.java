@@ -90,7 +90,7 @@ public class CogletDaoImpl implements CogletDao {
         String symbol = lessThan ? " < " : " > ";
 
         List<Coglet> coglets = sessionFactory.getCurrentSession()
-                .createQuery("from Coglet as cg where cg.tags.size " + symbol + 2)
+                .createQuery("from Coglet as cg where cg.tags.size " + symbol + upper)
                 .setFirstResult(0)
                 .setMaxResults(num)
                 .list();
