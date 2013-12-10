@@ -23,7 +23,10 @@
     <div class="maincontent">
 
         <form class="panel panel-default panel-body" method="GET">
-            <h4>Display images with less than: </h4>
+            <h4>Display images with <b>
+                <c:if test="${editable eq true}">less</c:if>
+                <c:if test="${editable eq false}">greater</c:if>
+            </b> than: </h4>
             <input id="tagReqVal" name="tagReq" class="form-inline form-horizontal" type="text" value="${param.tagReq}"/>
             <input type="submit" class="btn btn-default" id="tagReq" value="Update"/>
         </form>

@@ -207,8 +207,8 @@ public class HomeController {
 
     @RequestMapping(value = "tagged", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String taggedImages (ModelMap modelMap) {
-        List<Coglet> coglets = authService.getCogletsTagConditions(false, 1, 10000);
+    public String taggedImages (@RequestParam(required = false, defaultValue = "1") Integer tagReq, ModelMap modelMap) {
+        List<Coglet> coglets = authService.getCogletsTagConditions(false, tagReq, 10000);
         modelMap.addAttribute("coglets", coglets);
         modelMap.addAttribute("editable", false);
 
