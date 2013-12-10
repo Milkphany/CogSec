@@ -80,8 +80,8 @@ public class AuthService {
         return cogletDao.getCogletsCategory(new Cogtag(tag));
     }
 
-    public List<Coglet> getCogletsTagLessThan(int upper, int num) {
-        return cogletDao.getCogletsTagLessthan(upper, num);
+    public List<Coglet> getCogletsTagConditions(boolean lessThan, int upper, int num) {
+        return cogletDao.getCogletsTagConditions(lessThan, upper, num);
     }
 
     public List<Coglet> getRandomCogletWithCogtag(String tag, int num, Random rng) {

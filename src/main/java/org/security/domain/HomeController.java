@@ -198,7 +198,7 @@ public class HomeController {
     @RequestMapping(value ="tag",method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String tagImages (ModelMap modelMap) {
-        List<Coglet> coglets = authService.getCogletsTagLessThan(2, 100);
+        List<Coglet> coglets = authService.getCogletsTagConditions(true, 2, 100);
         modelMap.addAttribute("coglets",coglets);
         modelMap.addAttribute("editable", true);
 
@@ -208,7 +208,7 @@ public class HomeController {
     @RequestMapping(value = "tagged", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String taggedImages (ModelMap modelMap) {
-        List<Coglet> coglets = authService.getCogletsTagLessThan(Integer.MAX_VALUE, 10000);
+        List<Coglet> coglets = authService.getCogletsTagConditions(false, 1, 10000);
         modelMap.addAttribute("coglets", coglets);
         modelMap.addAttribute("editable", false);
 

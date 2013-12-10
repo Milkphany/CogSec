@@ -21,7 +21,7 @@ public interface CogletDao {
 
     public List<Coglet> getTopFiftyImages();
 
-    public List<Coglet> getCogletsTagLessthan(int upper, int num);
+    public List<Coglet> getCogletsTagConditions(boolean lessThan, int upper, int num);
 
     public List<Cogtag> getAllTags();
 

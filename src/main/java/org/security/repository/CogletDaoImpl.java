@@ -86,9 +86,11 @@ public class CogletDaoImpl implements CogletDao {
     }
 
 
-    public List<Coglet> getCogletsTagLessthan(int upper, int num) {
+    public List<Coglet> getCogletsTagConditions(boolean lessThan, int upper, int num) {
+        String symbol = lessThan ? " < " : " > ";
+
         List<Coglet> coglets = sessionFactory.getCurrentSession()
-                .createQuery("from Coglet as cg where cg.tags.size < " + 2)
+                .createQuery("from Coglet as cg where cg.tags.size " + symbol + 2)
                 .setFirstResult(0)
                 .setMaxResults(num)
                 .list();
