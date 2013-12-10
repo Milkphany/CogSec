@@ -13,6 +13,8 @@
 <body>
 <div class="container">
 
+    <jsp:include page="../pagefrags/nav.jsp"/>
+
     <div class="maincontent">
 
         <div class="status"><h4>Status:</h4></div>
@@ -23,9 +25,15 @@
                 <div class="img-tag col-md-3 col-sm-3 col-lg-3 panel-default panel"
                      id="${coglet.path}">
                     <img height="160" src="${coglet.path}"/>
-                    <c:forEach items="${coglet.tags}" var="tag">
+                    <c:forEach items="${coglet.tags}" var="tag" varStatus="counter">
                         <label type="text" class="form-control">${tag.tagName}</label>
+                        <c:if test="${counter eq coglet.tags.size - 1 and coglet.tags.size < 6}">
+                            <c:forEach var="i" begin="0" end="${counter - coglet.tags.size}" step="1">
+                                <label type="text" class="form-control"></label>
+                            </c:forEach>
+                        </c:if>
                     </c:forEach>
+
                     <c:if test="${editable eq true}">
                         <input type="text" class="form-control" id="tags"/>
                         <input type="text" class="form-control" id="tags"/>
