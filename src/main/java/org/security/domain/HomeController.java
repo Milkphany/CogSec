@@ -213,6 +213,8 @@ public class HomeController {
         if (coglet == null)
             return "Image was not found on database";
 
+        int initSize = coglet.getTags().size();
+
         List<Cogtag> cogtags = new ArrayList<Cogtag>(tags.length);
         cogtags.addAll(coglet.getTags());
 
@@ -233,7 +235,8 @@ public class HomeController {
         }
 
         coglet.setTags(cogtags);
-        authService.updateCoglet(coglet);
+        if (initSize != cogtags.size())
+            authService.updateCoglet(coglet);
 
         StringBuilder builder = new StringBuilder();
         for (String tagMsg : tags)
