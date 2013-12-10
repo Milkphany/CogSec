@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -25,10 +26,11 @@
                 <div class="img-tag col-md-3 col-sm-3 col-lg-3 panel-default panel"
                      id="${coglet.path}">
                     <img height="160" src="${coglet.path}"/>
+                    <c:set var="size" value="${fn:length(coglet.tags)}"/>
                     <c:forEach items="${coglet.tags}" var="tag" varStatus="counter">
                         <label type="text" class="form-control">${tag.tagName}</label>
-                        <c:if test="${counter eq coglet.tags.size - 1 and coglet.tags.size < 6}">
-                            <c:forEach var="i" begin="0" end="${counter - coglet.tags.size}" step="1">
+                        <c:if test="${counter.count eq size and size < 6}">
+                            <c:forEach var="i" begin="0" end="${6 - size}" step="1">
                                 <label type="text" class="form-control"></label>
                             </c:forEach>
                         </c:if>
