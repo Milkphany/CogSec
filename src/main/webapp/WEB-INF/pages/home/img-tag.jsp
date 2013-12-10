@@ -16,9 +16,9 @@
 
     <jsp:include page="../pagefrags/nav.jsp"/>
 
+    <div class="status"><h4>Status:</h4></div>
     <div class="maincontent">
 
-        <div class="status"><h4>Status:</h4></div>
 
         <div class="row status-top">
 
