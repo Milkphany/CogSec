@@ -26,7 +26,7 @@
                     <c:forEach items="${coglet.tags}" var="tag">
                         <label type="text" class="form-control">${tag.tagName}</label>
                     </c:forEach>
-                    <c:if test="${editable eq false}">
+                    <c:if test="${editable eq true}">
                         <input type="text" class="form-control" id="tags"/>
                         <input type="text" class="form-control" id="tags"/>
                         <input type="text" class="form-control" id="tags"/>
