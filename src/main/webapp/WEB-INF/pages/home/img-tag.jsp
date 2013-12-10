@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 
-    <div class="status"><h4>Status:</h4></div>
+    <div class="status panel panel-primary"><h4><b>Status:</b></h4></div>
 
     <jsp:include page="../pagefrags/nav.jsp"/>
 
