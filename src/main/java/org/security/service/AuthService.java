@@ -116,7 +116,7 @@ public class AuthService {
     }
 
     public void addCogtag(Cogtag cogtag) throws CogtagExistException {
-        if (cogletDao.getCogtag(cogtag) == null)
+        if (cogletDao.getCogtag(cogtag) != null)
             throw new CogtagExistException();
         cogletDao.addCogtag(cogtag);
     }

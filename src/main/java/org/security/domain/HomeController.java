@@ -239,7 +239,7 @@ public class HomeController {
         for (String tagMsg : tags)
             builder.append(tagMsg + " ");
 
-        return "<img src=\"" + cogId + "\" /> was saved.</br>" + builder.toString();
+        return "Image tags were processed.</br>" + builder.toString();
     }
 
     @RequestMapping(value ="login2",method = RequestMethod.POST)
