@@ -86,11 +86,11 @@ public class CogletDaoImpl implements CogletDao {
     }
 
 
-    public List<Coglet> getUntaggedCoglets () {
+    public List<Coglet> getCogletsTagLessthan(int upper, int num) {
         List<Coglet> coglets = sessionFactory.getCurrentSession()
-                .createQuery("from Coglet as cg where cg.tags.size < 2")
+                .createQuery("from Coglet as cg where cg.tags.size < " + 2)
                 .setFirstResult(0)
-                .setMaxResults(100)
+                .setMaxResults(num)
                 .list();
         return coglets;
     }

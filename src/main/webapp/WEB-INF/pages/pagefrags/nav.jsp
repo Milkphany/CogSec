@@ -10,22 +10,16 @@
         <a class="navbar-brand" href="/">Home</a>
     </div>
     <div class="collapse navbar-collapse">
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <ul class="nav navbar-nav">
+                <li><a href="/tag">Tag Images</a></li>
+                <li><a href="/tagged">Tagged Images</a></li>
+            </ul>
+        </sec:authorize>
         <ul class="nav navbar-nav navbar-right">
             <sec:authorize access="isAuthenticated()">
                 <li><a href="/">${currentUser}</a></li>
                 <li><a href="/logout">Logout</a></li>
-                <%--
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                    </ul>
-                                </li>
-                --%>
             </sec:authorize>
             <sec:authorize access="isAnonymous()">
                 <li><a href="/login">Login</a></li>

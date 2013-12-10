@@ -198,8 +198,19 @@ public class HomeController {
     @RequestMapping(value ="tag",method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String tagImages (ModelMap modelMap) {
-        List<Coglet> coglets = authService.getUntaggedCoglets();
+        List<Coglet> coglets = authService.getCogletsTagLessThan(2, 100);
         modelMap.addAttribute("coglets",coglets);
+        modelMap.addAttribute("editable", true);
+
+        return "/home/img-tag";
+    }
+
+    @RequestMapping(value = "tagged", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String taggedImages (ModelMap modelMap) {
+        List<Coglet> coglets = authService.getCogletsTagLessThan(Integer.MAX_VALUE, 10000);
+        modelMap.addAttribute("coglets", coglets);
+        modelMap.addAttribute("editable", false);
 
         return "/home/img-tag";
     }
@@ -242,7 +253,7 @@ public class HomeController {
         for (String tagMsg : tags)
             builder.append(tagMsg + " ");
 
-        return "Image tags were processed.</br>" + builder.toString();
+        return "<b>Image tags were processed.</br>" + builder.toString() + "</b>";
     }
 
     @RequestMapping(value ="login2",method = RequestMethod.POST)

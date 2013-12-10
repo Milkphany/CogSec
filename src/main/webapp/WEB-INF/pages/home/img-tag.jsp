@@ -26,11 +26,13 @@
                     <c:forEach items="${coglet.tags}" var="tag">
                         <label type="text" class="form-control">${tag.tagName}</label>
                     </c:forEach>
-                    <input type="text" class="form-control" id="tags"/>
-                    <input type="text" class="form-control" id="tags"/>
-                    <input type="text" class="form-control" id="tags"/>
-                    <%--<button type="button" class="fat btn btn-default">Add Another</button>--%>
-                    <button type="button" class="add-tags fat btn btn-primary">Submit</button>
+                    <c:if test="${editable eq false}">
+                        <input type="text" class="form-control" id="tags"/>
+                        <input type="text" class="form-control" id="tags"/>
+                        <input type="text" class="form-control" id="tags"/>
+                        <%--<button type="button" class="fat btn btn-default">Add Another</button>--%>
+                        <button type="button" class="add-tags fat btn btn-primary">Submit</button>
+                    </c:if>
                 </div>
             </c:forEach>
         </div>
