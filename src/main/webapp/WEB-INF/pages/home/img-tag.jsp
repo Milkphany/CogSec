@@ -14,13 +14,14 @@
 <body>
 <div class="container">
 
+    <div class="status"><h4>Status:</h4></div>
+
     <jsp:include page="../pagefrags/nav.jsp"/>
 
-    <div class="status"><h4>Status:</h4></div>
     <div class="maincontent">
 
 
-        <div class="row status-top">
+        <div class="row">
 
             <c:forEach items="${coglets}" var="coglet">
                 <div class="img-tag col-md-3 col-sm-3 col-lg-3 panel-default panel"
