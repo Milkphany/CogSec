@@ -42,8 +42,8 @@
                                 <label type="text" class="form-control"></label>
                             </c:forEach>
                         </c:if>
-                        <c:if test="${editable eq true and counter.count eq size and size < 7}">
-                            <c:forEach var="i" begin="0" end="${6 - size}" step="1">
+                        <c:if test="${editable eq true and counter.count eq size and size < 5}">
+                            <c:forEach var="i" begin="0" end="${4 - size}" step="1">
                                 <input type="text" class="form-control" id="tags"/>
                             </c:forEach>
                             <%--<button type="button" class="fat btn btn-default">Add Another</button>--%>
