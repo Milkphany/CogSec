@@ -197,8 +197,8 @@ public class HomeController {
 
     @RequestMapping(value ="tag",method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String tagImages (ModelMap modelMap) {
-        List<Coglet> coglets = authService.getCogletsTagConditions(true, 2, 100);
+    public String tagImages (@RequestParam(required = false, defaultValue = "2") Integer tagReq, ModelMap modelMap) {
+        List<Coglet> coglets = authService.getCogletsTagConditions(true, tagReq, 100);
         modelMap.addAttribute("coglets",coglets);
         modelMap.addAttribute("editable", true);
 
@@ -231,7 +231,7 @@ public class HomeController {
 
         for (int i = 0; i < tags.length; i++) {
             if (tags[i].isEmpty()) {
-                tags[i] = "Empty";
+                tags[i] = "<font color=\"orange\">Tag was empty</font>";
                 continue;
             }
 
@@ -255,7 +255,7 @@ public class HomeController {
         for (String tagMsg : tags)
             builder.append(tagMsg + " ");
 
-        return "<b>Image tags were processed.</br>" + builder.toString() + "</b>";
+        return "<b>Tags have been added to image. " + builder.toString() + "</b>";
     }
 
     @RequestMapping(value ="login2",method = RequestMethod.POST)

@@ -22,6 +22,11 @@
 
     <div class="maincontent">
 
+        <form class="panel panel-default panel-body" method="GET">
+            <h4>Display images with less than: </h4>
+            <input id="tagReqVal" name="tagReq" class="form-inline form-horizontal" type="text" value="${param.tagReq}"/>
+            <input type="submit" class="btn btn-default" id="tagReq" value="Update"/>
+        </form>
 
         <div class="row">
 
@@ -37,16 +42,14 @@
                                 <label type="text" class="form-control"></label>
                             </c:forEach>
                         </c:if>
+                        <c:if test="${editable eq true and counter.count eq size and size < 7}">
+                            <c:forEach var="i" begin="0" end="${6 - size}" step="1">
+                                <input type="text" class="form-control" id="tags"/>
+                            </c:forEach>
+                            <%--<button type="button" class="fat btn btn-default">Add Another</button>--%>
+                            <button type="button" class="add-tags fat btn btn-primary">Submit</button>
+                        </c:if>
                     </c:forEach>
-
-                    <c:if test="${editable eq true}">
-                        <input type="text" class="form-control" id="tags"/>
-                        <input type="text" class="form-control" id="tags"/>
-                        <input type="text" class="form-control" id="tags"/>
-                        <input type="text" class="form-control" id="tags"/>
-                        <%--<button type="button" class="fat btn btn-default">Add Another</button>--%>
-                        <button type="button" class="add-tags fat btn btn-primary">Submit</button>
-                    </c:if>
                 </div>
             </c:forEach>
         </div>
@@ -58,6 +61,7 @@
 </body>
 
 <script type="text/javascript">
+
     $(".add-tags").click(function () {
         var parent = $(this).parent();
         var input = $(parent).children("input");
