@@ -230,18 +230,20 @@ public class HomeController {
         cogtags.addAll(coglet.getTags());
 
         for (int i = 0; i < tags.length; i++) {
-            try {
-                if (tags[i].isEmpty()) {
-                    tags[i] = "Empty";
-                    continue;
-                }
+            if (tags[i].isEmpty()) {
+                tags[i] = "Empty";
+                continue;
+            }
 
-                Cogtag tag = new Cogtag(tags[i]);
+            Cogtag tag = new Cogtag(tags[i]);
+            try {
+
                 authService.addCogtag(tag);
                 cogtags.add(tag);
                 tags[i] = tags[i] + " was added successfully.";
             } catch (CogtagExistException e) {
                 tags[i] = "<font color=\"red\">" + tags[i] + " was not added because it already exists.</font>";
+                cogtags.add(tag);
             }
         }
 
