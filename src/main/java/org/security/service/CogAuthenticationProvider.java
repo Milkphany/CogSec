@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,6 +37,27 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
 
         if (account == null)
             throw new BadCredentialsException("Username not found");
+        if (account.getTries() == 7) {
+            String url = "http://wontoncode.com";
+
+            String content = String.format("Hello %s,\n\n" +
+                    "Unfortunately you forgot your password. It's okay! This is what the study is for.\n" +
+                    "Your account will be unlocked in 24 hours while the administrator conducts the study.\n\n" +
+                    "Your password is: %s %s %s %s" +
+                    "For inquiries regarding this study, please feel free to contact\nJason Chen (jason.chen@stonybrook.edu)," +
+                    "Yang Sheng Fang (yangsheng.fang@stonybrook.edu), or Monika Tuchowska (monika.tuchowska@stonybrook.edu).",
+                    account.getUsername(), url + account.getPassword().get(0).getPath(), url + account.getPassword().get(1).getPath(),
+                    url + account.getPassword().get(2).getPath(), url + account.getPassword().get(3).getPath());
+            String subject = "Account Locked: " + account.getUsername();
+
+            try {
+                new ProcessBuilder("/scripts/email.sh", content, subject, account.getEmail()).start();
+            } catch (IOException e) {
+                logger.error("Was not able to send message for username " + account.getEmail());
+            }
+
+            throw new BadCredentialsException("Your account is locked, check your email for your password! The administrator will unlock it in 24 hours.");
+        }
         if (password == null || password.size() != account.getPassword().size()) {
             logger.info(username + " tried to submit an incorrectly sized password.");
             throw saveAttempt(account, "Password has errors");
@@ -58,6 +80,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
 
     private BadCredentialsException saveAttempt(UserAccount account, String message) {
         account.setAttemptedLogin(account.getAttemptedLogin() + 1);
+        account.setTries(account.getTries() + 1);
         authService.updateUser(account);
         return new BadCredentialsException(message);
     }

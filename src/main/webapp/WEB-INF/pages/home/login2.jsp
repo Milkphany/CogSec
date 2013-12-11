@@ -11,15 +11,25 @@
 
 
     <div class="maincontent">
-        <h1>Enter your PIN:</h1>
-
+        <c:if test="${tries < 5}">
+            <h1>You have ${7 - tries} attempts left to login.</h1>
+        </c:if>
+        <c:if test="${tries >= 5 and tries < 7}">
+            <h3>Seems like you forgot your password. Here is your password, the order is wrong though.</br></h3>
+            <h3>You have ${7 - tries} attempts left to login.</h3>
+        </c:if>
         <div class="collagewrap">
-            <div class="Collage effect-parent">
-                <%--${pass-candidates}--%>
-                <c:forEach var="pass" items="${passwordSelection}">
-                    <img class="darkencss" src="${pass.path}">
-                </c:forEach>
-            </div>
+            <c:if test="${tries < 7}">
+                <div class="Collage effect-parent">
+                    <%--${pass-candidates}--%>
+                    <c:forEach var="pass" items="${passwordSelection}">
+                        <img class="darkencss" src="${pass.path}">
+                    </c:forEach>
+                </div>
+            </c:if>
+            <c:if test="${tries >= 7}">
+                <h1>Your account is locked, check your email for your password! The administrator will unlock it in 24 hours.</h1>
+            </c:if>
         </div>
         <br/>
 

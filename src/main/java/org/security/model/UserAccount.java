@@ -39,6 +39,8 @@ public class UserAccount {
 
     private Integer successLogin = 0;
 
+    private Integer tries = 0;
+
     public UserAccount() {
     }
 
@@ -101,6 +103,14 @@ public class UserAccount {
 
     public void setSurvey(Survey survey) {
         this.survey = survey;
+    }
+
+    public Integer getTries() {
+        return tries;
+    }
+
+    public void setTries(Integer tries) {
+        this.tries = tries;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -9,7 +9,7 @@ body, .row {
     font-weight: normal;
 }
 
-h1, .container h1, .container h4 {
+h1, .container h1, .container h4, h3 {
     font-family: 'Roboto', Arial, sans-serif;
     font-weight: 300;
     display: inline;

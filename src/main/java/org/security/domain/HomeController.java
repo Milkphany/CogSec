@@ -270,12 +270,17 @@ public class HomeController {
         UserAccount userAccount = authService.getUser(username);
         String category = userAccount.getPassword().get(0).getTags().get(0).getTagName();
 
-        List<Coglet> passwords = authService.getRandomCogletWithCogtag(category, 20, random);
+        List<Coglet> passwords = userAccount.getTries() < 5 ?
+                authService.getRandomCogletWithCogtag(category, 20, random) :
+                new ArrayList<Coglet>(4);
+
         for (Coglet pass : userAccount.getPassword())
             passwords.add(pass);
 
         Collections.shuffle(passwords);
 
+        modelMap.addAttribute("tries", userAccount.getTries());
+        modelMap.addAttribute("loginMessage", "You have failed too hard");
         modelMap.addAttribute("passwordSelection", passwords);
         return "/home/login2";
     }
