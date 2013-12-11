@@ -37,9 +37,9 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
 
         if (account == null)
             throw new BadCredentialsException("Username not found");
-        if (account.isLoggedIn())
+        if (account.isLoggedIn() && !account.getUsername().equalsIgnoreCase("milky"))
             throw new BadCredentialsException("You have been able to successfully log in! You should get an email from the administrator.");
-        if (account.getTries() == 7 && !account.getUsername().equalsIgnoreCase("milky")) {
+        if (account.getTries() == 7) {
             String url = "http://wontoncode.com";
 
             String content = String.format("Hello %s,\n\n" +
@@ -84,7 +84,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
                 "For inquiries regarding this study, please feel free to contact\nJason Chen (jason.chen@stonybrook.edu)," +
                 "Yang Sheng Fang (yangsheng.fang@stonybrook.edu), or Monika Tuchowska (monika.tuchowska@stonybrook.edu).",
                 account.getUsername());
-        String subject = "Account Locked: " + account.getUsername();
+        String subject = "User Authenticated: " + account.getUsername();
 
         try {
             new ProcessBuilder("/scripts/email.sh", content, subject, account.getEmail()).start();
