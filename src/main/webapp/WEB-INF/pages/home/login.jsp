@@ -51,7 +51,7 @@
 
     </div>
 
-    <jsp:include page="../pagefrags/footer.jsp"/>
+    <%--<jsp:include page="../pagefrags/footer.jsp"/>--%>
 </div>
 
 <script>

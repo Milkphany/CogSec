@@ -62,6 +62,7 @@ public class HomeController {
         return "home/home";
 	}
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addUser(@ModelAttribute("userAccount") UserAccount userAccount,
                           HttpServletRequest request,
@@ -125,6 +126,7 @@ public class HomeController {
         return "User name is already taken";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value ="register-photos",method = RequestMethod.GET)
     public String getRegistrationPhotos(@RequestParam String username, ModelMap modelMap) {
 

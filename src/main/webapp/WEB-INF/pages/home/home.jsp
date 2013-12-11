@@ -28,7 +28,7 @@
         <sec:authorize access="isAnonymous()">
             <div id="Registration" class="panel panel-default">
                 <div class="collagewrap panel-body">
-                    <h1>Cognometric Analysis</h1>
+                    <%--<h1>Cognometric Analysis</h1>
                     <p class="instructions">Cognometric passwords are passwords using non text authentication.</br>
                         This is a study of recognizability and communicability of image passwords.</br>
                         Please start the registration process by entering your netId, or alternatively login at the top right.</p>
@@ -42,11 +42,15 @@
                         <button class="btn btn-lg btn-default" type="button" id="continue">Continue</button><br/>
                     </p>
 
-                    <h4 class="instructions">3. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>
+                    <h4 class="instructions">3. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>--%>
+
+                        <h4><p class="instructions">Part 1 of experiment is unfortunately over! You will no longer be able to make an account.</p></h4>
+                        <h4><p class="instructions">Part 2 of the experiment entails attempting to log in. Please try as many times as allowed to login.</p></h4>
+                    <jsp:include page="login.jsp" />
 
                 </div>
-                <div class="pics panel-body">
-                </div>
+                <%--<div class="pics panel-body">
+                </div>--%>
             </div>
         </sec:authorize>
 
@@ -150,8 +154,13 @@
 </div>
 
 </div>
-
 <script>
+    $(document).ready(function() {
+        $('#login').css('padding-top', '0px');
+    });
+</script>
+
+<%--<script>
     function collage(){
         $('.Collage').removeWhitespace().collagePlus({
             'targetHeight': 160,
@@ -184,6 +193,6 @@
             $("#hidden-email").val($("#email").val())
         });
     })
-</script>
+</script>--%>
 </body>
 </html>
