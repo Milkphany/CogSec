@@ -96,7 +96,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
                 logger.error("Was not able to send message for username " + account.getEmail());
             }
 
-            throw new BadCredentialsException("Your account is locked, check your email for your password! The administrator will unlock it in 24 hours.");
+            message = "Your account is locked, check your email for your password! The administrator will unlock it in 24 hours.";
         }
 
         authService.updateUser(account);
