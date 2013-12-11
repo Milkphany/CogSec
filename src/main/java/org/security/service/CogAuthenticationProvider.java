@@ -83,7 +83,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
             String content = String.format("Hello %s,\n\n" +
                     "Unfortunately you forgot your password. It's okay! This is what the study is for.\n" +
                     "Your account will be unlocked in 24 hours while the administrator conducts the study.\n\n" +
-                    "Your password is: '%s' '%s' '%s' '%s' \n" +
+                    "Your password is:\n%s\n %s\n %s\n %s\n\n" +
                     "For inquiries regarding this study, please feel free to contact\nJason Chen (jason.chen@stonybrook.edu)," +
                     "Yang Sheng Fang (yangsheng.fang@stonybrook.edu), or Monika Tuchowska (monika.tuchowska@stonybrook.edu).",
                     account.getUsername(), url + account.getPassword().get(0).getPath(), url + account.getPassword().get(1).getPath(),
@@ -94,10 +94,10 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
                 new ProcessBuilder("/scripts/email.sh", content, subject, account.getEmail()).start();
             } catch (IOException e) {
                 logger.error("Was not able to send message for username " + account.getEmail());
+                System.err.println("Was not able to send message for user " + account.getEmail());
             }
 
             message = "Your account is locked, check your email for your password! The administrator will unlock it in 24 hours.";
-            message = content + subject + account.getEmail();
         }
 
         authService.updateUser(account);
