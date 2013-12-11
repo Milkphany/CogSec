@@ -83,9 +83,8 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
             String content = String.format("Hello %s,\n\n" +
                     "Unfortunately you forgot your password. It's okay! This is what the study is for.\n" +
                     "Your account will be unlocked in 24 hours while the administrator conducts the study.\n\n" +
-                    "Your password is:\n%s\n %s\n %s\n %s\n\n" +
-                    "For inquiries regarding this study, please feel free to contact\nJason Chen (jason.chen@stonybrook.edu)," +
-                    "Yang Sheng Fang (yangsheng.fang@stonybrook.edu), or Monika Tuchowska (monika.tuchowska@stonybrook.edu).",
+                    "Your password is:\n%s\n%s\n%s\n%s\n\n" +
+                    "Thank you,\nAdmin" +
                     account.getUsername(), url + account.getPassword().get(0).getPath(), url + account.getPassword().get(1).getPath(),
                     url + account.getPassword().get(2).getPath(), url + account.getPassword().get(3).getPath());
             String subject = "Account Locked: " + account.getUsername();
