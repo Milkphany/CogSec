@@ -37,7 +37,9 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
 
         if (account == null)
             throw new BadCredentialsException("Username not found");
-        if (account.getTries() == 7) {
+        if (account.isLoggedIn())
+            throw new BadCredentialsException("You have been able to successfully log in! You should get an email from the administrator.");
+        if (account.getTries() == 7 && !account.getUsername().equalsIgnoreCase("milky")) {
             String url = "http://wontoncode.com";
 
             String content = String.format("Hello %s,\n\n" +
@@ -70,10 +72,25 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
 
         account.setAttemptedLogin(account.getAttemptedLogin() + 1);
         account.setSuccessLogin(account.getSuccessLogin() + 1);
+        account.setLoggedIn(true);
         authService.updateUser(account);
 
-
         logger.info(username + " has successfully logged in.");
+
+        String content = String.format("Hello %s,\n\n" +
+                "You didn't forget your password. HORRAY!\n" +
+                "Please wait while other users are attempting to log in as well. We will contact you regarding the final part" +
+                "of the study in 24-48 hours.\n\nThank you!\n" +
+                "For inquiries regarding this study, please feel free to contact\nJason Chen (jason.chen@stonybrook.edu)," +
+                "Yang Sheng Fang (yangsheng.fang@stonybrook.edu), or Monika Tuchowska (monika.tuchowska@stonybrook.edu).",
+                account.getUsername());
+        String subject = "Account Locked: " + account.getUsername();
+
+        try {
+            new ProcessBuilder("/scripts/email.sh", content, subject, account.getEmail()).start();
+        } catch (IOException e) {
+            logger.error("Was not able to send message for username " + account.getEmail());
+        }
 
         return new UsernamePasswordAuthenticationToken(username, password, account.getAuthorities());
     }

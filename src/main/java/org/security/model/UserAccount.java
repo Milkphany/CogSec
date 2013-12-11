@@ -41,6 +41,8 @@ public class UserAccount {
 
     private Integer tries = 0;
 
+    private boolean loggedIn = false;
+
     public UserAccount() {
     }
 
@@ -111,6 +113,14 @@ public class UserAccount {
 
     public void setTries(Integer tries) {
         this.tries = tries;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
