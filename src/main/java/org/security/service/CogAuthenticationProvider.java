@@ -39,7 +39,7 @@ public class CogAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("Username not found");
         if (account.isLoggedIn() && !account.getUsername().equalsIgnoreCase("milky"))
             throw new BadCredentialsException("You have been able to successfully log in! You should get an email from the administrator.");
-        if (account.getTries() == 7) {
+        if (account.getTries() == 6) {
             String url = "http://wontoncode.com";
 
             String content = String.format("Hello %s,\n\n" +
