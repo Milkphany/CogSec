@@ -25,10 +25,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -222,7 +219,7 @@ public class HomeController {
     @PreAuthorize("hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})")
     @RequestMapping(value = "tagwith", method = RequestMethod.GET)
     public String taggedWith(@RequestParam(required = false) String[] taglist, ModelMap modelMap) {
-        List<Coglet> coglets = authService.getCogletWithCogtags(taglist);
+        Set<Coglet> coglets = authService.getCogletWithCogtags(taglist);
 
         modelMap.addAttribute("coglets", coglets);
         return "pagefrags/img-tag-with";

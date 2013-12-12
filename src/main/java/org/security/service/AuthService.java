@@ -125,11 +125,10 @@ public class AuthService {
        cogletDao.updateCoglet(coglet);
     }
 
-    public List<Coglet> getCogletWithCogtags(String[] taglist) {
-        List<Coglet> list = new ArrayList<Coglet>();
-        for (String tag : taglist) {
+    public Set<Coglet> getCogletWithCogtags(String[] taglist) {
+        Set<Coglet> list = new LinkedHashSet<Coglet>();
+        for (String tag : taglist)
             list.addAll(getCogletWithCogtag(tag.trim()));
-        }
 
         return list;
     }
