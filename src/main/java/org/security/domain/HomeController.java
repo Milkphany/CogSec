@@ -48,18 +48,16 @@ public class HomeController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-/*
         if (auth.getPrincipal().equals("anonymousUser"))
             return "home/home";
-*/
 
-        /*if (auth.getAuthorities().contains(new Role("ROLE_USER")))
+        if (auth.getAuthorities().contains(new Role("ROLE_USER")))
             modelMap.addAttribute("logUser", authService.getUser(auth.getName()));
 
         if (auth.getAuthorities().contains(new Role("ROLE_ADMIN"))) {
             modelMap.addAttribute("users", authService.getAllUsers());
             modelMap.addAttribute("coglets", authService.getAllCoglets());
-        }*/
+        }
 
         modelMap.addAttribute("tags", authService.getAllCogtags());
 
@@ -221,7 +219,7 @@ public class HomeController {
         return "/home/img-tag";
     }
 
-    @PreAuthorize("hasAnyRole({'ROLE_USER', 'ROLE_USER'})")
+    @PreAuthorize("hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})")
     @RequestMapping(value = "tagwith", method = RequestMethod.GET)
     public String taggedWith(@RequestParam(required = false) String[] taglist, ModelMap modelMap) {
         List<Coglet> coglets = authService.getCogletWithCogtags(taglist);
