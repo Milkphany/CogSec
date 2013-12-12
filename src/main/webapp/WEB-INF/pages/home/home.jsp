@@ -129,6 +129,9 @@
 
 </div>
 <script>
+    $(document).ready(function() {
+        $('#login').css('padding-top', '0px');
+    });
 
     $("td").click(function() {
         if ($(this).hasClass("checked-tag")) {
