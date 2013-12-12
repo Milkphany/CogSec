@@ -11,14 +11,13 @@
 <div class="row">
 
     <c:forEach items="${coglets}" var="coglet">
-        <div class="img-tag col-md-2 col-sm-2 col-lg-2"
-             id="${coglet.path}">
+        <div class="img-tag col-md-2 col-sm-2 col-lg-2" id="${coglet.path}">
             <img height="140" src="${coglet.path}"/>
             <c:set var="size" value="${fn:length(coglet.tags)}"/>
             <c:forEach items="${coglet.tags}" var="tag" varStatus="counter">
                 <label type="text" class="form-control">${tag.tagName}</label>
-                <c:if test="${counter.count eq size and size < 5}">
-                    <c:forEach var="i" begin="0" end="${4 - size}" step="1">
+                <c:if test="${counter.count eq size and size < 8}">
+                    <c:forEach var="i" begin="0" end="${7 - size}" step="1">
                         <label type="text" class="form-control"></label>
                     </c:forEach>
                 </c:if>

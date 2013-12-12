@@ -35,7 +35,7 @@
                             <div class="form-group col-md-10">
                                 <input id="filter-input" type="text" class="form-control" placeholder="Filter Tags">
                             </div>
-                            <button type="button" id="show-images" class="btn btn-default">Display Images</button>
+                            <button type="button" id="show-images" class="btn btn-default">Display</button>
                         </div>
                     </div>
 
@@ -80,7 +80,7 @@
                 <%--<div class="pics panel-body">
                 </div>--%>
             </div>
-            <div id="display-images">
+            <div id="display-images" class="panel panel-body">
 
             </div>
         </sec:authorize>
@@ -206,9 +206,15 @@
             taglist.push(value.innerText);
         });
 
+        $(this).parent().append("<button type='button' id='show-filter' class='btn btn-default'>Show</button>");
+
         $("#display-images").load("/tagwith", $.param({"taglist" : taglist}, true), function(eve) {
-           console.log(eve);
+           $("#filter-table").hide();
         });
+    });
+
+    $("#show-filter").click(function() {
+       $("#filter-table").show();
     });
 
     $("#filter-input").keyup(function () {
