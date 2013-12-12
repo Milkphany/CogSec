@@ -36,7 +36,7 @@
             </div>
         </sec:authorize>
 
-        <sec:authorize access="hasRole('ROLE_USER')">
+        <sec:authorize access="hasAnyRole({'ROLE_ADMIN','ROLE_USER'})">
             <div id="search-panel" class="panel panel-default">
                 <div class="collagewrap panel-body">
                     <h1>Tagged Images</h1>
@@ -184,40 +184,5 @@
         }).show();
     })
 </script>
-
-<%--<script>
-    function collage(){
-        $('.Collage').removeWhitespace().collagePlus({
-            'targetHeight': 160,
-            'allowPartialLastRow': true,
-            'direction': 'vertical'
-        });
-    }
-
-    function recollage() {
-        collage();
-
-        var resizeTimer = null;
-        $(window).bind('resize', function () {
-            // hide all the images until we resize them
-            $('.Collage .Image_Wrapper').css("opacity", 0);
-            // set a timer to re-apply the plugin
-            if (resizeTimer) clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(collage, 200);
-        });
-    }
-
-    $("#continue").click(function () {
-        $('html,body').animate({
-            scrollTop: $(".pics").offset().top
-        }, 500);
-
-        $(".pics").load("/register-photos?username="+$('#username').val(), function () {
-            setTimeout(recollage, 50);
-            $("#hidden-uname").val($("#username").val())
-            $("#hidden-email").val($("#email").val())
-        });
-    })
-</script>--%>
 </body>
 </html>

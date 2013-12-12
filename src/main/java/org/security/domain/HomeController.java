@@ -221,6 +221,7 @@ public class HomeController {
         return "/home/img-tag";
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = "tagwith", method = RequestMethod.GET)
     public String taggedWith(@RequestParam(required = false) String[] taglist, ModelMap modelMap) {
         List<Coglet> coglets = authService.getCogletWithCogtags(taglist);
