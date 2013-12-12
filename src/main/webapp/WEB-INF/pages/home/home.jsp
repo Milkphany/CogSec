@@ -26,6 +26,17 @@
             <h3 class="form-error">${error}</h3>
         </c:if>
         <sec:authorize access="isAnonymous()">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1>Cognometric Analyis</h1>
+                    <h4><p class="instructions">In this part of the study, you will be asked to communicate images.</p></h4>
+                    <h4><p class="instructions">Please <a href="/login">login</a> and follow the scenario described by investigators.</p></h4>
+                </div>
+                <jsp:include page="login.jsp"/>
+            </div>
+        </sec:authorize>
+
+        <sec:authorize access="hasRole('ROLE_USER')">
             <div id="search-panel" class="panel panel-default">
                 <div class="collagewrap panel-body">
                     <h1>Tagged Images</h1>
@@ -52,78 +63,10 @@
                             </c:if>
                         </c:forEach>
                     </table>
-
-
-
-                        <%--<h1>Cognometric Analysis</h1>
-                            <p class="instructions">Cognometric passwords are passwords using non text authentication.</br>
-                                This is a study of recognizability and communicability of image passwords.</br>
-                                Please start the registration process by entering your netId, or alternatively login at the top right.</p>
-
-
-                            <p class="instructions">
-                                <span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
-                                                                             autofocus="autofocus" placeholder="NetId"/></span></br></br>
-                                <span class="h4">2. Enter your email address:
-                                    <input type="email" class="input-lg form-control half" id="email" placeholder="Email Address"></span>
-                                <button class="btn btn-lg btn-default" type="button" id="continue">Continue</button><br/>
-                            </p>
-
-                            <h4 class="instructions">3. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>--%>
-
-                        <%--<h4><p class="instructions">Part 1 of experiment is unfortunately over! You will no longer be able to make an account.</p></h4>
-                        <h4><p class="instructions">Part 2 of the experiment entails attempting to log in. Please try as many times as allowed to login.</p></h4>--%>
-
-                        <%--<jsp:include page="login.jsp" />--%>
-
                 </div>
-                <%--<div class="pics panel-body">
-                </div>--%>
             </div>
             <div id="display-images" class="panel panel-body">
 
-            </div>
-        </sec:authorize>
-
-        <sec:authorize access="hasRole('ROLE_USER')">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <c:choose>
-                        <c:when test="${logUser.survey == null}">
-                            <h2>Please fill out the survey below</h2>
-
-                            <div id="survey">
-                                <script>
-                                    $('#survey').load('/surveys .collagewrap')
-                                </script>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <h1>Your survey response:</h1>
-
-                            <p></p>
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>NetID</th>
-                                    <th>Age</th>
-                                    <th>Major</th>
-                                    <th>Difficulties Creating Account</th>
-                                </tr>
-                                <tr>
-                                    <td>${logUser.username}</td>
-                                    <td>${logUser.survey.age}</td>
-                                    <td>${logUser.survey.major}</td>
-                                    <td>${logUser.survey.difficultyCreate}</td>
-                                </tr>
-                            </table>
-                            <h1>Survey Agreement</h1>
-
-                            <div>
-                                <jsp:include page="informed-consent.jsp"/>
-                            </div>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
             </div>
         </sec:authorize>
 
@@ -209,12 +152,11 @@
         $(this).parent().append("<button type='button' id='show-filter' class='btn btn-default'>Show</button>");
 
         $("#display-images").load("/tagwith", $.param({"taglist" : taglist}, true), function(eve) {
-           $("#filter-table").hide();
+            $("#filter-table").hide();
+            $("#show-filter").click(function() {
+                $("#filter-table").show();
+            });
         });
-    });
-
-    $("#show-filter").click(function() {
-       $("#filter-table").show();
     });
 
     $("#filter-input").keyup(function () {
