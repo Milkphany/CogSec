@@ -47,6 +47,7 @@
                                 <input id="filter-input" type="text" class="form-control" placeholder="Filter Tags">
                             </div>
                             <button type="button" id="show-images" class="btn btn-default">Display</button>
+                            <button type='button' id='show-filter' class='btn btn-default'>Show</button>
                         </div>
                     </div>
 
@@ -131,6 +132,12 @@
 <script>
     $(document).ready(function() {
         $('#login').css('padding-top', '0px');
+        $('#show-filter').hide();
+    });
+
+    $("#show-filter").click(function() {
+        $("#show-filter").hide();
+        $("#filter-table").show();
     });
 
     $("td").click(function() {
@@ -152,13 +159,10 @@
             taglist.push(value.innerText);
         });
 
-        $(this).parent().append("<button type='button' id='show-filter' class='btn btn-default'>Show</button>");
+        $("#show-filter").show();
 
         $("#display-images").load("/tagwith", $.param({"taglist" : taglist}, true), function(eve) {
             $("#filter-table").hide();
-            $("#show-filter").click(function() {
-                $("#filter-table").show();
-            });
         });
     });
 
