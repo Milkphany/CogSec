@@ -40,8 +40,8 @@
                     <c:set var="size" value="${fn:length(coglet.tags)}"/>
                     <c:forEach items="${coglet.tags}" var="tag" varStatus="counter">
                         <label type="text" class="form-control">${tag.tagName}</label>
-                        <c:if test="${editable eq false and counter.count eq size and size < 7}">
-                            <c:forEach var="i" begin="0" end="${6 - size}" step="1">
+                        <c:if test="${editable eq false and counter.count eq size and size < 6}">
+                            <c:forEach var="i" begin="0" end="${5 - size}" step="1">
                                 <label type="text" class="form-control"></label>
                             </c:forEach>
                         </c:if>

@@ -26,31 +26,62 @@
             <h3 class="form-error">${error}</h3>
         </c:if>
         <sec:authorize access="isAnonymous()">
-            <div id="Registration" class="panel panel-default">
+            <div id="search-panel" class="panel panel-default">
                 <div class="collagewrap panel-body">
-                    <%--<h1>Cognometric Analysis</h1>
-                    <p class="instructions">Cognometric passwords are passwords using non text authentication.</br>
-                        This is a study of recognizability and communicability of image passwords.</br>
-                        Please start the registration process by entering your netId, or alternatively login at the top right.</p>
+                    <h1>Tagged Images</h1>
+
+                    <div class="panel-body">
+                        <div class="form-inline">
+                            <div class="form-group col-md-10">
+                                <input id="filter-input" type="text" class="form-control" placeholder="Filter Tags">
+                            </div>
+                            <button type="button" id="show-images" class="btn btn-default">Display Images</button>
+                        </div>
+                    </div>
+
+                    <table id="filter-table" class="table table-bordered">
+                        <c:forEach var="tag" items="${tags}" begin="0" step="1" varStatus="counter">
+                            <c:if test="${counter.count % 7 eq 0}">
+                                <tr>
+                            </c:if>
+                            <c:if test="${counter.count % 7 != 0}">
+                                <td><input type="checkbox" value="${tag.tagName}"> ${tag.tagName}</td>
+                            </c:if>
+                            <c:if test="${counter.count % 7 eq 0}">
+                                </tr>
+                            </c:if>
+                        </c:forEach>
+                    </table>
 
 
-                    <p class="instructions">
-                        <span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
-                                                                     autofocus="autofocus" placeholder="NetId"/></span></br></br>
-                        <span class="h4">2. Enter your email address:
-                            <input type="email" class="input-lg form-control half" id="email" placeholder="Email Address"></span>
-                        <button class="btn btn-lg btn-default" type="button" id="continue">Continue</button><br/>
-                    </p>
 
-                    <h4 class="instructions">3. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>--%>
+                        <%--<h1>Cognometric Analysis</h1>
+                            <p class="instructions">Cognometric passwords are passwords using non text authentication.</br>
+                                This is a study of recognizability and communicability of image passwords.</br>
+                                Please start the registration process by entering your netId, or alternatively login at the top right.</p>
 
-                        <h4><p class="instructions">Part 1 of experiment is unfortunately over! You will no longer be able to make an account.</p></h4>
-                        <h4><p class="instructions">Part 2 of the experiment entails attempting to log in. Please try as many times as allowed to login.</p></h4>
-                    <jsp:include page="login.jsp" />
+
+                            <p class="instructions">
+                                <span class="h4">1. Enter your NetId: <input type="text" class="input-lg form-control half" id="username"
+                                                                             autofocus="autofocus" placeholder="NetId"/></span></br></br>
+                                <span class="h4">2. Enter your email address:
+                                    <input type="email" class="input-lg form-control half" id="email" placeholder="Email Address"></span>
+                                <button class="btn btn-lg btn-default" type="button" id="continue">Continue</button><br/>
+                            </p>
+
+                            <h4 class="instructions">3. Click the images below to create your PIN. Your PIN must consist of 4 non-repeating images.</h4>--%>
+
+                        <%--<h4><p class="instructions">Part 1 of experiment is unfortunately over! You will no longer be able to make an account.</p></h4>
+                        <h4><p class="instructions">Part 2 of the experiment entails attempting to log in. Please try as many times as allowed to login.</p></h4>--%>
+
+                        <%--<jsp:include page="login.jsp" />--%>
 
                 </div>
                 <%--<div class="pics panel-body">
                 </div>--%>
+            </div>
+            <div id="display-images">
+
             </div>
         </sec:authorize>
 
@@ -155,9 +186,52 @@
 
 </div>
 <script>
-    $(document).ready(function() {
-        $('#login').css('padding-top', '0px');
+
+    $("td").click(function() {
+        if ($(this).hasClass("checked-tag")) {
+            $(this).find('input').prop('checked', false);
+            $(this).css('background-color', 'white');
+            $(this).removeClass("checked-tag");
+        } else {
+            $(this).find('input').prop('checked', true);
+            $(this).css('background-color', 'green');
+            $(this).addClass("checked-tag");
+        }
     });
+
+    $("#show-images").click(function() {
+        var tagobj = $(".checked-tag");
+        var taglist = new Array();
+        $.each(tagobj, function(key, value) {
+            taglist.push(value.innerText);
+        });
+
+        $("#display-images").load("/tagwith", $.param({"taglist" : taglist}, true), function(eve) {
+           console.log(eve);
+        });
+    });
+
+    $("#filter-input").keyup(function () {
+        var data = this.value.split(" ");
+
+        var ta = $('#filter-table').find('td');
+        if (this.value == "") {
+            ta.show();
+            return;
+        }
+
+        ta.hide();
+
+        ta.filter(function (i, v) {
+            var $t = $(this);
+            for (var d = 0; d < data.length; ++d) {
+                if ($t.is(":contains('" + data[d] + "')")) {
+                    return true;
+                }
+            }
+            return false;
+        }).show();
+    })
 </script>
 
 <%--<script>
