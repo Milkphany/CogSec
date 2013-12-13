@@ -163,6 +163,7 @@
     $("#show-images").click(function() {
         $(this).attr("disabled", "disabled");
         $("#filter-input").val("");
+        filterText();
 
         var tagobj = $(".checked-tag");
         var untagobj = $(".unchecked-tag");
@@ -185,7 +186,7 @@
         });
     });
 
-    $("#filter-input").keyup(function () {
+    function filterText () {
         var data = this.value.split(" ");
 
         var ta = $('#filter-table').find('td');
@@ -204,8 +205,10 @@
                 }
             }
             return false;
-        }).show();
-    })
+        });
+    }
+
+    $("#filter-input").keyup(filterText()).show();
 </script>
 </body>
 </html>
