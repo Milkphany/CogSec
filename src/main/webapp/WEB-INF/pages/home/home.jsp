@@ -36,17 +36,18 @@
             </div>
         </sec:authorize>
 
-        <sec:authorize access="hasAnyRole({'ROLE_ADMIN','ROLE_USER'})">
+        <%--<sec:authorize access="hasAnyRole({'ROLE_ADMIN','ROLE_USER'})">--%>
             <div id="search-panel" class="panel panel-default">
                 <div class="collagewrap panel-body">
                     <h1>Tagged Images</h1>
 
                     <div class="panel-body">
                         <div class="form-inline">
-                            <div class="form-group col-md-10">
+                            <div class="form-group col-md-8">
                                 <input id="filter-input" type="text" class="form-control" placeholder="Filter Tags">
                             </div>
-                            <button type="button" id="show-images" class="btn btn-default">Display</button>
+                            <button type="button" id="show-images" class="btn btn-info">Display</button>
+                            <button type='button' id='clear-filter' class='btn btn-default'>Clear</button>
                             <button type='button' id='show-filter' class='btn btn-default'>Show</button>
                         </div>
                     </div>
@@ -69,7 +70,7 @@
             <div id="display-images" class="panel panel-body">
 
             </div>
-        </sec:authorize>
+        <%--</sec:authorize>--%>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <div class="panel panel-default">
@@ -99,7 +100,6 @@
                         </table>
                     </div>
                     <h2>All images</h2>
-
                     <div>
                         <table>
                             <tr>
@@ -140,29 +140,48 @@
         $("#filter-table").show();
     });
 
+    $("#clear-filter").click(function () {
+        $("td > input").prop('checked', false);
+        $("td").removeClass("unchecked-tag");
+        $("td").removeClass("checked-tag");
+
+    });
+
     $("td").click(function() {
         if ($(this).hasClass("checked-tag")) {
-            $(this).find('input').prop('checked', false);
-            $(this).css('background-color', 'white');
             $(this).removeClass("checked-tag");
+            $(this).addClass("unchecked-tag");
+        } else if ($(this).hasClass("unchecked-tag")) {
+            $(this).find('input').prop('checked', false);
+            $(this).removeClass("unchecked-tag");
         } else {
-            $(this).find('input').prop('checked', true);
-            $(this).css('background-color', 'green');
             $(this).addClass("checked-tag");
+            $(this).find('input').prop('checked', true);
         }
     });
 
     $("#show-images").click(function() {
+        $(this).attr("disabled", "disabled");
+        $("#filter-input").val("");
+
         var tagobj = $(".checked-tag");
+        var untagobj = $(".unchecked-tag");
         var taglist = new Array();
+        var untaglist = new Array();
+
         $.each(tagobj, function(key, value) {
             taglist.push(value.innerText);
         });
 
+        $.each(untagobj, function(key, value) {
+            untaglist.push(value.innerText);
+        });
+
         $("#show-filter").show();
 
-        $("#display-images").load("/tagwith", $.param({"taglist" : taglist}, true), function(eve) {
+        $("#display-images").load("/tagwith", $.param({"taglist" : taglist, "untaglist": untaglist}, true), function(eve) {
             $("#filter-table").hide();
+            $("#show-images").removeAttr("disabled");
         });
     });
 

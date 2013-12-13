@@ -293,6 +293,14 @@ h1 {
     display: block;
 }
 
+.checked-tag {
+    background-color: green;
+}
+
+.unchecked-tag {
+    background-color: red;
+}
+
 .editlink {
     float: right;
     display: inline-block

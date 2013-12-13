@@ -58,4 +58,8 @@ public class Coglet implements Serializable {
         return this.path.equals(coglet.getPath());
     }
 
+    @Override
+    public int hashCode() {
+        return path.hashCode();
+    }
 }
