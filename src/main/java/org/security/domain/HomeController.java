@@ -43,7 +43,7 @@ public class HomeController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap modelMap) {
 
-       /* Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (auth.getPrincipal().equals("anonymousUser"))
             return "home/home";
@@ -55,7 +55,6 @@ public class HomeController {
             modelMap.addAttribute("users", authService.getAllUsers());
             modelMap.addAttribute("coglets", authService.getAllCoglets());
         }
-*/
         modelMap.addAttribute("tags", authService.getAllCogtags());
 
         return "home/home";
