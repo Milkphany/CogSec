@@ -163,7 +163,9 @@
     $("#show-images").click(function() {
         $(this).attr("disabled", "disabled");
         $("#filter-input").val("");
-        filterText();
+
+        $('#filter-table').find('td').show();
+
 
         var tagobj = $(".checked-tag");
         var untagobj = $(".unchecked-tag");
@@ -186,7 +188,7 @@
         });
     });
 
-    function filterText () {
+    $("#filter-input").keyup(function () {
         var data = this.value.split(" ");
 
         var ta = $('#filter-table').find('td');
@@ -205,10 +207,8 @@
                 }
             }
             return false;
-        });
-    }
-
-    $("#filter-input").keyup(filterText()).show();
+        }).show();
+    })
 </script>
 </body>
 </html>
