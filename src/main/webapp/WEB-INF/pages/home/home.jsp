@@ -70,7 +70,6 @@
             <div id="display-images" class="panel panel-body">
 
             </div>
-        </sec:authorize>
 
             <div class="entered-pw" style="width: 1110px">
                 <h3 class="info">You've entered:</h3>
@@ -89,6 +88,8 @@
                 </div>
 
             </div>
+        </sec:authorize>
+
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <div class="panel panel-default">
                 <div class="panel-body">
