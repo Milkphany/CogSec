@@ -53,17 +53,15 @@
                     </div>
 
                     <table id="filter-table" class="table table-bordered">
-                        <c:forEach var="tag" items="${tags}" begin="0" step="1" varStatus="counter">
-                            <c:if test="${counter.count % 7 eq 0}">
-                                <tr>
-                            </c:if>
-                            <c:if test="${counter.count % 7 != 0}">
+                        <tr>
+                            <c:forEach var="tag" items="${tags}" begin="0" step="1" varStatus="counter">
                                 <td><input type="checkbox" value="${tag.tagName}"> ${tag.tagName}</td>
-                            </c:if>
-                            <c:if test="${counter.count % 7 eq 0}">
-                                </tr>
-                            </c:if>
-                        </c:forEach>
+                                <c:if test="${counter.count % 7 eq 0}">
+                                    </tr>
+                                    <tr>
+                                </c:if>
+                            </c:forEach>
+                        </tr>
                     </table>
                 </div>
             </div>
