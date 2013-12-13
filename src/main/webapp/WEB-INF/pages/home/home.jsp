@@ -72,6 +72,23 @@
             </div>
         </sec:authorize>
 
+            <div class="entered-pw" style="width: 1110px">
+                <h3 class="info">You've entered:</h3>
+
+                <div>
+                    <input type="hidden" name="password" id="img0" value=""/>
+                    <input type="hidden" name="password" id="img1" value=""/>
+                    <input type="hidden" name="password" id="img2" value=""/>
+                    <input type="hidden" name="password" id="img3" value=""/>
+                    <span class="images"></span>
+
+                    <div style="float: right; margin: 0px 15px 0px 15px">
+                        <button type="button" class="undo btn btn-warning supertall">Undo</button>
+                        <input type="submit" class="login btn btn-primary supertall" value="Continue"/>
+                    </div>
+                </div>
+
+            </div>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -141,13 +158,13 @@
     });
 
     $("#clear-filter").click(function () {
-        $("td > input").prop('checked', false);
-        $("td").removeClass("unchecked-tag");
-        $("td").removeClass("checked-tag");
+        $("#filter-table td > input").prop('checked', false);
+        $("#filter-table td").removeClass("unchecked-tag");
+        $("#filter-table td").removeClass("checked-tag");
 
     });
 
-    $("td").click(function() {
+    $("#filter-table td").click(function() {
         if ($(this).hasClass("checked-tag")) {
             $(this).removeClass("checked-tag");
             $(this).addClass("unchecked-tag");
@@ -185,6 +202,53 @@
         $("#display-images").load("/tagwith", $.param({"taglist" : taglist, "untaglist": untaglist}, true), function(eve) {
             $("#filter-table").hide();
             $("#show-images").removeAttr("disabled");
+
+            var pw = new Array();
+
+            $(".undo").attr("disabled", pw.length == 0);
+            $(".login").attr("disabled", pw.length != 4);
+            $(".info").toggleClass("hidden", pw.length == 0);
+
+            $(".img-tag > img").click(function () {
+
+                var src = $(this).attr("src");
+
+                if (pw.length < 4) {
+                    $(this).css("visibility", "hidden");
+
+                    pw.push(src);
+                }
+
+
+                var html = "";
+                for (var i = 0; i < pw.length; i++) {
+                    html += "<img height ='100' src='" + pw[i] + "'/>";
+                    $("input[id=img" + i + "]").val(pw[i]);
+                }
+                $(".images").html(html);
+
+                $(".undo").attr("disabled", pw.length == 0);
+                $(".login").attr("disabled", pw.length != 4);
+                $(".info").toggleClass("hidden", pw.length == 0);
+                //$(".entered-pw").html(html+"<img height='150' src='"+src+"'/>");
+            })
+
+            $(".undo").click(function () {
+                var selector = "img[src='" + pw.pop() + "']";
+                $(selector).css("visibility", "visible");
+
+                var html = "";
+                for (var i = 0; i < pw.length; i++) {
+                    html += "<img height ='100' src='" + pw[i] + "'/>";
+                }
+                $(".images").html(html);
+                $(".undo").attr("disabled", pw.length == 0);
+                $(".login").attr("disabled", pw.length != 4);
+                $(".info").toggleClass("hidden", pw.length == 0);
+            })
+
+            $(".entered-pw").width($(".maincontent").width())
+
         });
     });
 
@@ -209,6 +273,7 @@
             return false;
         }).show();
     })
+
 </script>
 </body>
 </html>
