@@ -36,7 +36,7 @@
             </div>
         </sec:authorize>
 
-        <%--<sec:authorize access="hasAnyRole({'ROLE_ADMIN','ROLE_USER'})">--%>
+        <sec:authorize access="hasAnyRole({'ROLE_ADMIN','ROLE_USER'})">
             <div id="search-panel" class="panel panel-default">
                 <div class="collagewrap panel-body">
                     <h1>Tagged Images</h1>
@@ -70,7 +70,7 @@
             <div id="display-images" class="panel panel-body">
 
             </div>
-        <%--</sec:authorize>--%>
+        </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <div class="panel panel-default">

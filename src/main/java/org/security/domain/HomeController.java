@@ -216,7 +216,7 @@ public class HomeController {
         return "/home/img-tag";
     }
 
-    /*@PreAuthorize("hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})")*/
+    @PreAuthorize("hasAnyRole({'ROLE_USER', 'ROLE_ADMIN'})")
     @RequestMapping(value = "tagwith", method = RequestMethod.GET)
     public String taggedWith(@RequestParam(required = false) String[] taglist,
                              @RequestParam(required = false) String[] untaglist,

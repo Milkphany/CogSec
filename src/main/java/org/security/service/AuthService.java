@@ -132,7 +132,7 @@ public class AuthService {
         for (String tag : taglist)
             list.addAll(getCogletWithCogtag(tag.trim()));
 
-        if (untaglist != null || untaglist.length != 0) {
+        if (untaglist != null && untaglist.length != 0) {
             for (String tag : untaglist)
                 unlist.addAll(getCogletWithCogtag(tag.trim()));
 
